@@ -1,0 +1,613 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Portfolio</title>
+
+  <link rel="stylesheet" href="Portfolio/style.css" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+  <!-- HERO SECTION -->
+  <canvas id="network-bg"></canvas>
+  <section class="hero">
+    <div class="social-bar">
+      <a href="https://www.linkedin.com/in/arshibansal97/">
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+
+      <a href="https://github.com/ArshiBansal">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <a href="https://mail.google.com/mail/?view=cm&to=arshi122022@gmail.com" target="_blank"><i
+          class="fa-solid fa-envelope"></i></a>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row align-items-center hero-row">
+        <div class="col-lg-7 hero-text">
+          <p class="intro">Hello, I'm Arshi Bansal</p>
+
+          <h1 class="hero-title">
+            Turning Data Into <br />
+            Intelligent Insights <br />
+            with AI & Predictive Analytics
+          </h1>
+
+          <p class="hero-desc">
+            I specialize in data analysis, machine learning, and predictive
+            modeling to uncover patterns and generate insights that drive
+            smarter business decisions.
+          </p>
+
+          <div class="hero-buttons">
+            <!-- Wrap only the Download CV button and preview -->
+            <div class="resume-wrapper">
+              <a href="../assests/Resume.pdf" download class="btn-main">
+                <i class="fa-solid fa-download"></i> Download CV
+              </a>
+              <div class="resume-preview">
+                <iframe src="../assests/Resume.pdf"></iframe>
+              </div>
+            </div>
+
+            <!-- Contact Me button stays untouched -->
+            <a href="https://mail.google.com/mail/?view=cm&to=arshi122022@gmail.com" class="btn-main" target="_blank">
+              <i class="fa-solid fa-paper-plane"></i> Contact Me
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-5 hero-image">
+          <img src="../assests/profile.jpg" class="profile" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+
+  <section class="about-section">
+    <div class="container-fluid">
+      <div class="row align-items-start">
+        <div class="col-lg-1"></div>
+
+        <div class="col-lg-5 about-left">
+          <h2 class="about-title">
+            Crafting Experiences <br />
+            Beyond Just Code.
+          </h2>
+
+          <p class="about-text">
+            I'm a Business & Data Analyst and AI/ML Engineer building
+            intelligent systems using predictive analytics and machine
+            learning. I create data-driven solutions that help organizations
+            make smarter decisions.
+          </p>
+
+          <p class="about-text">
+            My focus lies in machine learning models, data visualization, and
+            predictive insights that transform raw data into valuable business
+            intelligence.
+          </p>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="skill-card">
+                <h4>DATA ANALYTICS</h4>
+                <p>Python · SQL · Power BI · Tableau</p>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="skill-card">
+                <h4>MACHINE LEARNING</h4>
+                <p>Scikit-Learn · TensorFlow · NLP</p>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="skill-card">
+                <h4>PREDICTIVE MODELS</h4>
+                <p>Forecasting · Regression · Classification</p>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="skill-card">
+                <h4>MINDSET</h4>
+                <p>Analytical Thinking · Problem Solving</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-1"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS SECTION -->
+
+  <section class="projects-section">
+    <div class="projects-bg-text">PROJECTS</div>
+
+    <div class="projects-container">
+      <div class="projects-header">
+        <h2>BUILT WITH PURPOSE.</h2>
+
+        <p class="section-desc">
+          A curated selection of my technical work focused on solving
+          real-world business problems using data science, machine learning,
+          and analytics.
+        </p>
+      </div>
+
+      <!-- PROJECT 1 -->
+
+      <div class="project-card">
+        <div class="project-content">
+          <div class="project-icon">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+
+          <h3 class="project-title">AI Stock Forecast Dashboard</h3>
+
+          <div class="problem-box">
+            <span>PROBLEM</span>
+            <p>
+              Investors often struggle to interpret large volumes of financial
+              data and accurately predict stock price movements.
+            </p>
+          </div>
+
+          <p class="project-desc">
+            Built an AI-powered dashboard that analyzes historical stock data
+            and predicts future prices using machine learning, time-series
+            forecasting, and deep learning models with interactive
+            visualizations.
+          </p>
+
+          <div class="tech-stack">
+            <span>Python</span>
+            <span>Streamlit</span>
+            <span>TensorFlow</span>
+            <span>Scikit-Learn</span>
+            <span>Plotly</span>
+            <span>XGBoost</span>
+          </div>
+        </div>
+
+        <div class="project-actions">
+          <a href="https://github.com/ArshiBansal/Stocks_Analysis" class="action repo">
+            <i class="fa-brands fa-github"></i>
+            <p>Repository</p>
+          </a>
+
+          <a href="https://zephyrstocks.streamlit.app/" class="action demo">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <p>Live Demo</p>
+          </a>
+        </div>
+      </div>
+
+      <!-- PROJECT 2 -->
+
+      <div class="project-card">
+        <div class="project-content">
+          <div class="project-icon">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+
+          <h3 class="project-title">News Sentiment Analyzer</h3>
+
+          <div class="problem-box">
+            <span>PROBLEM</span>
+            <p>
+              Investors struggle to quickly interpret large volumes of
+              financial news and understand overall market sentiment.
+            </p>
+          </div>
+
+          <p class="project-desc">
+            Built a real-time news analysis dashboard that collects crypto and
+            stock market headlines from RSS feeds and performs sentiment
+            analysis to determine market mood using natural language
+            processing.
+          </p>
+
+          <div class="tech-stack">
+            <span>Python</span>
+            <span>Streamlit</span>
+            <span>BeautifulSoup</span>
+            <span>VADER NLP</span>
+            <span>RSS Feeds</span>
+          </div>
+        </div>
+
+        <div class="project-actions">
+          <a href="https://github.com/ArshiBansal/NEWS_SENTIMENTS_ANALYSER" class="action repo">
+            <i class="fa-brands fa-github"></i>
+            <p>Repository</p>
+          </a>
+
+          <a href="https://stocksnews.streamlit.app/" class="action demo">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <p>Live Demo</p>
+          </a>
+        </div>
+      </div>
+
+      <!-- PROJECT 3 -->
+
+      <div class="project-card">
+        <div class="project-content">
+          <div class="project-icon">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+
+          <h3 class="project-title">Real Estate Price Analysis</h3>
+
+          <div class="problem-box">
+            <span>PROBLEM</span>
+            <p>
+              Real estate data is often difficult to analyze, making it
+              challenging to identify market trends, property demand, and
+              regional sales patterns for informed decision-making.
+            </p>
+          </div>
+
+          <p class="project-desc">
+            Developed a real estate analytics dashboard to analyze property
+            sales data and identify market trends. Implemented data cleaning
+            and generated multiple visualizations including sales trends,
+            property distribution, and correlation insights.
+          </p>
+
+          <div class="tech-stack">
+            <span>Power BI</span>
+          </div>
+        </div>
+
+        <div class="project-actions">
+          <a href="https://github.com/ArshiBansal/Real_Estates_Analysis" class="action repo">
+            <i class="fa-brands fa-github"></i>
+            <p>Repository</p>
+          </a>
+
+          <a href="#" class="action demo">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <p>Live Demo</p>
+          </a>
+        </div>
+      </div>
+
+      <!-- PROJECT 4 -->
+
+      <div class="project-card">
+        <div class="project-content">
+          <div class="project-icon">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+
+          <h3 class="project-title">Cyber Security Incident Analysis</h3>
+
+          <div class="problem-box">
+            <span>PROBLEM</span>
+            <p>
+              Organizations lack clear insights into cybersecurity incident
+              trends, affected sectors, and the scale of data breaches over
+              time.
+            </p>
+          </div>
+
+          <p class="project-desc">
+            Performed data analysis on cybersecurity incidents (2019–2024) by
+            cleaning and transforming breach data, estimating affected
+            subjects, and creating multiple visualizations to identify trends,
+            sector impact, and incident patterns.
+          </p>
+
+          <div class="tech-stack">
+            <span>Python</span>
+            <span>Pandas</span>
+            <span>NumPy</span>
+            <span>Matplotlib</span>
+            <span>Seaborn</span>
+          </div>
+        </div>
+
+        <div class="project-actions">
+          <a href="https://github.com/ArshiBansal/Cyber_Crime_Analysis" class="action repo">
+            <i class="fa-brands fa-github"></i>
+            <p>Repository</p>
+          </a>
+
+          <a href="#" class="action demo">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <p>Live Demo</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="capabilities-section">
+    <div class="capabilities-bg">SKILLS</div>
+
+    <div class="capabilities-container">
+      <div class="cap-header">
+        <h2>CAPABILITIES & EDUCATION</h2>
+
+        <p>
+          A snapshot of the technologies I work with and the academic journey
+          that shaped my analytical thinking and problem-solving abilities.
+        </p>
+      </div>
+
+      <div class="cap-grid">
+        <!-- SKILLS -->
+
+        <div class="skills-grid">
+          <!-- LANGUAGES -->
+
+          <div class="flip-card">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <i class="fa-solid fa-code"></i>
+                <h3>Languages</h3>
+                <p>Hover to view</p>
+              </div>
+
+              <div class="flip-back">
+                <span>Python</span>
+                <span>Java</span>
+                <span>C/C++</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DATABASES -->
+
+          <div class="flip-card">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <i class="fa-solid fa-database"></i>
+                <h3>Databases</h3>
+                <p>Hover to view</p>
+              </div>
+
+              <div class="flip-back">
+                <span>MySQL</span>
+                <span>PostgreSQL</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DATA SCIENCE -->
+
+          <div class="flip-card">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <i class="fa-solid fa-brain"></i>
+                <h3>Data Science / ML</h3>
+                <p>Hover to view</p>
+              </div>
+
+              <div class="flip-back">
+                <span>Pandas</span>
+                <span>NumPy</span>
+                <span>Matplotlib</span>
+                <span>Seaborn</span>
+                <span>TensorFlow</span>
+                <span>PyTorch</span>
+                <span>XGBoost</span>
+                <span>Scikit-Learn</span>
+                <span>And Many More...</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- TOOLS -->
+
+          <div class="flip-card">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <h3>Tools & Platforms</h3>
+                <p>Hover to view</p>
+              </div>
+
+              <div class="flip-back">
+                <span>Git</span>
+                <span>GitHub</span>
+                <span>VS Code</span>
+                <span>Vercel</span>
+                <span>Shell</span>
+                <span>Power BI</span>
+                <span>Tableau</span>
+                <span>Jupyter</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EDUCATION -->
+
+        <div class="education-card">
+          <h3>Education</h3>
+
+          <div class="edu-timeline">
+            <div class="edu-item">
+              <span class="edu-date">AUG'23 – Present</span>
+
+              <h4>B.Tech – Computer Science & Engineering</h4>
+
+              <p>Lovely Professional University</p>
+
+              <span class="edu-badge">CGPA: 7.87</span>
+            </div>
+
+            <div class="edu-item">
+              <span class="edu-date">APR'22 – MAR'23</span>
+
+              <h4>Intermediate (Class XII)</h4>
+
+              <p>Innocent Hearts School, GMT</p>
+
+              <span class="edu-badge">Score: 90%</span>
+            </div>
+
+            <div class="edu-item">
+              <span class="edu-date">APR'20 – MAR'21</span>
+
+              <h4>Matriculation (Class X)</h4>
+
+              <p>Cambridge International School For Girls, U.E-II</p>
+
+              <span class="edu-badge">Score: 95%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="awards-section">
+    <!-- CODING PROFILE BAR -->
+    <div class="coding-bar">
+      <a href="https://leetcode.com/u/arshi_bansal/" target="_blank">
+        <i class="fa-solid fa-code"></i>
+      </a>
+
+      <a href="https://www.hackerrank.com/profile/arshi_bansal" target="_blank">
+        <i class="fa-brands fa-hackerrank"></i>
+      </a>
+
+      <a href="https://www.hackerearth.com/@Ars_hia/" target="_blank">
+        <i class="fa-solid fa-laptop-code"></i>
+      </a>
+    </div>
+
+    <div class="awards-container">
+      <h2 class="awards-title">ACHIEVEMENTS</span></h2>
+
+      <div class="awards-grid">
+        <!-- Card 1 -->
+        <div class="award-card">
+          <div class="award-icon">
+            <i class="fa-solid fa-code"></i>
+          </div>
+
+          <h3>LeetCode Problems Solved</h3>
+
+          <h1 class="award-highlight">500+</h1>
+
+          <p>
+            Solved 500+ data structure and algorithm problems covering Arrays,
+            Trees, Dynamic Programming, Graphs and advanced algorithmic
+            concepts.
+          </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="award-card">
+          <div class="award-icon">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+
+          <h3>LeetCode Contest Rating</h3>
+
+          <h1 class="award-highlight">1616</h1>
+
+          <p>
+            Achieved a rating of 1616 in LeetCode contests by consistently
+            solving competitive programming challenges.
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="award-card">
+          <div class="award-icon">
+            <i class="fa-solid fa-star"></i>
+          </div>
+
+          <h3>HackerRank Achievement</h3>
+
+          <h1 class="award-highlight">5+ Stars</h1>
+
+          <p>
+            Achieved 5+ star ratings on HackerRank in Java, C/C++, Python and
+            SQL demonstrating strong problem solving and programming skills.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="contact-container">
+      <!-- LEFT SIDE -->
+      <div class="contact-left">
+        <h2 class="contact-title">
+          Let’s Build <br />
+          Something <span>Meaningful.</span>
+        </h2>
+
+        <p class="contact-desc">
+          Whether it's a collaboration, an internship opportunity, or just a
+          conversation about building better software — my inbox is always
+          open.
+        </p>
+
+        <div class="contact-email">
+          <i class="fa-regular fa-envelope"></i>
+          <span>arshi122022@gmail.com</span>
+        </div>
+
+        <div class="contact-socials">
+          <a href="https://github.com/ArshiBansal" target="_blank">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/arshibansal97/" target="_blank">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a href="#" target="_blank">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE FORM -->
+      <div class="contact-form-card">
+        <form>
+          <div class="form-row">
+            <input type="text" placeholder="Your Name" />
+            <input type="email" placeholder="Your Email" />
+          </div>
+
+          <textarea placeholder="Tell me about your project..."></textarea>
+
+          <button type="submit" class="send-btn">
+            SEND MESSAGE
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+  <script src="Portfolio/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
