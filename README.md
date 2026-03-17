@@ -17,7 +17,7 @@
 <br>
 
 <div align="center" style="margin: 2.5rem 0;">
-  <a href="https://stocksnews.streamlit.app/" target="_blank">
+  <a href="https://arshibansal.github.io/Personal_Portfolio/" target="_blank">
     <img 
       src="https://img.shields.io/badge/Portfolio-Open%20Projects-brightgreen?style=for-the-badge&logo=streamlit&logoColor=white&color=00CC88" 
       alt="Portfolio"
