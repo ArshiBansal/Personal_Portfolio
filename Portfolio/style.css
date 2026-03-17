@@ -33,7 +33,7 @@ NETWORK BACKGROUND
   height: 100%;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.7;
+  opacity: 0.9;
 }
 
 /* HERO SECTION */
@@ -51,27 +51,87 @@ NETWORK BACKGROUND
   padding-right: clamp(30px, 6vw, 100px);
 }
 
-/* SOCIAL BAR */
+/* =========================
+SOCIAL BAR (UPDATED)
+========================= */
 
 .social-bar {
   position: absolute;
-  left: 30px;
+  left: 20px;
   top: 50%;
   transform: translateY(-50%);
+
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  font-size: 20px;
+  align-items: center;
+  gap: 20px;
+
+  font-size: 22px;
+
+  animation: slideInLeft 1s ease forwards;
+  opacity: 0;
 }
 
+/* vertical line */
+.social-bar::before {
+  content: "";
+  width: 2px;
+  height: 80px;
+  background: #d1d5db;
+  margin-bottom: 10px;
+}
+
+/* icon style */
 .social-bar a {
-  color: #9ca3af;
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color: #374151;
+
+  background: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(6px);
+
+  text-decoration: none;
+
   transition: all 0.3s ease;
 }
 
+/* hover effect */
 .social-bar a:hover {
-  color: #000;
-  transform: translateX(5px);
+  color: #ffffff;
+  background: #111827;
+
+  transform: translateX(8px) scale(1.1);
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* entrance animation */
+@keyframes slideInLeft {
+  from {
+    transform: translate(-40px, -50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(-50%);
+    opacity: 1;
+  }
+}
+
+/* =========================
+RESPONSIVE FIX
+========================= */
+
+@media (max-width: 768px) {
+  .social-bar {
+    display: none;
+  }
 }
 
 /* HERO TEXT */
@@ -955,30 +1015,86 @@ AWARDS SECTION
   line-height: 1.6;
 }
 
-/* ===============================
-CODING PROFILE BAR
-=============================== */
+/* =========================
+CODING PROFILE BAR (LEFT SIDE FIXED)
+========================= */
 
 .coding-bar {
   position: absolute;
-  left: 30px;
+  left: 20px; /* back to LEFT */
   top: 50%;
   transform: translateY(-50%);
+
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  align-items: center;
+  gap: 20px;
+
   font-size: 20px;
+
+  animation: slideInLeft 1s ease forwards;
+  opacity: 0;
+
   z-index: 3;
 }
 
+/* vertical line */
+.coding-bar::before {
+  content: "";
+  width: 2px;
+  height: 80px;
+  background: #d1d5db;
+  margin-bottom: 10px;
+}
+
+/* icon style */
 .coding-bar a {
-  color: #9ca3af;
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color: #374151; /* darker for visibility */
+
+  background: rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(6px);
+
+  text-decoration: none;
+
   transition: all 0.3s ease;
 }
 
+/* hover */
 .coding-bar a:hover {
-  color: #000;
-  transform: translateX(5px);
+  color: #fff;
+  background: #111827;
+
+  transform: translateX(8px) scale(1.1); /* moves RIGHT since it's on LEFT */
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* animation */
+@keyframes slideInLeft {
+  from {
+    transform: translate(-40px, -50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(-50%);
+    opacity: 1;
+  }
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .coding-bar {
+    display: none;
+  }
 }
 
 /* CONTACT SECTION */

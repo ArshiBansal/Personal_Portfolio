@@ -168,7 +168,7 @@ if (canvas) {
     draw() {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = "#777";
+      ctx.fillStyle = "#444";
       ctx.fill();
     }
   }
@@ -191,7 +191,7 @@ if (canvas) {
 
         if (distance < 12000) {
           ctx.beginPath();
-          ctx.strokeStyle = "rgba(0,0,0,0.08)";
+          ctx.strokeStyle = "rgba(0,0,0,0.18)";
           ctx.lineWidth = 1;
 
           ctx.moveTo(particles[a].x, particles[a].y);
