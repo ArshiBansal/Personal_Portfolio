@@ -25,7 +25,7 @@
   </a>
   <br><br>
   <p style="font-size: 1.15rem; font-weight: 600;">
-    Explore the projects → <a href="https://stocksnews.streamlit.app/" target="_blank">Live Applications</a>
+    Explore the projects → <a href="https://arshibansal.github.io/Personal_Portfolio/" target="_blank">Live Applications</a>
   </p>
   <p style="font-size: 0.9rem; opacity: 0.85;">
     Interactive dashboards, predictive models, and analytical tools developed through practical experimentation.
