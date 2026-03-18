@@ -9,7 +9,12 @@ html {
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   user-select: none;
@@ -78,7 +83,11 @@ body {
   background: rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(6px);
   text-decoration: none;
-  transition: color 0.3s ease, background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    color 0.3s ease,
+    background 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .coding-bar {
@@ -113,7 +122,6 @@ body {
 }
 
 @media (max-width: 768px) {
-
   .social-bar,
   .coding-bar {
     display: none;
@@ -162,7 +170,12 @@ body {
   text-decoration: none;
   font-size: 16px;
   font-weight: 600;
-  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease,
+    border 0.3s ease;
 }
 
 .btn-main:hover {
@@ -216,7 +229,10 @@ body {
   border-radius: 30px;
   filter: grayscale(100%);
   transform: rotate(-5deg);
-  transition: filter 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
+  transition:
+    filter 0.5s ease,
+    transform 0.5s ease,
+    box-shadow 0.5s ease;
   box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
 }
 
@@ -273,7 +289,9 @@ body {
   padding: 35px;
   border-radius: 28px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
   cursor: pointer;
   position: relative;
   overflow: hidden;
@@ -303,9 +321,16 @@ body {
   left: -100%;
   width: 200%;
   height: 200%;
-  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
   transform: rotate(25deg);
-  transition: top 0.6s ease, left 0.6s ease;
+  transition:
+    top 0.6s ease,
+    left 0.6s ease;
 }
 
 .skill-card:hover::after {
@@ -371,7 +396,9 @@ body {
   min-height: 480px;
   max-height: 480px;
   box-shadow: 0 38px 95px rgba(0, 0, 0, 0.13);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
 .project-card:nth-of-type(2) {
@@ -410,7 +437,9 @@ body {
   justify-content: center;
   font-size: 20px;
   margin-bottom: 16px;
-  transition: transform 0.3s ease, background 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
   border: 2px solid #d1d5db;
 }
 
@@ -480,7 +509,10 @@ body {
   margin-right: 7px;
   margin-bottom: 7px;
   border: #111827 1px solid;
-  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
 }
 
 .tech-stack span:hover {
@@ -508,7 +540,9 @@ body {
   text-decoration: none;
   font-size: 14px;
   font-weight: 600;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 /* BUTTON SIZE */
@@ -616,7 +650,9 @@ body {
 .flip-card {
   perspective: 1000px;
   height: 200px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .flip-card:hover {
@@ -692,7 +728,9 @@ body {
   border-radius: 14px;
   font-size: 13px;
   border: 1px solid rgb(30, 30, 30);
-  transition: background 0.3s ease, color 0.3s ease;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
 }
 
 .flip-back span:hover {
@@ -822,7 +860,9 @@ body {
   width: 320px;
   text-align: center;
   box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
 .award-card:hover {
@@ -842,7 +882,9 @@ body {
   margin: auto;
   margin-bottom: 20px;
   font-size: 22px;
-  transition: transform 0.3s ease, background 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
 }
 
 .award-card:hover .award-icon {
@@ -916,7 +958,9 @@ body {
   width: fit-content;
   font-weight: 600;
   margin-bottom: 35px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .contact-email i {
@@ -945,7 +989,10 @@ body {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
   color: #6b7280;
   font-size: 20px;
-  transition: transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
   text-decoration: none;
 }
 
@@ -955,71 +1002,130 @@ body {
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }
 
-/* FORM CARD */
+/* =========================
+FORM HEADER
+========================= */
+
+.form-header {
+  margin-bottom: 40px;
+}
+
+.form-header h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.form-header p {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* =========================
+FORM CARD (minor polish)
+========================= */
+
 .contact-form-card {
   background: #ffffff;
   padding: 60px;
   border-radius: 35px;
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.1);
+
+  border: 2px solid rgba(15, 23, 42, 0.308);
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(15, 23, 42, 0.03);
   max-width: 520px;
   width: 100%;
+
+  transition: all 0.3s ease;
 }
 
-.form-row {
-  display: flex;
-  gap: 40px;
-  margin-bottom: 40px;
-}
-
-.form-row input {
-  flex: 1;
-}
+/* =========================
+INPUTS
+========================= */
 
 .form-row input,
-textarea {
+.contact-form-card textarea {
   border: none;
   border-bottom: 2px solid #e5e7eb;
+
   padding: 14px 5px;
   font-size: 16px;
+
   outline: none;
   background: transparent;
-  transition: border 0.3s ease;
+
+  transition: all 0.3s ease;
 }
 
-textarea {
-  width: 100%;
-  margin-bottom: 40px;
-  resize: none;
-  height: 100px;
+/* ✨ better placeholder */
+.form-row input::placeholder,
+.contact-form-card textarea::placeholder {
+  color: #9ca3af;
+  opacity: 0.8;
 }
 
+/* ✨ smoother focus (not harsh) */
 .form-row input:focus,
-textarea:focus {
-  border-color: #111827;
+.contact-form-card textarea:focus {
+  border-bottom: 2px solid #0f172a;
+  box-shadow: 0 6px 10px -8px rgba(15, 23, 42, 0.6);
 }
+
+/* =========================
+TEXTAREA FIX
+========================= */
+
+.contact-form-card textarea {
+  width: 100%;
+  margin-bottom: 30px; /* better spacing */
+  resize: none;
+  height: 110px;
+}
+
+/* ✨ FIX: bottom divider (your thick line issue) */
+.contact-form-card textarea {
+  border-bottom: 2px solid #e5e7eb;
+}
+
+/* =========================
+BUTTON
+========================= */
 
 .send-btn {
   background: #0f172a;
   color: white;
+
   border: none;
-  padding: 18px 40px;
+  padding: 16px 36px;
+
   border-radius: 50px;
   font-weight: 700;
   letter-spacing: 1px;
+
   cursor: pointer;
+
   display: flex;
   align-items: center;
-  gap: 12px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  gap: 10px;
+
+  transition: all 0.3s ease;
 }
 
-.send-btn i {
-  font-size: 14px;
-}
-
+/* ✨ smoother hover */
 .send-btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* icon micro animation */
+.send-btn i {
+  transition: transform 0.3s ease;
+}
+
+.send-btn:hover i {
+  transform: translateX(4px);
 }
 
 /* RESPONSIVE */
@@ -1149,7 +1255,12 @@ textarea:focus {
   transform: translateX(-50%);
   width: 1.5px;
   height: 240px;
-  background: linear-gradient(180deg, rgba(17, 24, 39, 0.3), rgba(17, 24, 39, 0), rgba(17, 24, 39, 0.3));
+  background: linear-gradient(
+    180deg,
+    rgba(17, 24, 39, 0.3),
+    rgba(17, 24, 39, 0),
+    rgba(17, 24, 39, 0.3)
+  );
   border-radius: 2px;
   pointer-events: none;
 }
@@ -1208,7 +1319,11 @@ textarea:focus {
   position: absolute;
   inset: -2px;
   border-radius: 12px;
-  background: linear-gradient(135deg, rgba(17, 24, 39, 0.1), rgba(17, 24, 39, 0));
+  background: linear-gradient(
+    135deg,
+    rgba(17, 24, 39, 0.1),
+    rgba(17, 24, 39, 0)
+  );
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
@@ -1342,7 +1457,10 @@ textarea:focus {
   border-radius: 24px;
   padding: 30px 35px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -1475,4 +1593,75 @@ textarea:focus {
     font-size: 11px;
     margin-bottom: 18px;
   }
+}
+
+/* =========================
+BACK TO TOP BUTTON (FINAL v2)
+========================= */
+
+#topBtn {
+  position: fixed;
+  bottom: 25px;
+  right: 35px;
+
+  width: 52px;
+  height: 52px;
+
+  border-radius: 50%;
+  border: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #111; /* black button */
+  color: #9ca3af; /* grey arrow */
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+
+  cursor: pointer;
+  z-index: 999;
+
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+
+  transition: all 0.3s ease;
+}
+
+/* SHOW */
+#topBtn.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* HOVER */
+#topBtn:hover {
+  background: #1f1f1f;
+  transform: translateY(-4px) scale(1.05);
+}
+
+/* =========================
+ARROW + LINE
+========================= */
+
+.arrow-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow-wrapper i {
+  font-size: 18px;
+  color: #9ca3af; /* grey arrow */
+}
+
+/* horizontal line above arrow */
+.top-line {
+  position: absolute;
+  top: -6px;
+  width: 16px;
+  height: 2px;
+  background: #9ca3af; /* grey line */
+  border-radius: 2px;
 }

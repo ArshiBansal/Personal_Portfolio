@@ -2,45 +2,41 @@
 DISABLE COPY / RIGHT CLICK
 ========================= */
 
-document.addEventListener("contextmenu", function (e) {
-  e.preventDefault();
-});
+document.addEventListener("contextmenu", (e) => e.preventDefault());
 
-document.addEventListener("keydown", function (e) {
-  if (e.ctrlKey && (e.key === "c" || e.key === "u" || e.key === "s")) {
-    e.preventDefault();
-  }
+document.addEventListener("keydown", (e) => {
+  const key = e.key.toLowerCase();
 
-  if (
-    e.ctrlKey &&
-    e.shiftKey &&
-    (e.key === "I" || e.key === "J" || e.key === "C")
-  ) {
-    e.preventDefault();
-  }
+  if (e.ctrlKey && ["c", "u", "s"].includes(key)) e.preventDefault();
 
-  if (e.key === "F12") {
+  if (e.ctrlKey && e.shiftKey && ["i", "j", "c"].includes(key))
     e.preventDefault();
-  }
+
+  if (key === "f12") e.preventDefault();
 });
 
 /* =========================
-SMOOTH SCROLL
+SMOOTH SCROLL (SAFE FIX)
 ========================= */
 
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
+    const target = document.querySelector(this.getAttribute("href"));
+
+    if (!target) return; // prevent crash
+
     e.preventDefault();
 
-    document.querySelector(this.getAttribute("href")).scrollIntoView({
+    target.scrollIntoView({
       behavior: "smooth",
     });
   });
 });
 
 /* =========================
-SCROLL REVEAL ANIMATION
+SCROLL REVEAL (OPTIMIZED)
 ========================= */
+
 const revealElements = document.querySelectorAll(".reveal");
 
 function revealOnScroll() {
@@ -48,25 +44,30 @@ function revealOnScroll() {
 
   revealElements.forEach((el) => {
     const elementTop = el.getBoundingClientRect().top;
-    const revealPoint = 120;
 
-    if (elementTop < windowHeight - revealPoint) {
-      el.style.opacity = "1";
-      el.style.transform = "translateY(0)";
+    if (elementTop < windowHeight - 120) {
+      if (!el.classList.contains("visible")) {
+        el.style.opacity = "1";
+        el.style.transform = "translateY(0)";
+        el.classList.add("visible");
+      }
     }
   });
 }
 
-revealElements.forEach((el) => {
+// initial setup
+revealElements.forEach((el, index) => {
   el.style.opacity = "0";
   el.style.transform = "translateY(80px)";
   el.style.transition = "all 0.8s ease";
+  el.style.transitionDelay = `${index * 0.05}s`;
 });
 
 window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
 
 /* =========================
-PROJECT CARD TILT EFFECT
+PROJECT CARD TILT (FIXED RESET)
 ========================= */
 
 const cards = document.querySelectorAll(".project-card");
@@ -78,53 +79,54 @@ cards.forEach((card) => {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
+    const rotateX = -(y - rect.height / 2) / 25;
+    const rotateY = (x - rect.width / 2) / 25;
 
-    const rotateX = -(y - centerY) / 25;
-    const rotateY = (x - centerX) / 25;
-
-    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-7px)`;
   });
 
   card.addEventListener("mouseleave", () => {
-    card.style.transform = "rotateX(0) rotateY(0)";
+    card.style.transform =
+      "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)";
   });
 });
 
 /* =========================
-BACK TO TOP BUTTON
+BACK TO TOP BUTTON (FINAL DESIGN)
 ========================= */
 
 const topBtn = document.createElement("button");
 
-topBtn.innerHTML = "↑";
 topBtn.id = "topBtn";
+
+topBtn.innerHTML = `
+  <div class="arrow-wrapper">
+    <span class="top-line"></span>
+    <i class="fa-solid fa-arrow-up"></i>
+  </div>
+`;
 
 document.body.appendChild(topBtn);
 
-topBtn.style.position = "fixed";
-topBtn.style.bottom = "40px";
-topBtn.style.right = "40px";
-topBtn.style.padding = "12px 18px";
-topBtn.style.fontSize = "18px";
-topBtn.style.borderRadius = "50px";
-topBtn.style.border = "none";
-topBtn.style.background = "#111";
-topBtn.style.color = "#fff";
-topBtn.style.cursor = "pointer";
-topBtn.style.display = "none";
-topBtn.style.zIndex = "999";
+// optimized scroll listener
+let ticking = false;
 
-window.addEventListener("scroll", function () {
-  if (document.documentElement.scrollTop > 300) {
-    topBtn.style.display = "block";
-  } else {
-    topBtn.style.display = "none";
+window.addEventListener("scroll", () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      if (document.documentElement.scrollTop > 300) {
+        topBtn.classList.add("show");
+      } else {
+        topBtn.classList.remove("show");
+      }
+      ticking = false;
+    });
+    ticking = true;
   }
 });
 
-topBtn.addEventListener("click", function () {
+// scroll to top
+topBtn.addEventListener("click", () => {
   window.scrollTo({
     top: 0,
     behavior: "smooth",
@@ -140,20 +142,22 @@ const canvas = document.getElementById("network-bg");
 if (canvas) {
   const ctx = canvas.getContext("2d");
 
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
   let particles = [];
   const particleCount = 80;
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  resizeCanvas();
 
   class Particle {
     constructor() {
       this.x = Math.random() * canvas.width;
       this.y = Math.random() * canvas.height;
-
       this.vx = (Math.random() - 0.5) * 0.5;
       this.vy = (Math.random() - 0.5) * 0.5;
-
       this.radius = 2;
     }
 
@@ -174,11 +178,7 @@ if (canvas) {
   }
 
   function createParticles() {
-    particles = [];
-
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
-    }
+    particles = Array.from({ length: particleCount }, () => new Particle());
   }
 
   function connectParticles() {
@@ -186,17 +186,14 @@ if (canvas) {
       for (let b = a + 1; b < particles.length; b++) {
         const dx = particles[a].x - particles[b].x;
         const dy = particles[a].y - particles[b].y;
+        const dist = dx * dx + dy * dy;
 
-        const distance = dx * dx + dy * dy;
-
-        if (distance < 12000) {
+        if (dist < 10000) {
           ctx.beginPath();
-          ctx.strokeStyle = "rgba(0,0,0,0.18)";
+          ctx.strokeStyle = "rgba(100,100,100,0.2)";
           ctx.lineWidth = 1;
-
           ctx.moveTo(particles[a].x, particles[a].y);
           ctx.lineTo(particles[b].x, particles[b].y);
-
           ctx.stroke();
         }
       }
@@ -212,7 +209,6 @@ if (canvas) {
     });
 
     connectParticles();
-
     requestAnimationFrame(animate);
   }
 
@@ -220,39 +216,41 @@ if (canvas) {
   animate();
 
   window.addEventListener("resize", () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
+    resizeCanvas();
     createParticles();
   });
 }
 
 /* =========================
-RIGHT NAVBAR ACTIVE STATE TRACKING
+NAVBAR ACTIVE STATE TRACKING
 ========================= */
 
-const navItems = document.querySelectorAll('.nav-item');
-const sections = document.querySelectorAll('section[id]');
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll("nav a[href^='#']");
 
-function updateActiveNav() {
-  let current = '';
+function updateActiveLink() {
+  let currentSection = "";
 
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.clientHeight;
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop - 120;
+    const sectionHeight = section.offsetHeight;
 
-    if (window.scrollY >= sectionTop - 250) {
-      current = section.getAttribute('id');
+    if (
+      window.scrollY >= sectionTop &&
+      window.scrollY < sectionTop + sectionHeight
+    ) {
+      currentSection = section.getAttribute("id");
     }
   });
 
-  navItems.forEach(item => {
-    item.classList.remove('active');
-    if (item.getAttribute('href').slice(1) === current) {
-      item.classList.add('active');
+  navLinks.forEach((link) => {
+    link.classList.remove("active");
+
+    if (link.getAttribute("href") === `#${currentSection}`) {
+      link.classList.add("active");
     }
   });
 }
 
-window.addEventListener('scroll', updateActiveNav);
-updateActiveNav(); // Initial call
+window.addEventListener("scroll", updateActiveLink);
+window.addEventListener("load", updateActiveLink);
