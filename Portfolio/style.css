@@ -1666,35 +1666,81 @@ ARROW + LINE
   border-radius: 2px;
 }
 
+body {
+  cursor: none;
+}
+
 /* =========================
-CUSTOM CURSOR (DOT + RING)
+CURSOR SYSTEM
 ========================= */
 
 body {
   cursor: none;
 }
 
-.custom-cursor {
+/* Black cursor dot */
+.cursor-dot {
   position: fixed;
   width: 8px;
   height: 8px;
-  background: #111;
+  background: #000;
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
   z-index: 9999;
-  background: rgba(17, 17, 17, 0.9);
 }
 
+/* Black ring */
 .cursor-ring {
   position: fixed;
-  width: 30.4px;
-  height: 30.4px;
-  border: 1.5px solid #111;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
+  transition:
+    transform 0.15s ease,
+    border-color 0.2s ease;
   z-index: 9998;
-  transition: transform 0.15s ease;
-  border: 1.5px solid rgba(17, 17, 17, 0.5);
+}
+
+/* Trail container */
+.cursor-trail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9997;
+}
+
+/* Liquid trail dots */
+.trail-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: rgba(120, 120, 120, 0.6); /* grey */
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 0;
+  filter: blur(3px);
+}
+
+/* Fade animation */
+.trail-dot.fade {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(0.4);
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s ease;
+}
+
+/* Hover effects */
+.cursor-dot.hover {
+  transform: translate(-50%, -50%) scale(1.5);
+}
+
+.cursor-ring.hover {
+  transform: translate(-50%, -50%) scale(1.6);
+  border-color: rgba(0, 0, 0, 0.8);
 }

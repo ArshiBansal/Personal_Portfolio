@@ -336,3 +336,88 @@ if (window.innerWidth > 768) {
     });
   });
 }
+/* =========================
+CURSOR + LIQUID TRAIL SYSTEM
+========================= */
+
+if (window.innerWidth > 768) {
+  // Create elements
+  const cursor = document.createElement("div");
+  const ring = document.createElement("div");
+  const trailContainer = document.createElement("div");
+
+  cursor.className = "cursor-dot";
+  ring.className = "cursor-ring";
+  trailContainer.className = "cursor-trail";
+
+  document.body.append(cursor, ring, trailContainer);
+
+  let mouseX = 0;
+  let mouseY = 0;
+
+  let ringX = 0;
+  let ringY = 0;
+
+  /* =========================
+  MOUSE MOVE
+  ========================= */
+  document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    cursor.style.left = mouseX + "px";
+    cursor.style.top = mouseY + "px";
+
+    createTrail(mouseX, mouseY);
+  });
+
+  /* =========================
+  SMOOTH MAGNETIC RING
+  ========================= */
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.15;
+    ringY += (mouseY - ringY) * 0.15;
+
+    ring.style.left = ringX + "px";
+    ring.style.top = ringY + "px";
+
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  /* =========================
+  TRAIL CREATION (LIQUID EFFECT)
+  ========================= */
+  function createTrail(x, y) {
+    const dot = document.createElement("div");
+    dot.className = "trail-dot";
+
+    dot.style.left = x + "px";
+    dot.style.top = y + "px";
+
+    trailContainer.appendChild(dot);
+
+    requestAnimationFrame(() => {
+      dot.classList.add("fade");
+    });
+
+    setTimeout(() => {
+      dot.remove();
+    }, 600);
+  }
+
+  /* =========================
+  HOVER EFFECTS
+  ========================= */
+  document.querySelectorAll("a, button, .nav-item").forEach((el) => {
+    el.addEventListener("mouseenter", () => {
+      cursor.classList.add("hover");
+      ring.classList.add("hover");
+    });
+
+    el.addEventListener("mouseleave", () => {
+      cursor.classList.remove("hover");
+      ring.classList.remove("hover");
+    });
+  });
+}
