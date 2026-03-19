@@ -8,33 +8,27 @@ document.addEventListener("keydown", (e) => {
   const key = e.key.toLowerCase();
 
   if (e.ctrlKey && ["c", "u", "s"].includes(key)) e.preventDefault();
-
   if (e.ctrlKey && e.shiftKey && ["i", "j", "c"].includes(key))
     e.preventDefault();
-
   if (key === "f12") e.preventDefault();
 });
 
 /* =========================
-SMOOTH SCROLL (SAFE FIX)
+SMOOTH SCROLL
 ========================= */
 
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
     const target = document.querySelector(this.getAttribute("href"));
-
-    if (!target) return; // prevent crash
+    if (!target) return;
 
     e.preventDefault();
-
-    target.scrollIntoView({
-      behavior: "smooth",
-    });
+    target.scrollIntoView({ behavior: "smooth" });
   });
 });
 
 /* =========================
-SCROLL REVEAL (OPTIMIZED)
+SCROLL REVEAL
 ========================= */
 
 const revealElements = document.querySelectorAll(".reveal");
@@ -55,7 +49,6 @@ function revealOnScroll() {
   });
 }
 
-// initial setup
 revealElements.forEach((el, index) => {
   el.style.opacity = "0";
   el.style.transform = "translateY(80px)";
@@ -67,7 +60,7 @@ window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
 
 /* =========================
-PROJECT CARD TILT (FIXED RESET)
+PROJECT CARD TILT
 ========================= */
 
 const cards = document.querySelectorAll(".project-card");
@@ -92,11 +85,10 @@ cards.forEach((card) => {
 });
 
 /* =========================
-BACK TO TOP BUTTON (FINAL DESIGN)
+BACK TO TOP BUTTON
 ========================= */
 
 const topBtn = document.createElement("button");
-
 topBtn.id = "topBtn";
 
 topBtn.innerHTML = `
@@ -108,7 +100,6 @@ topBtn.innerHTML = `
 
 document.body.appendChild(topBtn);
 
-// optimized scroll listener
 let ticking = false;
 
 window.addEventListener("scroll", () => {
@@ -125,12 +116,8 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// scroll to top
 topBtn.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 /* =========================
@@ -222,7 +209,7 @@ if (canvas) {
 }
 
 /* =========================
-NAVBAR ACTIVE STATE TRACKING
+NAVBAR ACTIVE STATE
 ========================= */
 
 const sections = document.querySelectorAll("section[id]");
@@ -254,3 +241,98 @@ function updateActiveLink() {
 
 window.addEventListener("scroll", updateActiveLink);
 window.addEventListener("load", updateActiveLink);
+
+/* =========================
+🔥 CUSTOM CURSOR SYSTEM
+========================= */
+
+// disable on mobile
+if (window.innerWidth > 768) {
+  const cursor = document.createElement("div");
+  cursor.classList.add("custom-cursor");
+
+  const ring = document.createElement("div");
+  ring.classList.add("cursor-ring");
+
+  document.body.appendChild(cursor);
+  document.body.appendChild(ring);
+
+  let mouseX = 0;
+  let mouseY = 0;
+
+  let dotX = 0;
+  let dotY = 0;
+
+  let ringX = 0;
+  let ringY = 0;
+
+  document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  // smooth dot
+  function animateDot() {
+    dotX += (mouseX - dotX) * 0.35;
+    dotY += (mouseY - dotY) * 0.35;
+
+    cursor.style.left = dotX + "px";
+    cursor.style.top = dotY + "px";
+
+    requestAnimationFrame(animateDot);
+  }
+
+  // smooth ring
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.15;
+    ringY += (mouseY - ringY) * 0.15;
+
+    ring.style.left = ringX + "px";
+    ring.style.top = ringY + "px";
+
+    requestAnimationFrame(animateRing);
+  }
+
+  animateDot();
+  animateRing();
+
+  /* hover expand */
+  document.querySelectorAll("a, button, .nav-item").forEach((el) => {
+    el.addEventListener("mouseenter", () => {
+      cursor.style.transform = "translate(-50%, -50%) scale(1.6)";
+      ring.style.transform = "translate(-50%, -50%) scale(1.25)";
+    });
+
+    el.addEventListener("mouseleave", () => {
+      cursor.style.transform = "translate(-50%, -50%) scale(1)";
+      ring.style.transform = "translate(-50%, -50%) scale(1)";
+    });
+  });
+
+  /* click feedback */
+  document.addEventListener("mousedown", () => {
+    cursor.style.transform = "translate(-50%, -50%) scale(0.8)";
+    ring.style.transform = "translate(-50%, -50%) scale(1.1)";
+  });
+
+  document.addEventListener("mouseup", () => {
+    cursor.style.transform = "translate(-50%, -50%) scale(1)";
+    ring.style.transform = "translate(-50%, -50%) scale(1)";
+  });
+
+  /* magnetic effect (safe only) */
+  document.querySelectorAll(".btn-main, .nav-item").forEach((el) => {
+    el.addEventListener("mousemove", (e) => {
+      const rect = el.getBoundingClientRect();
+
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+
+      el.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+    });
+
+    el.addEventListener("mouseleave", () => {
+      el.style.transform = "translate(0,0)";
+    });
+  });
+}
