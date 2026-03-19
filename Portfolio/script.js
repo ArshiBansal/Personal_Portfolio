@@ -85,42 +85,6 @@ cards.forEach((card) => {
 });
 
 /* =========================
-BACK TO TOP BUTTON
-========================= */
-
-const topBtn = document.createElement("button");
-topBtn.id = "topBtn";
-
-topBtn.innerHTML = `
-  <div class="arrow-wrapper">
-    <span class="top-line"></span>
-    <i class="fa-solid fa-arrow-up"></i>
-  </div>
-`;
-
-document.body.appendChild(topBtn);
-
-let ticking = false;
-
-window.addEventListener("scroll", () => {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      if (document.documentElement.scrollTop > 300) {
-        topBtn.classList.add("show");
-      } else {
-        topBtn.classList.remove("show");
-      }
-      ticking = false;
-    });
-    ticking = true;
-  }
-});
-
-topBtn.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
-/* =========================
 PARTICLE NETWORK BACKGROUND
 ========================= */
 
