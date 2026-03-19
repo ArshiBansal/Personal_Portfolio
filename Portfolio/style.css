@@ -1712,3 +1712,164 @@ body {
   transform: translate(-50%, -50%) scale(1.6);
   border-color: rgba(0, 0, 0, 0.8);
 }
+
+/* =========================
+CEO FLOATING LINE V3 (DARK + CRAZY)
+========================= */
+
+.ceo-line {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  padding: 0 60px;
+  z-index: 5;
+
+  font-size: 13px;
+  letter-spacing: 1.6px;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+/* CENTER TEXT */
+.ceo-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #0f172a; /* darker than before */
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* TEXT */
+.ceo-text {
+  display: inline-block;
+  position: relative;
+  animation: drift 6s ease-in-out infinite alternate;
+}
+
+/* 🔥 subtle motion */
+@keyframes drift {
+  0% {
+    transform: translateX(-14px);
+  }
+  100% {
+    transform: translateX(14px);
+  }
+}
+
+/* 🔥 CRAZY: glitch echo layer */
+.ceo-text::before {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: rgba(0, 0, 0, 0.25);
+  transform: translate(1px, -1px);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* 🔥 scan flicker */
+.ceo-text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.15);
+  animation: scan 2.5s linear infinite;
+}
+
+@keyframes scan {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+/* RIGHT STATUS */
+.ceo-right {
+  pointer-events: auto;
+}
+
+/* STATUS WRAP */
+.status-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #374151; /* darker grey */
+  transition: all 0.3s ease;
+}
+
+/* DOT */
+.dot {
+  width: 7px;
+  height: 7px;
+  background: #22c55e;
+  border-radius: 50%;
+  box-shadow: 0 0 12px #22c55e;
+  animation: pulseDot 1.5s infinite;
+}
+
+/* pulse */
+@keyframes pulseDot {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.8);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* 🔥 CRAZY: micro jitter */
+@keyframes jitter {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(1px);
+  }
+  50% {
+    transform: translateX(-1px);
+  }
+  75% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* hover = unstable signal */
+.status-wrap:hover {
+  color: #000;
+  transform: scale(1.08);
+  animation: jitter 0.2s infinite;
+}
+
+/* MOBILE OFF */
+@media (max-width: 768px) {
+  .ceo-line {
+    display: none;
+  }
+}

@@ -1,19 +1,4 @@
 /* =========================
-DISABLE COPY / RIGHT CLICK
-========================= */
-
-document.addEventListener("contextmenu", (e) => e.preventDefault());
-
-document.addEventListener("keydown", (e) => {
-  const key = e.key.toLowerCase();
-
-  if (e.ctrlKey && ["c", "u", "s"].includes(key)) e.preventDefault();
-  if (e.ctrlKey && e.shiftKey && ["i", "j", "c"].includes(key))
-    e.preventDefault();
-  if (key === "f12") e.preventDefault();
-});
-
-/* =========================
 SMOOTH SCROLL
 ========================= */
 
