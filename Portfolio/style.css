@@ -442,7 +442,7 @@ body {
 .skill-card {
   background: #ffffff;
   border-radius: 24px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #6f6f6f;
   padding: 35px 30px;
   min-height: 200px;
   cursor: pointer;
@@ -453,15 +453,15 @@ body {
   text-align: center;
   position: relative;
   z-index: 1;
-  transform-origin: center center;
-  border: #6f6f6f 1.25px solid;
-  transition: 
+
+  transform-origin: center;
+  transition:
     transform 0.45s cubic-bezier(0.34, 1.4, 0.64, 1),
-    box-shadow 0.45s cubic-bezier(0.34, 1.4, 0.64, 1),
+    box-shadow 0.45s ease,
     border-color 0.3s ease;
 }
 
-/* INNER BORDER (default state) */
+/* OUTER BORDER EFFECT */
 .skill-card::before {
   content: "";
   position: absolute;
@@ -472,19 +472,22 @@ body {
   transition: all 0.4s ease;
 }
 
-/* HOVER EFFECT */
+/* HOVER STATE */
 .skill-card:hover {
-  transform: translateY(-12px) scale(1.06);
-  border-color: #999;
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.18);
+  transform: translateY(-12px) scale(1.08);
+  border-color: #111827;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
   z-index: 10;
+    letter-spacing: 0.5px;
+  transition: 0.3s ease;
 }
 
-/* OUTER BORDER ON HOVER */
+/* EXPANDING BORDER ON HOVER */
 .skill-card:hover::before {
-  border-color: rgba(0, 0, 0, 0.25);
-  inset: -6px; /* expands outward */
+  inset: -6px;
+  border-color: rgba(17, 24, 39, 0.3);
 }
+
 .skill-icon {
   width: 56px;
   height: 56px;
@@ -814,7 +817,7 @@ body {
 
 /* CAPABILITIES & EDUCATION SECTION */
 .capabilities-section {
-  padding: 120px 0;
+  padding: 100px 0;
   position: relative;
   overflow: hidden;
 }
@@ -988,18 +991,20 @@ body {
   transition:
     transform 0.35s ease,
     box-shadow 0.35s ease;
+  border: 1px solid #969696;
 }
 
 .award-card:hover {
   transform: translateY(-10px) scale(1.02);
   box-shadow: 0 25px 70px rgba(0, 0, 0, 0.12);
+  border: #707070 1.5px double;
 }
 
 .award-icon {
   width: 60px;
   height: 60px;
   border-radius: 16px;
-  border: 2px dotted black;
+  border: 1.25px dashed rgb(63, 63, 63);
   display: flex;
   align-items: center;
   justify-content: center;
