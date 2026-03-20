@@ -167,10 +167,26 @@ body {
 
 /* HERO TEXT */
 .intro {
-  color: #9ca3af;
-  font-size: 22px;
-  margin-bottom: 8px;
-  font-weight: 500;
+  font-size: 25px;
+  font-weight: 600;
+  color: #212a3e; /* strong dark */
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  margin-left: 5px;
+  opacity: 0.9;
+  transition: color 0.3s ease;
+}
+
+.intro::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 1.5px;
+  background: linear-gradient(to right, #111827, rgba(17, 24, 39, 0.2));
+  border-radius: 2px;
 }
 
 .hero-title {
@@ -181,12 +197,38 @@ body {
 }
 
 .hero-desc {
-  margin-top: 20px;
-  max-width: 480px;
-  color: #6b7280;
+  margin-top: 24px;
+  max-width: 540px;
   font-size: 16px;
-  padding-left: 15px;
-  border-left: 3px solid #d1d5db;
+  line-height: 1.8;
+  color: #4b5563;
+  padding-left: 18px;
+  border-left: 2px solid rgba(17, 24, 39, 0.15);
+  position: relative;
+  transition: all 0.3s ease;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+
+.hero-desc:hover {
+  border-left-color: #111827;
+  color: #111827;
+  transform: translateX(4px);
+}
+
+.hero-desc::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(17, 24, 39, 0.4),
+    transparent
+  );
 }
 
 /* BUTTONS */
@@ -1808,21 +1850,44 @@ CEO FLOATING LINE V3 (DARK + CRAZY)
 
 /* STATUS WRAP */
 .status-wrap {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 10px;
-  color: #374151; /* darker grey */
+
+  padding: 8px 16px;
+  border-radius: 50px;
+
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+
+  color: #065f46;
+  background: rgba(34, 197, 94, 0.08);
+
+  border: 1px solid rgba(34, 197, 94, 0.25);
+
+  backdrop-filter: blur(8px);
   transition: all 0.3s ease;
 }
 
 /* DOT */
 .dot {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   background: #22c55e;
   border-radius: 50%;
-  box-shadow: 0 0 12px #22c55e;
+  box-shadow:
+    0 0 6px #22c55e,
+    0 0 14px rgba(34, 197, 94, 0.6);
   animation: pulseDot 1.5s infinite;
+}
+
+.status-wrap:hover {
+  transform: translateY(-2px);
+  background: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.4);
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 /* pulse */

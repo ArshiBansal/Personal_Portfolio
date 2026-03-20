@@ -370,3 +370,31 @@ if (window.innerWidth > 768) {
     });
   });
 }
+
+const ceoText = document.querySelector(".ceo-text");
+
+const lines = [
+  "DATA IS USELESS — UNLESS IT DRIVES DECISIONS",
+  "I BUILD AI THAT TURNS COMPLEXITY INTO CLARITY",
+  "INSIGHT IS POWER — I ENGINEER BOTH",
+  "PREDICTING WHAT MATTERS BEFORE IT HAPPENS",
+  "FROM DATA TO DECISION — WITHOUT GUESSWORK",
+];
+
+let index = 0;
+
+function changeText() {
+  ceoText.style.opacity = 0;
+
+  setTimeout(() => {
+    const text = lines[index];
+    ceoText.textContent = text;
+    ceoText.setAttribute("data-text", text); // needed for glitch layer
+    ceoText.style.opacity = 1;
+
+    index = (index + 1) % lines.length;
+  }, 200);
+}
+
+setInterval(changeText, 2600);
+changeText();
