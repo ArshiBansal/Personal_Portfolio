@@ -576,20 +576,32 @@ RESPONSIVE
 }
 
 .projects-header {
-  margin-bottom: 100px;
+  max-width: 700px;
+  margin-bottom: 60px;
 }
 
 .projects-header h2 {
-  font-size: clamp(36px, 5vw, 48px);
-  font-weight: 800;
-  margin-bottom: 18px;
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #0c111c;
+  margin-bottom: 20px;
 }
 
 .section-desc {
-  max-width: 620px;
-  font-size: 17px;
-  line-height: 1.7;
-  color: #555;
+  font-size: 20px;
+  line-height: 1.8;
+  color: #545353;
+  font-weight: 400;
+  max-width: 600px;
+  transition: all 0.3s ease;
+  letter-spacing: 0.2px;
+}
+
+/* subtle premium hover */
+.section-desc:hover {
+  color: #180f0f;
+  transition: all 0.3s ease;
 }
 
 /* PROJECT CARD */
