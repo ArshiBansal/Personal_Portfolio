@@ -340,59 +340,169 @@ body {
   z-index: 0;
 }
 
+/* LEFT SIDE */
 .about-left {
   position: relative;
   z-index: 2;
   margin-top: 50px;
+  transition: color 0.3s ease;
 }
 
 .about-title {
   font-size: clamp(36px, 6vw, 60px);
   font-weight: 800;
   line-height: 1.1;
-  color: #111827;
+  color: #0c111c;
   margin-bottom: 30px;
 }
 
 .about-text {
   font-size: 18px;
   color: #6b7280;
+  transition: color 0.3s ease;
   line-height: 1.7;
   margin-bottom: 25px;
   max-width: 520px;
 }
 
-/* SKILL CARDS */
-.skill-card {
+.about-left:hover .about-text {
+  color: #111827;
+}
+
+/* RIGHT SIDE GRID FIX */
+.about-cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch; /* 🔥 KEY FIX */
+}
+
+/* COLUMN FIX */
+.about-cards > div {
+  display: flex;
+}
+
+/* CARD DESIGN */
+.about-card {
   background: white;
   padding: 35px;
   border-radius: 28px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-  transition:
-    transform 0.35s ease,
-    box-shadow 0.35s ease;
+  transition: all 0.35s ease;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  border: #000 1px solid;
+  border: 1px solid #000;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 55px;
+  height: 80%; /* 🔥 equal height */
 }
 
-.skill-card:hover {
+/* HOVER */
+.about-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
 }
 
-.skill-card h4 {
+/* TEXT */
+.about-card h4 {
   font-weight: 800;
   font-style: italic;
   margin-bottom: 10px;
 }
 
-.skill-card p {
+.about-card p {
   color: #6b7280;
   margin: 0;
 }
 
+/* SHINE EFFECT */
+.about-card::after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+  transform: rotate(25deg);
+  transition: 0.6s ease;
+}
+
+.about-card:hover::after {
+  top: 100%;
+  left: 100%;
+}
+
+/* =========================
+SKILLS GRID (FIXED)
+========================= */
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 35px;
+  margin-top: 50px;
+
+  align-items: stretch; /* ensures equal height */
+  grid-auto-rows: 1fr; /* equal rows */
+}
+
+/* =========================
+SKILL CARD (FIXED)
+========================= */
+
+.skill-card {
+  background: white;
+  padding: 35px;
+  border-radius: 28px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #000;
+
+  display: flex; /* KEY */
+  flex-direction: column; /* stack content */
+  justify-content: flex-start; /* align from top */
+  height: 100%; /* equal height */
+  min-height: 220px; /* consistent size */
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* Hover effect */
+.skill-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+}
+
+/* Title */
+.skill-card h4 {
+  font-weight: 800;
+  font-style: italic;
+  margin-bottom: 10px;
+  min-height: 40px; /* aligns titles */
+}
+
+/* Text */
+.skill-card p {
+  color: #6b7280;
+  margin: 0;
+  flex-grow: 1; /* fills remaining space */
+  line-height: 1.6;
+}
+
+/* Shine effect */
 .skill-card::after {
   content: "";
   position: absolute;
@@ -415,6 +525,28 @@ body {
 .skill-card:hover::after {
   top: 100%;
   left: 100%;
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-section {
+    padding: 100px 0;
+  }
+
+  .about-title {
+    font-size: 32px;
+  }
+
+  .about-text {
+    font-size: 16px;
+  }
 }
 
 /* PROJECTS SECTION */
