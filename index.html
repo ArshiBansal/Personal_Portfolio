@@ -656,11 +656,13 @@
       <div class="certificates-container">
         <div class="certificates-header">
           <h2>PROFESSIONAL CERTIFICATIONS</h2>
-          <p class="section-desc"><center>
-            A curated set of certifications reflecting applied knowledge in
-            data-driven systems, machine learning, and analytical
-            decision-making.
-          </p></center>
+          <p class="section-desc">
+            <center>
+              A curated set of certifications reflecting applied knowledge in
+              data-driven systems, machine learning, and analytical
+              decision-making.
+            </center>
+          </p>
         </div>
 
         <div class="certificates-grid">
@@ -733,13 +735,13 @@
         <div class="contact-left">
           <h2 class="contact-title">
             Let’s Build <br />
-            Something <span>Meaningful.</span>
+            Something That <span>Matters.</span>
           </h2>
 
           <p class="contact-desc">
-            Whether it's a collaboration, an internship opportunity, or just a
-            conversation about building better software — my inbox is always
-            open.
+            Open to strategic collaborations, high-impact roles, and meaningful
+            conversations around building scalable systems and intelligent
+            solutions. My inbox is always open for serious opportunities.
           </p>
 
           <div class="contact-email">
@@ -765,20 +767,56 @@
 
         <!-- RIGHT SIDE FORM -->
         <div class="contact-form-card">
-          <form>
+          <form class="contact-form-card">
             <div class="form-header">
-              <h2>Get in Touch</h2>
-              <p>I’d love to hear about your project.</p>
-            </div>
-            <div class="form-row">
-              <input type="text" placeholder="Your Name" />
-              <input type="email" placeholder="Your Email" />
+              <h2>Let’s Build Something Meaningful</h2>
+              <p>
+                Open to collaborations, opportunities, and impactful
+                conversations.
+              </p>
             </div>
 
-            <textarea placeholder="Tell me about your project..."></textarea>
+            <!-- NAME -->
+            <div class="form-group">
+              <div class="input-box">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" required placeholder=" " />
+                <span class="floating-label">Your Name</span>
+              </div>
+            </div>
 
+            <!-- EMAIL -->
+            <div class="form-group">
+              <div class="input-box">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="email" required placeholder=" " />
+                <span class="floating-label">Your Email</span>
+              </div>
+            </div>
+
+            <!-- SUBJECT -->
+            <div class="form-group">
+              <div class="input-box">
+                <i class="fa-solid fa-briefcase"></i>
+                <input type="text" placeholder=" " />
+                <span class="floating-label">Subject</span>
+              </div>
+            </div>
+
+            <!-- MESSAGE -->
+            <div class="form-group">
+              <div class="input-box textarea-box">
+                <i class="fa-solid fa-message"></i>
+                <textarea required placeholder=" "></textarea>
+                <span class="floating-label"
+                  >Tell me about your project...</span
+                >
+              </div>
+            </div>
+
+            <!-- BUTTON -->
             <button type="submit" class="send-btn">
-              SEND MESSAGE
+              Send Message
               <i class="fa-solid fa-paper-plane"></i>
             </button>
           </form>
