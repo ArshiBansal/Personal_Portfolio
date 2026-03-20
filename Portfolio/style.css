@@ -454,23 +454,37 @@ body {
   position: relative;
   z-index: 1;
   transform-origin: center center;
-
-  /* ✅ Single, clean transition */
-  transition:
+  border: #6f6f6f 1.25px solid;
+  transition: 
     transform 0.45s cubic-bezier(0.34, 1.4, 0.64, 1),
     box-shadow 0.45s cubic-bezier(0.34, 1.4, 0.64, 1),
-    border-radius 0.45s cubic-bezier(0.34, 1.4, 0.64, 1),
     border-color 0.3s ease;
 }
 
+/* INNER BORDER (default state) */
+.skill-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  border: 2px solid transparent;
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
+
+/* HOVER EFFECT */
 .skill-card:hover {
-  transform: translateY(-12px) scale(1.06); /* ✅ more professional scale */
-  border-radius: 32px;
-  border-color: #bbb;
+  transform: translateY(-12px) scale(1.06);
+  border-color: #999;
   box-shadow: 0 25px 70px rgba(0, 0, 0, 0.18);
   z-index: 10;
 }
 
+/* OUTER BORDER ON HOVER */
+.skill-card:hover::before {
+  border-color: rgba(0, 0, 0, 0.25);
+  inset: -6px; /* expands outward */
+}
 .skill-icon {
   width: 56px;
   height: 56px;
