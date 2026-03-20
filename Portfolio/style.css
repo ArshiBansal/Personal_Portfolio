@@ -478,7 +478,7 @@ body {
   border-color: #111827;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
   z-index: 10;
-    letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
   transition: 0.3s ease;
 }
 
@@ -1090,7 +1090,7 @@ body {
   background: #ffffff;
   border-radius: 24px;
   padding: 30px 35px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 40px rgba(49, 49, 49, 0.08);
   transition:
     transform 0.35s ease,
     box-shadow 0.35s ease,
@@ -1103,12 +1103,45 @@ body {
   color: inherit;
   cursor: pointer;
   position: relative;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle inner border */
+.certificate-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  border: 1px solid rgba(29, 27, 27, 0.08);
+  pointer-events: none;
+  transition: all 0.4s ease;
+  border-color: rgba(59, 59, 59, 0.25);
+}
+
+/* top accent line */
+.certificate-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #353639, transparent);
+  transform: translateX(-50%);
+  transition: width 0.4s ease;
+  width: 100%;
 }
 
 .certificate-card:hover {
   transform: translateY(-12px);
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
-  border-color: #cccccc;
+  box-shadow: 0 25px 70px rgba(48, 48, 48, 0.15);
+  border-color: #969696;
+  transform: translateY(-12px);
+  box-shadow:
+    0 25px 70px rgba(71, 71, 71, 0.15),
+    0 0 0 1px rgba(17, 24, 39, 0.08);
+  border-color: #2a2c2e;
 }
 
 .cert-badge {
@@ -1125,7 +1158,7 @@ body {
   width: fit-content;
   margin-bottom: 24px;
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 16px rgba(48, 48, 48, 0.08);
   border: 1px solid #d9d9d9;
 }
 
@@ -1136,10 +1169,15 @@ body {
 
 .certificate-card:hover .cert-badge {
   background: #e0e0e0;
-  color: #000000;
+  color: #343434;
   transform: translateX(4px) scale(1.05);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 10px 24px rgba(56, 54, 54, 0.12);
   border-color: #b3b3b3;
+}
+
+.certificates-section > .section-desc {
+  align-items: center;
+  justify-items: center;
 }
 
 .certificate-card:hover .cert-badge i {
