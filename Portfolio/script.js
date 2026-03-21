@@ -398,3 +398,22 @@ function changeText() {
 
 setInterval(changeText, 2600);
 changeText();
+
+/* =========================
+NAVBAR SCROLL PROGRESS
+========================= */
+
+function updateScrollProgress() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+  const progress = (scrollTop / docHeight) * 100;
+
+  document.documentElement.style.setProperty(
+    "--scroll-progress",
+    progress + "%",
+  );
+}
+
+window.addEventListener("scroll", updateScrollProgress);
+window.addEventListener("load", updateScrollProgress);

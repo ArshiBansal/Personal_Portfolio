@@ -1543,7 +1543,8 @@ BUTTON
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  border: rgba(97, 97, 97, 0.3) 1px double;
+  border: none;
+  position: fixed;
 }
 
 .nav-track {
@@ -1554,11 +1555,33 @@ BUTTON
   height: 240px;
   background: linear-gradient(
     180deg,
-    rgba(17, 24, 39, 0.3),
-    rgba(17, 24, 39, 0),
-    rgba(17, 24, 39, 0.3)
+    rgba(63, 63, 63, 0.3),
+    rgba(63, 63, 63, 0),
+    rgba(63, 63, 63, 0.3)
   );
   border-radius: 2px;
+  pointer-events: none;
+}
+
+.right-navbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+
+  background: linear-gradient(
+    to bottom,
+    #4b5563 var(--scroll-progress, 0%),
+    rgba(75, 85, 99, 0.15) var(--scroll-progress, 0%)
+  );
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
   pointer-events: none;
 }
 
