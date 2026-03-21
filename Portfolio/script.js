@@ -1,7 +1,6 @@
 /* =========================
 SMOOTH SCROLL
 ========================= */
-
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
     const target = document.querySelector(this.getAttribute("href"));
@@ -15,7 +14,6 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 /* =========================
 SCROLL REVEAL
 ========================= */
-
 const revealElements = document.querySelectorAll(".reveal");
 
 function revealOnScroll() {
@@ -24,19 +22,13 @@ function revealOnScroll() {
   revealElements.forEach((el) => {
     const elementTop = el.getBoundingClientRect().top;
 
-    if (elementTop < windowHeight - 120) {
-      if (!el.classList.contains("visible")) {
-        el.style.opacity = "1";
-        el.style.transform = "translateY(0)";
-        el.classList.add("visible");
-      }
+    if (elementTop < windowHeight - 100) {
+      el.classList.add("visible");
     }
   });
 }
 
 revealElements.forEach((el, index) => {
-  el.style.opacity = "0";
-  el.style.transform = "translateY(80px)";
   el.style.transition = "all 0.8s ease";
   el.style.transitionDelay = `${index * 0.05}s`;
 });
@@ -45,41 +37,33 @@ window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
 
 /* =========================
-PROJECT CARD TILT
+SCROLL PROGRESS (FOR BORDER)
 ========================= */
+function updateScrollProgress() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
 
-// const cards = document.querySelectorAll(".project-card");
+  const progress = (scrollTop / docHeight) * 100;
 
-// cards.forEach((card) => {
-//   card.addEventListener("mousemove", (e) => {
-//     const rect = card.getBoundingClientRect();
+  document.documentElement.style.setProperty(
+    "--scroll-progress",
+    progress + "%",
+  );
+}
 
-//     const x = e.clientX - rect.left;
-//     const y = e.clientY - rect.top;
-
-//     const rotateX = -(y - rect.height / 2) / 25;
-//     const rotateY = (x - rect.width / 2) / 25;
-
-//     card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-7px)`;
-//   });
-
-//   card.addEventListener("mouseleave", () => {
-//     card.style.transform =
-//       "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)";
-//   });
-// });
+window.addEventListener("scroll", updateScrollProgress);
+window.addEventListener("load", updateScrollProgress);
 
 /* =========================
 PARTICLE NETWORK BACKGROUND
 ========================= */
-
 const canvas = document.getElementById("network-bg");
 
 if (canvas) {
   const ctx = canvas.getContext("2d");
 
   let particles = [];
-  const particleCount = 80;
+  const particleCount = 70;
 
   function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -92,8 +76,8 @@ if (canvas) {
     constructor() {
       this.x = Math.random() * canvas.width;
       this.y = Math.random() * canvas.height;
-      this.vx = (Math.random() - 0.5) * 0.5;
-      this.vy = (Math.random() - 0.5) * 0.5;
+      this.vx = (Math.random() - 0.5) * 0.4;
+      this.vy = (Math.random() - 0.5) * 0.4;
       this.radius = 2;
     }
 
@@ -108,7 +92,7 @@ if (canvas) {
     draw() {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = "#444";
+      ctx.fillStyle = "rgba(80,80,80,0.6)";
       ctx.fill();
     }
   }
@@ -126,8 +110,7 @@ if (canvas) {
 
         if (dist < 10000) {
           ctx.beginPath();
-          ctx.strokeStyle = "rgba(100,100,100,0.2)";
-          ctx.lineWidth = 1;
+          ctx.strokeStyle = "rgba(120,120,120,0.12)";
           ctx.moveTo(particles[a].x, particles[a].y);
           ctx.lineTo(particles[b].x, particles[b].y);
           ctx.stroke();
@@ -155,12 +138,16 @@ if (canvas) {
     resizeCanvas();
     createParticles();
   });
+
+  // subtle parallax
+  window.addEventListener("scroll", () => {
+    canvas.style.transform = `translateY(${window.scrollY * 0.08}px)`;
+  });
 }
 
 /* =========================
 NAVBAR ACTIVE STATE
 ========================= */
-
 const sections = document.querySelectorAll("section[id]");
 const navLinks = document.querySelectorAll("nav a[href^='#']");
 
@@ -192,35 +179,29 @@ window.addEventListener("scroll", updateActiveLink);
 window.addEventListener("load", updateActiveLink);
 
 /* =========================
-🔥 CUSTOM CURSOR SYSTEM
+CURSOR SYSTEM 1 (DOT + RING + MAGNETIC)
 ========================= */
-
-// disable on mobile
 if (window.innerWidth > 768) {
   const cursor = document.createElement("div");
-  cursor.classList.add("custom-cursor");
-
   const ring = document.createElement("div");
-  ring.classList.add("cursor-ring");
 
-  document.body.appendChild(cursor);
-  document.body.appendChild(ring);
+  cursor.className = "custom-cursor";
+  ring.className = "cursor-ring";
 
-  let mouseX = 0;
-  let mouseY = 0;
+  document.body.append(cursor, ring);
 
-  let dotX = 0;
-  let dotY = 0;
-
-  let ringX = 0;
-  let ringY = 0;
+  let mouseX = 0,
+    mouseY = 0;
+  let dotX = 0,
+    dotY = 0;
+  let ringX = 0,
+    ringY = 0;
 
   document.addEventListener("mousemove", (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
   });
 
-  // smooth dot
   function animateDot() {
     dotX += (mouseX - dotX) * 0.35;
     dotY += (mouseY - dotY) * 0.35;
@@ -231,7 +212,6 @@ if (window.innerWidth > 768) {
     requestAnimationFrame(animateDot);
   }
 
-  // smooth ring
   function animateRing() {
     ringX += (mouseX - ringX) * 0.15;
     ringY += (mouseY - ringY) * 0.15;
@@ -245,7 +225,7 @@ if (window.innerWidth > 768) {
   animateDot();
   animateRing();
 
-  /* hover expand */
+  // hover scale
   document.querySelectorAll("a, button, .nav-item").forEach((el) => {
     el.addEventListener("mouseenter", () => {
       cursor.style.transform = "translate(-50%, -50%) scale(1.6)";
@@ -258,22 +238,10 @@ if (window.innerWidth > 768) {
     });
   });
 
-  /* click feedback */
-  document.addEventListener("mousedown", () => {
-    cursor.style.transform = "translate(-50%, -50%) scale(0.8)";
-    ring.style.transform = "translate(-50%, -50%) scale(1.1)";
-  });
-
-  document.addEventListener("mouseup", () => {
-    cursor.style.transform = "translate(-50%, -50%) scale(1)";
-    ring.style.transform = "translate(-50%, -50%) scale(1)";
-  });
-
-  /* magnetic effect (safe only) */
+  // magnetic effect
   document.querySelectorAll(".btn-main, .nav-item").forEach((el) => {
     el.addEventListener("mousemove", (e) => {
       const rect = el.getBoundingClientRect();
-
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
 
@@ -285,64 +253,21 @@ if (window.innerWidth > 768) {
     });
   });
 }
+
 /* =========================
-CURSOR + LIQUID TRAIL SYSTEM
+CURSOR SYSTEM 2 (TRAIL)
 ========================= */
-
 if (window.innerWidth > 768) {
-  // Create elements
-  const cursor = document.createElement("div");
-  const ring = document.createElement("div");
   const trailContainer = document.createElement("div");
-
-  cursor.className = "cursor-dot";
-  ring.className = "cursor-ring";
   trailContainer.className = "cursor-trail";
+  document.body.append(trailContainer);
 
-  document.body.append(cursor, ring, trailContainer);
-
-  let mouseX = 0;
-  let mouseY = 0;
-
-  let ringX = 0;
-  let ringY = 0;
-
-  /* =========================
-  MOUSE MOVE
-  ========================= */
   document.addEventListener("mousemove", (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-
-    cursor.style.left = mouseX + "px";
-    cursor.style.top = mouseY + "px";
-
-    createTrail(mouseX, mouseY);
-  });
-
-  /* =========================
-  SMOOTH MAGNETIC RING
-  ========================= */
-  function animateRing() {
-    ringX += (mouseX - ringX) * 0.15;
-    ringY += (mouseY - ringY) * 0.15;
-
-    ring.style.left = ringX + "px";
-    ring.style.top = ringY + "px";
-
-    requestAnimationFrame(animateRing);
-  }
-  animateRing();
-
-  /* =========================
-  TRAIL CREATION (LIQUID EFFECT)
-  ========================= */
-  function createTrail(x, y) {
     const dot = document.createElement("div");
     dot.className = "trail-dot";
 
-    dot.style.left = x + "px";
-    dot.style.top = y + "px";
+    dot.style.left = e.clientX + "px";
+    dot.style.top = e.clientY + "px";
 
     trailContainer.appendChild(dot);
 
@@ -353,67 +278,38 @@ if (window.innerWidth > 768) {
     setTimeout(() => {
       dot.remove();
     }, 600);
-  }
-
-  /* =========================
-  HOVER EFFECTS
-  ========================= */
-  document.querySelectorAll("a, button, .nav-item").forEach((el) => {
-    el.addEventListener("mouseenter", () => {
-      cursor.classList.add("hover");
-      ring.classList.add("hover");
-    });
-
-    el.addEventListener("mouseleave", () => {
-      cursor.classList.remove("hover");
-      ring.classList.remove("hover");
-    });
   });
 }
 
+/* =========================
+CEO TEXT ROTATION
+========================= */
 const ceoText = document.querySelector(".ceo-text");
 
-const lines = [
-  "DATA IS USELESS — UNLESS IT DRIVES DECISIONS",
-  "I BUILD AI THAT TURNS COMPLEXITY INTO CLARITY",
-  "INSIGHT IS POWER — I ENGINEER BOTH",
-  "PREDICTING WHAT MATTERS BEFORE IT HAPPENS",
-  "FROM DATA TO DECISION — WITHOUT GUESSWORK",
-];
+if (ceoText) {
+  const lines = [
+    "DATA IS USELESS — UNLESS IT DRIVES DECISIONS",
+    "I BUILD AI THAT TURNS COMPLEXITY INTO CLARITY",
+    "INSIGHT IS POWER — I ENGINEER BOTH",
+    "PREDICTING WHAT MATTERS BEFORE IT HAPPENS",
+    "FROM DATA TO DECISION — WITHOUT GUESSWORK",
+  ];
 
-let index = 0;
+  let index = 0;
 
-function changeText() {
-  ceoText.style.opacity = 0;
+  function changeText() {
+    ceoText.style.opacity = 0;
 
-  setTimeout(() => {
-    const text = lines[index];
-    ceoText.textContent = text;
-    ceoText.setAttribute("data-text", text); // needed for glitch layer
-    ceoText.style.opacity = 1;
+    setTimeout(() => {
+      const text = lines[index];
+      ceoText.textContent = text;
+      ceoText.setAttribute("data-text", text);
+      ceoText.style.opacity = 1;
 
-    index = (index + 1) % lines.length;
-  }, 200);
+      index = (index + 1) % lines.length;
+    }, 200);
+  }
+
+  setInterval(changeText, 2600);
+  changeText();
 }
-
-setInterval(changeText, 2600);
-changeText();
-
-/* =========================
-NAVBAR SCROLL PROGRESS
-========================= */
-
-function updateScrollProgress() {
-  const scrollTop = window.scrollY;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-
-  const progress = (scrollTop / docHeight) * 100;
-
-  document.documentElement.style.setProperty(
-    "--scroll-progress",
-    progress + "%",
-  );
-}
-
-window.addEventListener("scroll", updateScrollProgress);
-window.addEventListener("load", updateScrollProgress);
