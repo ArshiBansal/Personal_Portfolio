@@ -313,3 +313,69 @@ if (ceoText) {
   setInterval(changeText, 2600);
   changeText();
 }
+
+/* =========================
+LIVE TIME
+========================= */
+function updateLiveTime() {
+  const el = document.getElementById("liveTime");
+  if (!el) return;
+
+  const now = new Date();
+  el.textContent = now.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
+setInterval(updateLiveTime, 1000);
+updateLiveTime();
+
+/* =========================
+EYES FOLLOW (FIXED)
+========================= */
+const pupils = document.querySelectorAll(".pupil");
+
+document.addEventListener("mousemove", (e) => {
+  pupils.forEach((pupil) => {
+    const eye = pupil.parentElement;
+    const rect = eye.getBoundingClientRect();
+
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    let dx = e.clientX - centerX;
+    let dy = e.clientY - centerY;
+
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    const max = 3;
+
+    if (dist > 0) {
+      dx = (dx / dist) * max;
+      dy = (dy / dist) * max;
+    }
+
+    pupil.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px))`;
+  });
+});
+
+/* =========================
+BLINK (NATURAL)
+========================= */
+const eyes = document.querySelectorAll(".eye");
+
+function blink() {
+  eyes.forEach((eye) => eye.classList.add("blink"));
+
+  setTimeout(() => {
+    eyes.forEach((eye) => eye.classList.remove("blink"));
+  }, 120);
+}
+
+/* random blinking */
+setInterval(
+  () => {
+    blink();
+  },
+  2200 + Math.random() * 2000,
+);

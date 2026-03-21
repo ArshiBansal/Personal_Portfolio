@@ -1766,7 +1766,7 @@ BUTTON
   left: 0;
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   padding: 0 60px;
   z-index: 5;
@@ -1880,6 +1880,110 @@ BUTTON
     transform: scale(1);
     opacity: 1;
   }
+}
+
+/* LEFT SIDE OF CEO LINE */
+.ceo-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  pointer-events: auto;
+}
+
+/* CARD */
+.live-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  background: #ffffff;
+  padding: 10px 18px;
+  border-radius: 22px;
+
+  /* 🔥 charcoal shadow */
+  box-shadow:
+    0 8px 25px rgba(30, 30, 30, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.2);
+
+  color: #000;
+  transition: all 0.25s ease;
+}
+
+.live-card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 12px 35px rgba(20, 20, 20, 0.45),
+    0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* EYES */
+.eyes {
+  display: flex;
+  gap: 6px;
+}
+
+.eye {
+  width: 16px;
+  height: 16px;
+  background: #000;
+  border-radius: 50%;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+/* PERFECT CENTER PUPIL */
+.pupil {
+  width: 6px;
+  height: 6px;
+  background: #ffffff;
+  border-radius: 50%;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s linear;
+}
+
+/* BLINK */
+.eye.blink {
+  height: 2px;
+  border-radius: 2px;
+}
+
+/* TEXT */
+.live-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.live-top {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.name {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.time {
+  font-size: 13px;
+  color: #444;
+}
+
+.status {
+  font-size: 12px;
+  color: #777;
+  margin-top: 2px;
 }
 
 @keyframes jitter {
