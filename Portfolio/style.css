@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@300;400;500;600;700&display=swap");
+
 * {
   box-sizing: border-box;
 }
@@ -8,12 +10,7 @@ html {
 
 body {
   margin: 0;
-  font-family:
-    system-ui,
-    -apple-system,
-    Segoe UI,
-    Roboto,
-    sans-serif;
+  font-family: "Outfit", serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   user-select: none;
@@ -276,7 +273,7 @@ body {
 .profile {
   width: 100%;
   max-width: 380px;
-  height: auto;
+  height: 475px;
   border-radius: 30px;
   filter: grayscale(100%);
   transform: rotate(-5deg);
@@ -2160,7 +2157,7 @@ BUTTON
 
 /* meta */
 .footer-meta {
-  font-size: 0.90rem;
+  font-size: 0.9rem;
   color: #221e1e;
   margin-top: 4px;
   transition: color 0.3s ease;

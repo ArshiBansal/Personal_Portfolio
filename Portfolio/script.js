@@ -199,8 +199,10 @@ if (window.innerWidth > 768) {
     ringY = 0;
 
   document.addEventListener("mousemove", (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
+    requestAnimationFrame(() => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
   });
 
   function animateDot() {
@@ -390,4 +392,25 @@ window.addEventListener("load", () => {
   if (footer) {
     footer.classList.add("visible");
   }
+});
+
+const prefersReducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)",
+);
+
+if (prefersReducedMotion.matches) {
+  document.querySelectorAll("*").forEach((el) => {
+    el.style.transition = "none";
+    el.style.animation = "none";
+  });
+}
+
+document.title = "Arshi Bansal | Portfolio";
+
+window.addEventListener("blur", () => {
+  document.title = "Come back 👀";
+});
+
+window.addEventListener("focus", () => {
+  document.title = "Arshi Bansal | Portfolio";
 });
