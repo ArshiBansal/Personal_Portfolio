@@ -1258,7 +1258,7 @@ body {
 
   border-radius: 20px;
 
-  /* ✅ added border for differentiation */
+  /*  added border for differentiation */
   border: 1px solid #6a6a6a;
 
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
@@ -1276,7 +1276,7 @@ body {
   transition: color 0.3s ease;
 }
 
-/* ✅ enhanced hover */
+/*  enhanced hover */
 .contact-email:hover {
   transform: translateY(-4px);
   border-color: #111827;
@@ -1320,7 +1320,7 @@ SOCIAL ICONS
   text-decoration: none;
 }
 
-/* ✅ hover effect */
+/*  hover effect */
 .contact-socials a:hover {
   transform: translateY(-6px);
   border-color: #111827;
@@ -2108,4 +2108,65 @@ BUTTON
   .nav-item::before {
     right: 50px;
   }
+}
+
+.footer-interesting {
+  padding: 40px 20px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: all 0.7s ease;
+}
+
+/* reveal */
+.footer-interesting.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* main text */
+.footer-text {
+  font-size: 0.85rem;
+  color: #444444;
+  margin-bottom: 8px;
+  letter-spacing: 0.3px;
+  position: relative;
+  display: inline-block;
+  transition: all 0.3s ease;
+  font-weight: 400;
+}
+
+/* subtle underline effect */
+.footer-text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 1px;
+  background: #888;
+  transition: width 0.4s ease;
+}
+
+.footer-interesting:hover .footer-text::after {
+  width: 100%;
+}
+
+/* slight text lift on hover */
+.footer-interesting:hover .footer-text {
+  letter-spacing: 0.5px;
+  color: #484444;
+}
+
+/* meta */
+.footer-meta {
+  font-size: 0.90rem;
+  color: #221e1e;
+  margin-top: 4px;
+  transition: color 0.3s ease;
+  font-weight: 600;
+}
+
+.footer-interesting:hover .footer-meta {
+  color: #9a9a9a;
 }

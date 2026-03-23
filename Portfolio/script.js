@@ -155,7 +155,8 @@ function updateActiveLink() {
   let currentSection = "";
 
   sections.forEach((section) => {
-    const sectionTop = section.offsetTop - 120;
+    const offset = document.querySelector("nav")?.offsetHeight || 0;
+    const sectionTop = section.offsetTop - offset;
     const sectionHeight = section.offsetHeight;
 
     if (
@@ -379,3 +380,14 @@ setInterval(
   },
   2200 + Math.random() * 2000,
 );
+
+// set year
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// reveal on load
+window.addEventListener("load", () => {
+  const footer = document.querySelector(".footer-interesting");
+  if (footer) {
+    footer.classList.add("visible");
+  }
+});
