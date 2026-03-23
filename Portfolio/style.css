@@ -2,6 +2,7 @@
 
 * {
   box-sizing: border-box;
+  font-family: "Fraunces", serif;
 }
 
 html {
@@ -10,7 +11,7 @@ html {
 
 body {
   margin: 0;
-  font-family: "Outfit", serif;
+  font-family: "Fraunces", serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   user-select: none;
@@ -26,7 +27,7 @@ body {
   height: 100%;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 /* HERO SECTION */
