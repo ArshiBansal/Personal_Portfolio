@@ -2,7 +2,8 @@
 
 * {
   box-sizing: border-box;
-  font-family: "Fraunces", serif;
+  font-family: "Quicksand", cursive;
+  cursor: crosshair !important;
 }
 
 html {
@@ -11,7 +12,7 @@ html {
 
 body {
   margin: 0;
-  font-family: "Fraunces", serif;
+  font-family: "Quicksand", cursive;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   user-select: none;
@@ -274,7 +275,7 @@ body {
 .profile {
   width: 100%;
   max-width: 380px;
-  height: 475px;
+  height: auto;
   border-radius: 30px;
   filter: grayscale(100%);
   transform: rotate(-5deg);
@@ -1683,9 +1684,9 @@ BUTTON
 
 .cursor-ring {
   position: fixed;
-  width: 32px;
-  height: 32px;
-  border: 1px solid rgba(0, 0, 0, 0.4);
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(0, 0, 0, 0.35);
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
@@ -1725,12 +1726,12 @@ BUTTON
 }
 
 .cursor-dot.hover {
-  transform: translate(-50%, -50%) scale(1.5);
+  transform: translate(-50%, -50%) scale(1.1);
 }
 
 .cursor-ring.hover {
-  transform: translate(-50%, -50%) scale(1.6);
-  border-color: rgba(0, 0, 0, 0.8);
+  transform: translate(-50%, -50%) scale(1.2);
+  border-color: rgba(43, 40, 40, 0.7);
 }
 
 /* CEO FLOATING LINE */
@@ -1815,45 +1816,59 @@ BUTTON
 }
 
 .status-wrap {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 10px;
+
   padding: 8px 16px;
   border-radius: 50px;
+
   font-size: 12px;
   letter-spacing: 1.5px;
   font-weight: 600;
-  color: #065f46;
-  background: rgba(34, 197, 94, 0.08);
-  border: 1px solid rgba(34, 197, 94, 0.25);
-  backdrop-filter: blur(8px);
-  transition: all 0.3s ease;
+
+  color: #111827;
+
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+
+  /*flowing background */
+  background: linear-gradient(
+    120deg,
+    #f5f5f5,
+    #eaeaea,
+    #f5f5f5
+  );
+  background-size: 200% 200%;
+
+  animation: inkFlow 8s ease-in-out infinite;
+}
+
+/* smooth continuous motion */
+@keyframes inkFlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .dot {
-  width: 8px;
-  height: 8px;
-  background: #22c55e;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  box-shadow:
-    0 0 6px #22c55e,
-    0 0 14px rgba(34, 197, 94, 0.6);
-  animation: pulseDot 1.5s infinite;
+  background: #111827;
+
+  opacity: 0.7;
 }
 
-@keyframes pulseDot {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.8);
-    opacity: 0.3;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
+/* micro breathing */
+@keyframes breathe {
+  0%,100% { opacity: 0.5; }
+  50% { opacity: 0.9; }
+}
+
+.dot {
+  animation: breathe 3s ease-in-out infinite;
 }
 
 /* LEFT SIDE OF CEO LINE */
@@ -2167,4 +2182,52 @@ BUTTON
 
 .footer-interesting:hover .footer-meta {
   color: #9a9a9a;
+}
+
+*,
+a,
+button,
+.card,
+.skill-card,
+.project-card {
+  cursor: none !important;
+}
+
+.custom-cursor.hover {
+  transform: translate(-50%, -50%) scale(1.8);
+}
+
+.cursor-ring.hover {
+  transform: translate(-50%, -50%) scale(1.5);
+  border-color: rgba(0, 0, 0, 0.8);
+}
+
+.download-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.download-btn .text {
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+/* hover */
+.download-btn:hover .text {
+  transform: translateY(2px);
+}
+
+.download-btn::after {
+  content: "↓";
+  position: absolute;
+  right: 18px;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
+
+/* arrow appears */
+.download-btn:hover::after {
+  opacity: 1;
+  transform: translateY(2px);
 }

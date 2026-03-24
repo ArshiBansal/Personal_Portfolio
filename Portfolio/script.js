@@ -414,3 +414,29 @@ window.addEventListener("blur", () => {
 window.addEventListener("focus", () => {
   document.title = "Arshi Bansal | Portfolio";
 });
+
+document
+  .querySelectorAll("a, button, .skill-card, .project-card")
+  .forEach((el) => {
+    el.addEventListener("mouseenter", () => {
+      document.querySelector(".custom-cursor").classList.add("hover");
+      document.querySelector(".cursor-ring").classList.add("hover");
+    });
+
+    el.addEventListener("mouseleave", () => {
+      document.querySelector(".custom-cursor").classList.remove("hover");
+      document.querySelector(".cursor-ring").classList.remove("hover");
+    });
+  });
+
+const btn = document.querySelector(".download-btn");
+
+btn.addEventListener("click", () => {
+  const text = btn.querySelector(".text");
+
+  text.textContent = "Downloading...";
+
+  setTimeout(() => {
+    text.textContent = "Saved";
+  }, 1200);
+});
