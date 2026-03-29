@@ -2,7 +2,7 @@
 
 * {
   box-sizing: border-box;
-  font-family: "Quicksand", cursive;
+  font-family: "DM Serif Display", serif;
   cursor: crosshair !important;
 }
 
@@ -12,7 +12,7 @@ html {
 
 body {
   margin: 0;
-  font-family: "Quicksand", cursive;
+  font-family: "DM Serif Display", serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   user-select: none;
