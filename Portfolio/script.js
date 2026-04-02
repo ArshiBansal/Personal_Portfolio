@@ -440,3 +440,13 @@ btn.addEventListener("click", () => {
     text.textContent = "Saved";
   }, 1200);
 });
+
+const favicon = document.querySelector("link[rel='icon']");
+
+window.addEventListener("blur", () => {
+  favicon.href = "assets/favicon-alert.png";
+});
+
+window.addEventListener("focus", () => {
+  favicon.href = "assets/favicon-normal.png";
+});
