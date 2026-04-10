@@ -285,39 +285,6 @@ if (window.innerWidth > 768) {
 }
 
 /* =========================
-CEO TEXT ROTATION
-========================= */
-const ceoText = document.querySelector(".ceo-text");
-
-if (ceoText) {
-  const lines = [
-    "DATA IS USELESS — UNLESS IT DRIVES DECISIONS",
-    "I BUILD AI THAT TURNS COMPLEXITY INTO CLARITY",
-    "INSIGHT IS POWER — I ENGINEER BOTH",
-    "PREDICTING WHAT MATTERS BEFORE IT HAPPENS",
-    "FROM DATA TO DECISION — WITHOUT GUESSWORK",
-  ];
-
-  let index = 0;
-
-  function changeText() {
-    ceoText.style.opacity = 0;
-
-    setTimeout(() => {
-      const text = lines[index];
-      ceoText.textContent = text;
-      ceoText.setAttribute("data-text", text);
-      ceoText.style.opacity = 1;
-
-      index = (index + 1) % lines.length;
-    }, 200);
-  }
-
-  setInterval(changeText, 2600);
-  changeText();
-}
-
-/* =========================
 LIVE TIME
 ========================= */
 function updateLiveTime() {
@@ -450,3 +417,35 @@ window.addEventListener("blur", () => {
 window.addEventListener("focus", () => {
   favicon.href = "assets/favicon-normal.png";
 });
+
+/* =========================
+TRAINING TIMELINE ANIMATION
+========================= */
+
+const trainingItems = document.querySelectorAll(".training-item");
+const timeline = document.querySelector(".training-timeline");
+
+function animateTrainingTimeline() {
+  const triggerBottom = window.innerHeight * 0.85;
+
+  trainingItems.forEach((item, index) => {
+    const top = item.getBoundingClientRect().top;
+
+    if (top < triggerBottom) {
+      setTimeout(() => {
+        item.classList.add("visible");
+      }, index * 150); // stagger effect
+    }
+  });
+
+  // activate line animation
+  if (timeline) {
+    const rect = timeline.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.8) {
+      timeline.classList.add("active");
+    }
+  }
+}
+
+window.addEventListener("scroll", animateTrainingTimeline);
+window.addEventListener("load", animateTrainingTimeline);
