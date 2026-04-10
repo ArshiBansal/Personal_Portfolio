@@ -145,39 +145,29 @@ if (canvas) {
   });
 }
 
-/* =========================
-NAVBAR ACTIVE STATE
-========================= */
-const sections = document.querySelectorAll("section[id]");
-const navLinks = document.querySelectorAll("nav a[href^='#']");
+const sections = document.querySelectorAll("section");
+const navItems = document.querySelectorAll(".nav-item");
 
-function updateActiveLink() {
-  let currentSection = "";
+window.addEventListener("scroll", () => {
+  let current = "";
 
   sections.forEach((section) => {
-    const offset = document.querySelector("nav")?.offsetHeight || 0;
-    const sectionTop = section.offsetTop - offset;
-    const sectionHeight = section.offsetHeight;
+    const sectionTop = section.offsetTop - 120;
+    const sectionHeight = section.clientHeight;
 
-    if (
-      window.scrollY >= sectionTop &&
-      window.scrollY < sectionTop + sectionHeight
-    ) {
-      currentSection = section.getAttribute("id");
+    if (pageYOffset >= sectionTop) {
+      current = section.getAttribute("id");
     }
   });
 
-  navLinks.forEach((link) => {
+  navItems.forEach((link) => {
     link.classList.remove("active");
 
-    if (link.getAttribute("href") === `#${currentSection}`) {
+    if (link.getAttribute("href") === `#${current}`) {
       link.classList.add("active");
     }
   });
-}
-
-window.addEventListener("scroll", updateActiveLink);
-window.addEventListener("load", updateActiveLink);
+});
 
 /* =========================
 CURSOR SYSTEM 1 (DOT + RING + MAGNETIC)
