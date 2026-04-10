@@ -2290,9 +2290,8 @@ button,
 }
 
 /* =========================
-TIMELINE ANIMATIONS
+TRAINING SECTION (FIXED)
 ========================= */
-
 .training-section {
   padding: 120px 0;
   position: relative;
@@ -2307,9 +2306,10 @@ TIMELINE ANIMATIONS
   font-weight: 900;
   letter-spacing: 12px;
   color: #000;
-  opacity: 0.08;
+  opacity: 0.06;
 }
 
+/* CONTAINER */
 .training-container {
   width: 90%;
   max-width: 1100px;
@@ -2318,6 +2318,7 @@ TIMELINE ANIMATIONS
   z-index: 2;
 }
 
+/* HEADER */
 .training-header {
   text-align: center;
   margin-bottom: 80px;
@@ -2326,100 +2327,107 @@ TIMELINE ANIMATIONS
 .training-header h2 {
   font-size: clamp(42px, 5vw, 64px);
   font-weight: 900;
-  letter-spacing: -1px;
-  position: relative;
-  display: inline-block;
+  color: #111; /* FIXED visibility */
 }
 
-/* underline animation */
-.training-header h2::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -10px;
-  width: 0%;
-  height: 3px;
-  background: #111827;
-  transition: width 0.6s ease;
-}
-
-.training-header h2:hover::after {
-  width: 100%;
-}
-
-/* TIMELINE LINE */
+/* =========================
+TIMELINE (ONLY ONE LINE)
+========================= */
 .training-timeline {
-  border-left: 2px solid rgba(0, 0, 0, 0.2);
   padding-left: 30px;
   display: flex;
   flex-direction: column;
   gap: 60px;
+  position: relative;
 }
 
-/* ITEM */
-/* stronger entrance effect */
+/* SINGLE clean animated line */
+.training-timeline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 0%;
+  background: #111827;
+  transition: height 1.5s ease;
+}
+
+.training-timeline.active::before {
+  height: 100%;
+}
+
+/* =========================
+ITEM
+========================= */
 .training-item {
-  opacity: 0;
-  transform: translateX(-60px) scale(0.96);
-  transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-}
+  position: relative;
+  padding: 16px 18px;
 
-.training-item.visible {
-  opacity: 1;
-  transform: translateX(0) scale(1);
+  opacity: 1; /* FIXED (was 0) */
+  transform: translateX(0); /* FIXED */
+
+  transition: all 0.6s ease;
 }
 
 /* DOT */
 .training-item::before {
   content: "";
   position: absolute;
-  left: -38px;
-  top: 6px;
-  width: 14px;
-  height: 14px;
+  left: -8px;
+  top: 8px;
+  width: 12px;
+  height: 12px;
   background: #111827;
   border-radius: 50%;
-  box-shadow: 0 0 0 4px rgba(17, 24, 39, 0.15);
 }
 
-/* HOVER SHIFT */
+/* HOVER */
 .training-item:hover {
   transform: translateX(8px);
 }
 
-/* DATE */
+/* =========================
+TEXT (VISIBLE FIX)
+========================= */
 .training-date {
   font-size: 14px;
   color: #6b7280;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  font-weight: 600;
 }
 
 .training-item h3 {
   font-size: clamp(22px, 2.5vw, 28px);
-  font-weight: 900;
-  margin-bottom: 8px;
-  line-height: 1.3;
+  font-weight: 800;
+  margin-bottom: 6px;
+  color: #000; /* FIXED */
 }
 
 .training-org {
   font-size: 16px;
   color: #444;
-  margin-bottom: 14px;
-  font-weight: 500;
+  margin-bottom: 10px;
 }
 
-.training-grade {
-  font-size: 15px;
-  font-weight: 600;
+.training-desc {
+  font-size: 18px;
+  line-height: 1.5;
+  color: #555;
+  margin-bottom: 12px;
+  text-align: justify;
+  align-items: center;
+  white-space: normal;
+  max-width: 600px;
 }
 
-/* SKILLS */
+/* =========================
+SKILLS
+========================= */
 .training-skills {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .training-skills span {
@@ -2433,130 +2441,28 @@ TIMELINE ANIMATIONS
 
 .training-skills span:hover {
   background: #111827;
-  color: white;
+  color: #fff;
 }
 
-/* GRADE */
-.training-grade {
-  font-size: 14px;
-  color: #444;
-}
+/* =========================
+BUTTON
+========================= */
+.cert-btn {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 20px;
+  text-decoration: none;
 
-/* line animation */
-.training-timeline {
-  border-left: 2px solid rgba(0, 0, 0, 0.2);
-  padding-left: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
+  color: #111827;
+  border: 1px solid #111827;
 
-  position: relative;
-}
-
-/* animated progress line */
-.training-timeline::before {
-  content: "";
-  position: absolute;
-  left: -2px;
-  top: 0;
-  width: 2px;
-  height: 0%;
-  background: #111827;
-  transition: height 1.2s ease;
-}
-
-/* trigger when visible */
-.training-timeline.active::before {
-  height: 100%;
-}
-
-/* ITEM BASE STATE (hidden) */
-.training-item {
-  opacity: 0;
-  transform: translateX(-40px);
-  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* ITEM VISIBLE */
-.training-item.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* DOT ANIMATION */
-.training-item::before {
-  content: "";
-  position: absolute;
-  left: -38px;
-  top: 6px;
-  width: 14px;
-  height: 14px;
-  background: #111827;
-  border-radius: 50%;
-
-  transform: scale(0);
-  transition: transform 0.4s ease;
-}
-
-/* DOT POP */
-.training-item.visible::before {
-  transform: scale(1);
-}
-
-/* HOVER GLOW */
-.training-item:hover::before {
-  box-shadow: 0 0 0 6px rgba(17, 24, 39, 0.15);
-}
-
-/* TEXT MICRO ANIMATION */
-.training-item h3,
-.training-org,
-.training-date {
-  transform: translateY(10px);
-  opacity: 0;
-  transition: all 0.5s ease;
-}
-
-.training-item.visible h3,
-.training-item.visible .training-org,
-.training-item.visible .training-date {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* stagger effect */
-.training-item.visible h3 {
-  transition-delay: 0.1s;
-}
-.training-item.visible .training-org {
-  transition-delay: 0.2s;
-}
-.training-item.visible .training-date {
-  transition-delay: 0.3s;
-}
-
-/* skills fade in */
-.training-skills span {
-  opacity: 0;
-  transform: scale(0.8);
   transition: all 0.3s ease;
 }
 
-.training-item.visible .training-skills span {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* stagger skills */
-.training-item.visible .training-skills span:nth-child(1) {
-  transition-delay: 0.3s;
-}
-.training-item.visible .training-skills span:nth-child(2) {
-  transition-delay: 0.35s;
-}
-.training-item.visible .training-skills span:nth-child(3) {
-  transition-delay: 0.4s;
-}
-.training-item.visible .training-skills span:nth-child(4) {
-  transition-delay: 0.45s;
+.cert-btn:hover {
+  background: #111827;
+  color: #fff;
+  transform: translateY(-2px);
 }
