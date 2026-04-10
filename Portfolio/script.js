@@ -408,34 +408,19 @@ window.addEventListener("focus", () => {
   favicon.href = "assets/favicon-normal.png";
 });
 
-/* =========================
-TRAINING TIMELINE ANIMATION
-========================= */
-
 const trainingItems = document.querySelectorAll(".training-item");
-const timeline = document.querySelector(".training-timeline");
 
-function animateTrainingTimeline() {
-  const triggerBottom = window.innerHeight * 0.85;
+function revealTimeline() {
+  const triggerBottom = window.innerHeight - 100;
 
-  trainingItems.forEach((item, index) => {
+  trainingItems.forEach((item) => {
     const top = item.getBoundingClientRect().top;
 
     if (top < triggerBottom) {
-      setTimeout(() => {
-        item.classList.add("visible");
-      }, index * 150); // stagger effect
+      item.classList.add("visible");
     }
   });
-
-  // activate line animation
-  if (timeline) {
-    const rect = timeline.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.8) {
-      timeline.classList.add("active");
-    }
-  }
 }
 
-window.addEventListener("scroll", animateTrainingTimeline);
-window.addEventListener("load", animateTrainingTimeline);
+window.addEventListener("scroll", revealTimeline);
+window.addEventListener("load", revealTimeline);
