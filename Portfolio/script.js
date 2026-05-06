@@ -1,9 +1,31 @@
 /* =========================
+UTILS
+========================= */
+const $ = (sel) => document.querySelector(sel);
+const $$ = (sel) => document.querySelectorAll(sel);
+
+/* =========================
+LIVE TIME (SINGLE CLEAN VERSION)
+========================= */
+function updateLiveTime() {
+  const el = $("#liveTime");
+  if (!el) return;
+
+  const now = new Date();
+  el.textContent = now.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+setInterval(updateLiveTime, 1000);
+updateLiveTime();
+
+/* =========================
 SMOOTH SCROLL
 ========================= */
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+$$('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
-    const target = document.querySelector(this.getAttribute("href"));
+    const target = $(this.getAttribute("href"));
     if (!target) return;
 
     e.preventDefault();
@@ -12,56 +34,83 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 });
 
 /* =========================
+BUTTON HOVER (SINGLE INSTANCE)
+========================= */
+$$(".btn").forEach((btn) => {
+  btn.addEventListener("mouseenter", () => {
+    btn.style.transform = "translateY(-4px)";
+  });
+  btn.addEventListener("mouseleave", () => {
+    btn.style.transform = "translateY(0)";
+  });
+});
+
+/* =========================
 SCROLL REVEAL
 ========================= */
-const revealElements = document.querySelectorAll(".reveal");
-
-function revealOnScroll() {
-  const windowHeight = window.innerHeight;
-
-  revealElements.forEach((el) => {
-    const elementTop = el.getBoundingClientRect().top;
-
-    if (elementTop < windowHeight - 100) {
-      el.classList.add("visible");
-    }
-  });
-}
+const revealElements = $$(".reveal");
 
 revealElements.forEach((el, index) => {
   el.style.transition = "all 0.8s ease";
   el.style.transitionDelay = `${index * 0.05}s`;
 });
 
-window.addEventListener("scroll", revealOnScroll);
-window.addEventListener("load", revealOnScroll);
+function revealOnScroll() {
+  const windowHeight = window.innerHeight;
+
+  revealElements.forEach((el) => {
+    const elementTop = el.getBoundingClientRect().top;
+    if (elementTop < windowHeight - 100) {
+      el.classList.add("visible");
+    }
+  });
+}
 
 /* =========================
-SCROLL PROGRESS (FOR BORDER)
+SCROLL PROGRESS
 ========================= */
 function updateScrollProgress() {
   const scrollTop = window.scrollY;
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
 
   const progress = (scrollTop / docHeight) * 100;
-
   document.documentElement.style.setProperty(
     "--scroll-progress",
     progress + "%",
   );
 }
 
-window.addEventListener("scroll", updateScrollProgress);
-window.addEventListener("load", updateScrollProgress);
+/* =========================
+NAV ACTIVE LINK
+========================= */
+const sections = $$("section");
+const navItems = $$(".nav-item");
+
+function updateActiveNav() {
+  let current = "";
+
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop - 120;
+    if (window.scrollY >= sectionTop) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  navItems.forEach((link) => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === `#${current}`) {
+      link.classList.add("active");
+    }
+  });
+}
 
 /* =========================
-PARTICLE NETWORK BACKGROUND
+PARTICLE BACKGROUND
 ========================= */
-const canvas = document.getElementById("network-bg");
+const canvas = $("#network-bg");
 
 if (canvas) {
   const ctx = canvas.getContext("2d");
-
   let particles = [];
   const particleCount = 70;
 
@@ -69,8 +118,6 @@ if (canvas) {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   }
-
-  resizeCanvas();
 
   class Particle {
     constructor() {
@@ -131,6 +178,7 @@ if (canvas) {
     requestAnimationFrame(animate);
   }
 
+  resizeCanvas();
   createParticles();
   animate();
 
@@ -139,47 +187,25 @@ if (canvas) {
     createParticles();
   });
 
-  // subtle parallax
   window.addEventListener("scroll", () => {
     canvas.style.transform = `translateY(${window.scrollY * 0.08}px)`;
   });
 }
 
-const sections = document.querySelectorAll("section");
-const navItems = document.querySelectorAll(".nav-item");
-
-window.addEventListener("scroll", () => {
-  let current = "";
-
-  sections.forEach((section) => {
-    const sectionTop = section.offsetTop - 120;
-    const sectionHeight = section.clientHeight;
-
-    if (pageYOffset >= sectionTop) {
-      current = section.getAttribute("id");
-    }
-  });
-
-  navItems.forEach((link) => {
-    link.classList.remove("active");
-
-    if (link.getAttribute("href") === `#${current}`) {
-      link.classList.add("active");
-    }
-  });
-});
-
 /* =========================
 CURSOR SYSTEM 1 (DOT + RING + MAGNETIC)
 ========================= */
+let cursorEl = null;
+let ringEl = null;
+
 if (window.innerWidth > 768) {
-  const cursor = document.createElement("div");
-  const ring = document.createElement("div");
+  cursorEl = document.createElement("div");
+  ringEl = document.createElement("div");
 
-  cursor.className = "custom-cursor";
-  ring.className = "cursor-ring";
+  cursorEl.className = "custom-cursor";
+  ringEl.className = "cursor-ring";
 
-  document.body.append(cursor, ring);
+  document.body.append(cursorEl, ringEl);
 
   let mouseX = 0,
     mouseY = 0;
@@ -189,18 +215,16 @@ if (window.innerWidth > 768) {
     ringY = 0;
 
   document.addEventListener("mousemove", (e) => {
-    requestAnimationFrame(() => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    });
+    mouseX = e.clientX;
+    mouseY = e.clientY;
   });
 
   function animateDot() {
     dotX += (mouseX - dotX) * 0.35;
     dotY += (mouseY - dotY) * 0.35;
 
-    cursor.style.left = dotX + "px";
-    cursor.style.top = dotY + "px";
+    cursorEl.style.left = dotX + "px";
+    cursorEl.style.top = dotY + "px";
 
     requestAnimationFrame(animateDot);
   }
@@ -209,8 +233,8 @@ if (window.innerWidth > 768) {
     ringX += (mouseX - ringX) * 0.15;
     ringY += (mouseY - ringY) * 0.15;
 
-    ring.style.left = ringX + "px";
-    ring.style.top = ringY + "px";
+    ringEl.style.left = ringX + "px";
+    ringEl.style.top = ringY + "px";
 
     requestAnimationFrame(animateRing);
   }
@@ -218,37 +242,37 @@ if (window.innerWidth > 768) {
   animateDot();
   animateRing();
 
-  // hover scale
-  document.querySelectorAll("a, button, .nav-item").forEach((el) => {
+  // hover scale + magnetic
+  $$("a, button, .nav-item, .btn-main").forEach((el) => {
     el.addEventListener("mouseenter", () => {
-      cursor.style.transform = "translate(-50%, -50%) scale(1.6)";
-      ring.style.transform = "translate(-50%, -50%) scale(1.25)";
+      cursorEl.classList.add("hover");
+      ringEl.classList.add("hover");
     });
 
     el.addEventListener("mouseleave", () => {
-      cursor.style.transform = "translate(-50%, -50%) scale(1)";
-      ring.style.transform = "translate(-50%, -50%) scale(1)";
+      cursorEl.classList.remove("hover");
+      ringEl.classList.remove("hover");
+      el.style.transform = "translate(0,0)";
     });
-  });
 
-  // magnetic effect
-  document.querySelectorAll(".btn-main, .nav-item").forEach((el) => {
     el.addEventListener("mousemove", (e) => {
+      if (
+        !el.classList.contains("btn-main") &&
+        !el.classList.contains("nav-item")
+      )
+        return;
+
       const rect = el.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
 
       el.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
     });
-
-    el.addEventListener("mouseleave", () => {
-      el.style.transform = "translate(0,0)";
-    });
   });
 }
 
 /* =========================
-CURSOR SYSTEM 2 (TRAIL)
+CURSOR TRAIL
 ========================= */
 if (window.innerWidth > 768) {
   const trailContainer = document.createElement("div");
@@ -264,104 +288,113 @@ if (window.innerWidth > 768) {
 
     trailContainer.appendChild(dot);
 
-    requestAnimationFrame(() => {
-      dot.classList.add("fade");
-    });
+    requestAnimationFrame(() => dot.classList.add("fade"));
 
-    setTimeout(() => {
-      dot.remove();
-    }, 600);
+    setTimeout(() => dot.remove(), 600);
   });
 }
 
 /* =========================
-LIVE TIME
+EYES FOLLOW + BLINK
 ========================= */
-function updateLiveTime() {
-  const el = document.getElementById("liveTime");
-  if (!el) return;
-
-  const now = new Date();
-  el.textContent = now.toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-}
-
-setInterval(updateLiveTime, 1000);
-updateLiveTime();
-
-/* =========================
-EYES FOLLOW (FIXED)
-========================= */
-const pupils = document.querySelectorAll(".pupil");
+const pupils = $$(".pupil");
+const eyes = $$(".eye");
 
 document.addEventListener("mousemove", (e) => {
   pupils.forEach((pupil) => {
-    const eye = pupil.parentElement;
-    const rect = eye.getBoundingClientRect();
-
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-
-    let dx = e.clientX - centerX;
-    let dy = e.clientY - centerY;
-
+    const rect = pupil.parentElement.getBoundingClientRect();
+    const dx = e.clientX - (rect.left + rect.width / 2);
+    const dy = e.clientY - (rect.top + rect.height / 2);
     const dist = Math.sqrt(dx * dx + dy * dy);
     const max = 3;
 
-    if (dist > 0) {
-      dx = (dx / dist) * max;
-      dy = (dy / dist) * max;
-    }
+    const x = dist ? (dx / dist) * max : 0;
+    const y = dist ? (dy / dist) * max : 0;
 
-    pupil.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px))`;
+    pupil.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
   });
 });
-
-/* =========================
-BLINK (NATURAL)
-========================= */
-const eyes = document.querySelectorAll(".eye");
 
 function blink() {
   eyes.forEach((eye) => eye.classList.add("blink"));
-
-  setTimeout(() => {
-    eyes.forEach((eye) => eye.classList.remove("blink"));
-  }, 120);
+  setTimeout(() => eyes.forEach((eye) => eye.classList.remove("blink")), 120);
 }
+setInterval(blink, 2200 + Math.random() * 2000);
 
-/* random blinking */
-setInterval(
-  () => {
-    blink();
-  },
-  2200 + Math.random() * 2000,
-);
+/* =========================
+SAFE ELEMENTS
+========================= */
+const yearEl = $("#year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-// set year
-document.getElementById("year").textContent = new Date().getFullYear();
+const btn = $(".download-btn");
+if (btn) {
+  btn.addEventListener("click", () => {
+    const text = btn.querySelector(".text");
+    if (!text) return;
 
-// reveal on load
-window.addEventListener("load", () => {
-  const footer = document.querySelector(".footer-interesting");
-  if (footer) {
-    footer.classList.add("visible");
-  }
-});
-
-const prefersReducedMotion = window.matchMedia(
-  "(prefers-reduced-motion: reduce)",
-);
-
-if (prefersReducedMotion.matches) {
-  document.querySelectorAll("*").forEach((el) => {
-    el.style.transition = "none";
-    el.style.animation = "none";
+    text.textContent = "Downloading...";
+    setTimeout(() => (text.textContent = "Saved"), 1200);
   });
 }
 
+const favicon = $("link[rel='icon']");
+if (favicon) {
+  window.addEventListener("blur", () => {
+    favicon.href = "assets/favicon-alert.png";
+  });
+  window.addEventListener("focus", () => {
+    favicon.href = "assets/favicon-normal.png";
+  });
+}
+
+/* =========================
+SCROLL MASTER (OPTIMIZED)
+========================= */
+window.addEventListener("scroll", () => {
+  revealOnScroll();
+  updateScrollProgress();
+  updateActiveNav();
+});
+
+/* =========================
+LOAD EVENTS
+========================= */
+window.addEventListener("load", () => {
+  revealOnScroll();
+  updateScrollProgress();
+
+  const footer = $(".footer-interesting");
+  if (footer) footer.classList.add("visible");
+});
+
+/* =========================
+PROGRESS BAR
+========================= */
+function updateProgressBar() {
+  const progress = $(".navbar-progress");
+  if (!progress) return;
+
+  const scrollTop = window.scrollY;
+  const docHeight =
+    document.documentElement.scrollHeight -
+    document.documentElement.clientHeight;
+
+  const percent = (scrollTop / docHeight) * 100 || 0;
+  progress.style.backgroundSize = `${percent}% 100%`;
+}
+window.addEventListener("scroll", updateProgressBar);
+
+/* =========================
+ACCESSIBILITY
+========================= */
+if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  document.body.classList.add("reduce-motion");
+}
+
+/* =========================
+TITLE + LOG
+========================= */
 document.title = "Arshi Bansal | Portfolio";
 
 window.addEventListener("blur", () => {
@@ -372,55 +405,4 @@ window.addEventListener("focus", () => {
   document.title = "Arshi Bansal | Portfolio";
 });
 
-document
-  .querySelectorAll("a, button, .skill-card, .project-card")
-  .forEach((el) => {
-    el.addEventListener("mouseenter", () => {
-      document.querySelector(".custom-cursor").classList.add("hover");
-      document.querySelector(".cursor-ring").classList.add("hover");
-    });
-
-    el.addEventListener("mouseleave", () => {
-      document.querySelector(".custom-cursor").classList.remove("hover");
-      document.querySelector(".cursor-ring").classList.remove("hover");
-    });
-  });
-
-const btn = document.querySelector(".download-btn");
-
-btn.addEventListener("click", () => {
-  const text = btn.querySelector(".text");
-
-  text.textContent = "Downloading...";
-
-  setTimeout(() => {
-    text.textContent = "Saved";
-  }, 1200);
-});
-
-const favicon = document.querySelector("link[rel='icon']");
-
-window.addEventListener("blur", () => {
-  favicon.href = "assets/favicon-alert.png";
-});
-
-window.addEventListener("focus", () => {
-  favicon.href = "assets/favicon-normal.png";
-});
-
-const trainingItems = document.querySelectorAll(".training-item");
-
-function revealTimeline() {
-  const triggerBottom = window.innerHeight - 100;
-
-  trainingItems.forEach((item) => {
-    const top = item.getBoundingClientRect().top;
-
-    if (top < triggerBottom) {
-      item.classList.add("visible");
-    }
-  });
-}
-
-window.addEventListener("scroll", revealTimeline);
-window.addEventListener("load", revealTimeline);
+console.log("%cPortfolio Loaded", "color:#0d6efd;font-weight:bold");
