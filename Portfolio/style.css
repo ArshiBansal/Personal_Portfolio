@@ -547,7 +547,7 @@ body {
 /* PROJECTS SECTION */
 .projects-section {
   position: relative;
-  padding: 130px 0 200px;
+  padding: 130px 0 20px;
 }
 
 .projects-bg-text {
@@ -843,7 +843,7 @@ GITHUB ICON
 
 /* CAPABILITIES & EDUCATION SECTION */
 .capabilities-section {
-  padding: 100px 0;
+  padding: 0px 0px 100px 0px;
   position: relative;
   overflow: hidden;
 }
@@ -891,6 +891,33 @@ GITHUB ICON
   grid-template-columns: 1.2fr 1fr;
   gap: 70px;
   align-items: center;
+}
+
+/* Keep tags visible at all times */
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  justify-content: center;
+  opacity: 1;              /* always visible */
+  transform: translateY(0); /* fixed position */
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Hover effect only changes colours, not position or visibility */
+.skill-card:hover .skill-tags {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Tags change to white text, black background, white border on hover */
+.skill-card:hover .skill-tags span {
+  background: #111827;
+  color: #ffffff;
+  border: 1px solid #ffffff;
 }
 
 /* EDUCATION CARD */
