@@ -406,3 +406,52 @@ window.addEventListener("focus", () => {
 });
 
 console.log("%cPortfolio Loaded", "color:#0d6efd;font-weight:bold");
+
+/* =========================
+HERO TYPING ROLES
+========================= */
+const roles = [
+  "Business Analyst",
+  "AI/ML Engineer",
+  "Data Analyst",
+  "Data Engineer",
+];
+
+const typingEl = $(".typing-text");
+
+if (typingEl) {
+  let roleIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  function typeEffect() {
+    const current = roles[roleIndex];
+
+    if (isDeleting) {
+      typingEl.textContent = current.substring(0, charIndex - 1);
+      charIndex--;
+    } else {
+      typingEl.textContent = current.substring(0, charIndex + 1);
+      charIndex++;
+    }
+
+    // Finished typing → pause then delete
+    if (!isDeleting && charIndex === current.length) {
+      isDeleting = true;
+      setTimeout(typeEffect, 1800);
+      return;
+    }
+
+    // Finished deleting → next role
+    if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      roleIndex = (roleIndex + 1) % roles.length;
+    }
+
+    const speed = isDeleting ? 40 : 90;
+    setTimeout(typeEffect, speed);
+  }
+
+  // Start after a short delay so the page feels settled
+  setTimeout(typeEffect, 600);
+}
