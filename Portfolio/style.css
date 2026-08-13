@@ -388,7 +388,7 @@ body {
   justify-content: center;
   margin-top: 70px;
   width: 100%;
-  height: 75%;                /* stretch to equal height */
+  height: 90%;                /* stretch to equal height */
   min-height: 0;               /* allow content to dictate natural size */
 }
 
