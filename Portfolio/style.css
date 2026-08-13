@@ -356,6 +356,7 @@ body {
   line-height: 1.7;
   margin-bottom: 25px;
   max-width: 520px;
+  padding-left: 22px;          /* slight indentation from the heading */
 }
 
 .about-left:hover .about-text {
@@ -365,7 +366,7 @@ body {
 .about-cards {
   display: flex;
   flex-wrap: wrap;
-  align-items: stretch;
+  align-items: stretch;        /* equal height for all cards */
 }
 
 .about-cards > div {
@@ -374,7 +375,7 @@ body {
 
 .about-card {
   background: white;
-  padding: 28px 26px;
+  padding: 22px 22px;
   border-radius: 24px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
   transition: all 0.35s ease;
@@ -384,11 +385,11 @@ body {
   border: 1px solid #000;
   display: flex;
   flex-direction: column;
-  justify-content: center;   /* better vertical balance with short text */
-  margin-top: 30px;          /* reduced from 55px */
-  min-height: 160px;         /* tighter for one-line paragraphs */
+  justify-content: center;
+  margin-top: 70px;
   width: 100%;
-  height: 100%;
+  height: 75%;                /* stretch to equal height */
+  min-height: 0;               /* allow content to dictate natural size */
 }
 
 .about-card:hover {
@@ -402,7 +403,7 @@ body {
   margin-bottom: 10px;
   font-size: 15px;
   letter-spacing: 0.3px;
-} 
+}
 
 .about-card p {
   color: #6b7280;
