@@ -202,7 +202,7 @@ if (window.innerWidth > 768) {
   cursorEl = document.createElement("div");
   ringEl = document.createElement("div");
 
-  cursorEl.className = "custom-cursor";
+  cursorEl.className = "cursor-dot";
   ringEl.className = "cursor-ring";
 
   document.body.append(cursorEl, ringEl);
@@ -455,3 +455,116 @@ if (typingEl) {
   // Start after a short delay so the page feels settled
   setTimeout(typeEffect, 600);
 }
+
+/* =========================
+CERTIFICATE PAGINATION - 2 ROWS × 3 COLUMNS (6 CARDS)
+========================= */
+document.addEventListener("DOMContentLoaded", function () {
+  const indicatorDots = $$(".indicator-dot");
+  const progressBar = $(".pagination-progress");
+  const certificatesGrid = $(".certificates-grid");
+  const allCards = $$(".certificate-card");
+
+  if (!certificatesGrid || allCards.length === 0) return;
+
+  let currentGroup = 0;
+  const cardsPerGroup = 6;
+  const totalGroups = Math.ceil(allCards.length / cardsPerGroup);
+
+  // Remove animation classes and reset styles
+  function resetCardAnimations() {
+    allCards.forEach((card) => {
+      card.style.animation = "none";
+      card.style.opacity = "0";
+      card.style.transform = "translateY(40px)";
+    });
+  }
+
+  // Show specific group of 6 cards with animations
+  function showGroup(groupIndex) {
+    const startIdx = groupIndex * cardsPerGroup;
+    const endIdx = startIdx + cardsPerGroup;
+
+    allCards.forEach((card, index) => {
+      if (index >= startIdx && index < endIdx) {
+        card.style.display = "flex";
+
+        // Determine animation type based on position (0-5)
+        const posInGroup = index - startIdx;
+        const animationTypes = [
+          "cardEnterStagger1",
+          "cardEnterStagger2",
+          "cardEnterStagger3",
+          "cardEnterStagger1",
+          "cardEnterStagger2",
+          "cardEnterStagger3",
+        ];
+
+        const animType = animationTypes[posInGroup];
+        const delay = posInGroup * 0.1;
+
+        // Force reflow to restart animation
+        card.style.animation = "none";
+        void card.offsetWidth;
+
+        // Apply animation
+        card.style.animation = `${animType} 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) ${delay}s forwards`;
+
+        // Re-enable hover effects
+        card.style.pointerEvents = "auto";
+      } else {
+        card.style.display = "none";
+        card.style.pointerEvents = "none";
+      }
+    });
+  }
+
+  // Update progress bar based on group
+  function updateProgress(groupIndex) {
+    const progress = ((groupIndex + 1) / totalGroups) * 100;
+    if (progressBar) {
+      progressBar.style.width = progress + "%";
+    }
+  }
+
+  // Handle dot clicks
+  indicatorDots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      const groupIndex = parseInt(dot.dataset.group);
+
+      // Remove active from all dots
+      indicatorDots.forEach((d) => d.classList.remove("active"));
+
+      // Add active to current dot
+      dot.classList.add("active");
+
+      // Update current group
+      currentGroup = groupIndex;
+
+      // Show the group with animations
+      showGroup(groupIndex);
+
+      // Update progress bar
+      updateProgress(groupIndex);
+    });
+  });
+
+  // Initialize - show first 6 cards (2 rows × 3 cols)
+  if (indicatorDots.length > 0) {
+    indicatorDots[0].classList.add("active");
+  }
+  showGroup(0);
+  updateProgress(0);
+
+  // Optional: Auto-scroll to certificates section when changing groups
+  indicatorDots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      const certSection = $(".certificates-section");
+      if (certSection) {
+        setTimeout(() => {
+          certSection.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      }
+    });
+  });
+});
