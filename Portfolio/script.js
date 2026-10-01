@@ -1,58 +1,64 @@
-/* =========================
-UTILS
-========================= */
+/* UTILS */
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);
 
-/* =========================
-LIVE TIME (SINGLE CLEAN VERSION)
-========================= */
+/* LIVE TIME */
 function updateLiveTime() {
   const el = $("#liveTime");
   if (!el) return;
 
   const now = new Date();
+
   el.textContent = now.toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit",
   });
 }
-setInterval(updateLiveTime, 1000);
-updateLiveTime();
 
-/* =========================
-SMOOTH SCROLL
-========================= */
+updateLiveTime();
+setInterval(updateLiveTime, 1000);
+
+/* SMOOTH SCROLL */
 $$('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
-    const target = $(this.getAttribute("href"));
+    const href = this.getAttribute("href");
+
+    if (!href || href === "#") return;
+
+    const target = $(href);
+
     if (!target) return;
 
     e.preventDefault();
-    target.scrollIntoView({ behavior: "smooth" });
+
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   });
 });
 
-/* =========================
-BUTTON HOVER (SINGLE INSTANCE)
-========================= */
+/* BUTTON HOVER */
 $$(".btn").forEach((btn) => {
   btn.addEventListener("mouseenter", () => {
-    btn.style.transform = "translateY(-4px)";
+    if (!document.body.classList.contains("reduce-motion")) {
+      btn.style.transform = "translateY(-4px)";
+    }
   });
+
   btn.addEventListener("mouseleave", () => {
     btn.style.transform = "translateY(0)";
   });
 });
 
-/* =========================
-SCROLL REVEAL
-========================= */
+/* SCROLL REVEAL */
 const revealElements = $$(".reveal");
 
 revealElements.forEach((el, index) => {
-  el.style.transition = "all 0.8s ease";
-  el.style.transitionDelay = `${index * 0.05}s`;
+  if (!document.body.classList.contains("reduce-motion")) {
+    el.style.transition = "all 0.8s ease";
+    el.style.transitionDelay = `${index * 0.05}s`;
+  }
 });
 
 function revealOnScroll() {
@@ -60,29 +66,28 @@ function revealOnScroll() {
 
   revealElements.forEach((el) => {
     const elementTop = el.getBoundingClientRect().top;
+
     if (elementTop < windowHeight - 100) {
       el.classList.add("visible");
     }
   });
 }
 
-/* =========================
-SCROLL PROGRESS
-========================= */
+/* SCROLL PROGRESS */
 function updateScrollProgress() {
   const scrollTop = window.scrollY;
+
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
 
-  const progress = (scrollTop / docHeight) * 100;
+  const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
   document.documentElement.style.setProperty(
     "--scroll-progress",
-    progress + "%",
+    `${progress}%`,
   );
 }
 
-/* =========================
-NAV ACTIVE LINK
-========================= */
+/* NAV ACTIVE LINK */
 const sections = $$("section");
 const navItems = $$(".nav-item");
 
@@ -91,6 +96,7 @@ function updateActiveNav() {
 
   sections.forEach((section) => {
     const sectionTop = section.offsetTop - 120;
+
     if (window.scrollY >= sectionTop) {
       current = section.getAttribute("id");
     }
@@ -98,21 +104,23 @@ function updateActiveNav() {
 
   navItems.forEach((link) => {
     link.classList.remove("active");
+
     if (link.getAttribute("href") === `#${current}`) {
       link.classList.add("active");
     }
   });
 }
 
-/* =========================
-PARTICLE BACKGROUND
-========================= */
+/* PARTICLE BACKGROUND */
 const canvas = $("#network-bg");
 
-if (canvas) {
+if (canvas && !document.body.classList.contains("reduce-motion")) {
   const ctx = canvas.getContext("2d");
+
   let particles = [];
+
   const particleCount = 70;
+  const connectionDistance = 10000;
 
   function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -123,8 +131,10 @@ if (canvas) {
     constructor() {
       this.x = Math.random() * canvas.width;
       this.y = Math.random() * canvas.height;
+
       this.vx = (Math.random() - 0.5) * 0.4;
       this.vy = (Math.random() - 0.5) * 0.4;
+
       this.radius = 2;
     }
 
@@ -132,13 +142,20 @@ if (canvas) {
       this.x += this.vx;
       this.y += this.vy;
 
-      if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-      if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+      if (this.x < 0 || this.x > canvas.width) {
+        this.vx *= -1;
+      }
+
+      if (this.y < 0 || this.y > canvas.height) {
+        this.vy *= -1;
+      }
     }
 
     draw() {
       ctx.beginPath();
+
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+
       ctx.fillStyle = "rgba(80,80,80,0.6)";
       ctx.fill();
     }
@@ -153,34 +170,40 @@ if (canvas) {
       for (let b = a + 1; b < particles.length; b++) {
         const dx = particles[a].x - particles[b].x;
         const dy = particles[a].y - particles[b].y;
-        const dist = dx * dx + dy * dy;
 
-        if (dist < 10000) {
+        const distance = dx * dx + dy * dy;
+
+        if (distance < connectionDistance) {
           ctx.beginPath();
+
           ctx.strokeStyle = "rgba(120,120,120,0.12)";
+
           ctx.moveTo(particles[a].x, particles[a].y);
+
           ctx.lineTo(particles[b].x, particles[b].y);
+
           ctx.stroke();
         }
       }
     }
   }
 
-  function animate() {
+  function animateParticles() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    particles.forEach((p) => {
-      p.update();
-      p.draw();
+    particles.forEach((particle) => {
+      particle.update();
+      particle.draw();
     });
 
     connectParticles();
-    requestAnimationFrame(animate);
+
+    requestAnimationFrame(animateParticles);
   }
 
   resizeCanvas();
   createParticles();
-  animate();
+  animateParticles();
 
   window.addEventListener("resize", () => {
     resizeCanvas();
@@ -192,13 +215,15 @@ if (canvas) {
   });
 }
 
-/* =========================
-CURSOR SYSTEM 1 (DOT + RING + MAGNETIC)
-========================= */
+/* CURSOR SYSTEM
+   DOT + RING + MAGNETIC */
 let cursorEl = null;
 let ringEl = null;
 
-if (window.innerWidth > 768) {
+if (
+  window.innerWidth > 768 &&
+  !document.body.classList.contains("reduce-motion")
+) {
   cursorEl = document.createElement("div");
   ringEl = document.createElement("div");
 
@@ -207,12 +232,14 @@ if (window.innerWidth > 768) {
 
   document.body.append(cursorEl, ringEl);
 
-  let mouseX = 0,
-    mouseY = 0;
-  let dotX = 0,
-    dotY = 0;
-  let ringX = 0,
-    ringY = 0;
+  let mouseX = 0;
+  let mouseY = 0;
+
+  let dotX = 0;
+  let dotY = 0;
+
+  let ringX = 0;
+  let ringY = 0;
 
   document.addEventListener("mousemove", (e) => {
     mouseX = e.clientX;
@@ -223,8 +250,8 @@ if (window.innerWidth > 768) {
     dotX += (mouseX - dotX) * 0.35;
     dotY += (mouseY - dotY) * 0.35;
 
-    cursorEl.style.left = dotX + "px";
-    cursorEl.style.top = dotY + "px";
+    cursorEl.style.left = `${dotX}px`;
+    cursorEl.style.top = `${dotY}px`;
 
     requestAnimationFrame(animateDot);
   }
@@ -233,8 +260,8 @@ if (window.innerWidth > 768) {
     ringX += (mouseX - ringX) * 0.15;
     ringY += (mouseY - ringY) * 0.15;
 
-    ringEl.style.left = ringX + "px";
-    ringEl.style.top = ringY + "px";
+    ringEl.style.left = `${ringX}px`;
+    ringEl.style.top = `${ringY}px`;
 
     requestAnimationFrame(animateRing);
   }
@@ -242,8 +269,8 @@ if (window.innerWidth > 768) {
   animateDot();
   animateRing();
 
-  // hover scale + magnetic
-  $$("a, button, .nav-item, .btn-main").forEach((el) => {
+  /* CURSOR INTERACTIONS */
+  $$("a, button, .nav-item, .btn-main, .project-page-btn").forEach((el) => {
     el.addEventListener("mouseenter", () => {
       cursorEl.classList.add("hover");
       ringEl.classList.add("hover");
@@ -252,18 +279,31 @@ if (window.innerWidth > 768) {
     el.addEventListener("mouseleave", () => {
       cursorEl.classList.remove("hover");
       ringEl.classList.remove("hover");
-      el.style.transform = "translate(0,0)";
+
+      /*
+       * Only reset magnetic elements.
+       * This prevents overriding normal project/card styling.
+       */
+      if (
+        el.classList.contains("btn-main") ||
+        el.classList.contains("nav-item")
+      ) {
+        el.style.transform = "translate(0,0)";
+      }
     });
 
     el.addEventListener("mousemove", (e) => {
       if (
         !el.classList.contains("btn-main") &&
         !el.classList.contains("nav-item")
-      )
+      ) {
         return;
+      }
 
       const rect = el.getBoundingClientRect();
+
       const x = e.clientX - rect.left - rect.width / 2;
+
       const y = e.clientY - rect.top - rect.height / 2;
 
       el.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
@@ -271,145 +311,217 @@ if (window.innerWidth > 768) {
   });
 }
 
-/* =========================
-CURSOR TRAIL
-========================= */
-if (window.innerWidth > 768) {
+/* CURSOR TRAIL */
+if (
+  window.innerWidth > 768 &&
+  !document.body.classList.contains("reduce-motion")
+) {
   const trailContainer = document.createElement("div");
+
   trailContainer.className = "cursor-trail";
+
   document.body.append(trailContainer);
 
   document.addEventListener("mousemove", (e) => {
     const dot = document.createElement("div");
+
     dot.className = "trail-dot";
 
-    dot.style.left = e.clientX + "px";
-    dot.style.top = e.clientY + "px";
+    dot.style.left = `${e.clientX}px`;
+    dot.style.top = `${e.clientY}px`;
 
     trailContainer.appendChild(dot);
 
-    requestAnimationFrame(() => dot.classList.add("fade"));
+    requestAnimationFrame(() => {
+      dot.classList.add("fade");
+    });
 
-    setTimeout(() => dot.remove(), 600);
+    setTimeout(() => {
+      dot.remove();
+    }, 600);
   });
 }
 
-/* =========================
-EYES FOLLOW + BLINK
-========================= */
+/* EYES FOLLOW CURSOR */
 const pupils = $$(".pupil");
 const eyes = $$(".eye");
 
-document.addEventListener("mousemove", (e) => {
-  pupils.forEach((pupil) => {
-    const rect = pupil.parentElement.getBoundingClientRect();
-    const dx = e.clientX - (rect.left + rect.width / 2);
-    const dy = e.clientY - (rect.top + rect.height / 2);
-    const dist = Math.sqrt(dx * dx + dy * dy);
-    const max = 3;
+if (pupils.length > 0 && !document.body.classList.contains("reduce-motion")) {
+  document.addEventListener("mousemove", (e) => {
+    pupils.forEach((pupil) => {
+      const parent = pupil.parentElement;
 
-    const x = dist ? (dx / dist) * max : 0;
-    const y = dist ? (dy / dist) * max : 0;
+      if (!parent) return;
 
-    pupil.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+      const rect = parent.getBoundingClientRect();
+
+      const centerX = rect.left + rect.width / 2;
+
+      const centerY = rect.top + rect.height / 2;
+
+      const dx = e.clientX - centerX;
+      const dy = e.clientY - centerY;
+
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      const maxMovement = 3;
+
+      const x = distance ? (dx / distance) * maxMovement : 0;
+
+      const y = distance ? (dy / distance) * maxMovement : 0;
+
+      pupil.style.transform = `translate(
+          calc(-50% + ${x}px),
+          calc(-50% + ${y}px)
+        )`;
+    });
   });
-});
-
-function blink() {
-  eyes.forEach((eye) => eye.classList.add("blink"));
-  setTimeout(() => eyes.forEach((eye) => eye.classList.remove("blink")), 120);
 }
+
+/* EYE BLINK */
+function blink() {
+  if (document.body.classList.contains("reduce-motion") || eyes.length === 0) {
+    return;
+  }
+
+  eyes.forEach((eye) => {
+    eye.classList.add("blink");
+  });
+
+  setTimeout(() => {
+    eyes.forEach((eye) => {
+      eye.classList.remove("blink");
+    });
+  }, 120);
+}
+
 setInterval(blink, 2200 + Math.random() * 2000);
 
-/* =========================
-SAFE ELEMENTS
-========================= */
+/* YEAR */
 const yearEl = $("#year");
-if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-const btn = $(".download-btn");
-if (btn) {
-  btn.addEventListener("click", () => {
-    const text = btn.querySelector(".text");
+if (yearEl) {
+  yearEl.textContent = new Date().getFullYear();
+}
+
+/* RESUME DOWNLOAD */
+const downloadBtn = $(".download-btn");
+
+if (downloadBtn) {
+  downloadBtn.addEventListener("click", () => {
+    const text = downloadBtn.querySelector(".text");
+
     if (!text) return;
 
+    const originalText = text.textContent;
+
     text.textContent = "Downloading...";
-    setTimeout(() => (text.textContent = "Saved"), 1200);
+
+    setTimeout(() => {
+      text.textContent = "Saved";
+    }, 1200);
+
+    setTimeout(() => {
+      text.textContent = originalText;
+    }, 2600);
   });
 }
 
+/* FAVICON TAB STATE */
 const favicon = $("link[rel='icon']");
+
 if (favicon) {
+  const normalFavicon = "assets/favicon-normal.png";
+  const alertFavicon = "assets/favicon-alert.png";
+
   window.addEventListener("blur", () => {
-    favicon.href = "assets/favicon-alert.png";
+    favicon.href = alertFavicon;
   });
+
   window.addEventListener("focus", () => {
-    favicon.href = "assets/favicon-normal.png";
+    favicon.href = normalFavicon;
   });
 }
 
-/* =========================
-SCROLL MASTER (OPTIMIZED)
-========================= */
-window.addEventListener("scroll", () => {
+/* SCROLL MASTER */
+function handleScroll() {
   revealOnScroll();
   updateScrollProgress();
   updateActiveNav();
+  updateProgressBar();
+}
+
+window.addEventListener("scroll", handleScroll, {
+  passive: true,
 });
 
-/* =========================
-LOAD EVENTS
-========================= */
+/* LOAD EVENTS */
 window.addEventListener("load", () => {
   revealOnScroll();
   updateScrollProgress();
+  updateActiveNav();
+  updateProgressBar();
 
   const footer = $(".footer-interesting");
-  if (footer) footer.classList.add("visible");
+
+  if (footer) {
+    footer.classList.add("visible");
+  }
 });
 
-/* =========================
-PROGRESS BAR
-========================= */
+/* NAVBAR PROGRESS BAR */
 function updateProgressBar() {
   const progress = $(".navbar-progress");
+
   if (!progress) return;
 
   const scrollTop = window.scrollY;
+
   const docHeight =
     document.documentElement.scrollHeight -
     document.documentElement.clientHeight;
 
-  const percent = (scrollTop / docHeight) * 100 || 0;
+  const percent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
   progress.style.backgroundSize = `${percent}% 100%`;
 }
-window.addEventListener("scroll", updateProgressBar);
 
-/* =========================
-ACCESSIBILITY
-========================= */
-if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  document.body.classList.add("reduce-motion");
+/* ACCESSIBILITY */
+const reducedMotionQuery = window.matchMedia(
+  "(prefers-reduced-motion: reduce)",
+);
+
+function applyMotionPreference() {
+  if (reducedMotionQuery.matches) {
+    document.body.classList.add("reduce-motion");
+  } else {
+    document.body.classList.remove("reduce-motion");
+  }
 }
 
-/* =========================
-TITLE + LOG
-========================= */
-document.title = "Arshi Bansal | Portfolio";
+applyMotionPreference();
+
+if (reducedMotionQuery.addEventListener) {
+  reducedMotionQuery.addEventListener("change", applyMotionPreference);
+}
+
+/* PAGE TITLE */
+const defaultTitle = "Arshi Bansal | Portfolio";
+
+document.title = defaultTitle;
 
 window.addEventListener("blur", () => {
   document.title = "Come back 👀";
 });
 
 window.addEventListener("focus", () => {
-  document.title = "Arshi Bansal | Portfolio";
+  document.title = defaultTitle;
 });
 
+/* CONSOLE MESSAGE */
 console.log("%cPortfolio Loaded", "color:#0d6efd;font-weight:bold");
 
-/* =========================
-HERO TYPING ROLES
-========================= */
+/* HERO TYPING ROLES */
 const roles = [
   "Business Analyst",
   "AI/ML Engineer",
@@ -419,59 +531,69 @@ const roles = [
 
 const typingEl = $(".typing-text");
 
-if (typingEl) {
+if (typingEl && !document.body.classList.contains("reduce-motion")) {
   let roleIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
 
   function typeEffect() {
-    const current = roles[roleIndex];
+    const currentRole = roles[roleIndex];
 
     if (isDeleting) {
-      typingEl.textContent = current.substring(0, charIndex - 1);
       charIndex--;
+
+      typingEl.textContent = currentRole.substring(0, charIndex);
     } else {
-      typingEl.textContent = current.substring(0, charIndex + 1);
       charIndex++;
+
+      typingEl.textContent = currentRole.substring(0, charIndex);
     }
 
-    // Finished typing → pause then delete
-    if (!isDeleting && charIndex === current.length) {
+    /* Finished typing */
+    if (!isDeleting && charIndex === currentRole.length) {
       isDeleting = true;
+
       setTimeout(typeEffect, 1800);
+
       return;
     }
 
-    // Finished deleting → next role
+    /* Finished deleting */
     if (isDeleting && charIndex === 0) {
       isDeleting = false;
+
       roleIndex = (roleIndex + 1) % roles.length;
     }
 
     const speed = isDeleting ? 40 : 90;
+
     setTimeout(typeEffect, speed);
   }
 
-  // Start after a short delay so the page feels settled
   setTimeout(typeEffect, 600);
 }
 
-/* =========================
-CERTIFICATE PAGINATION - 2 ROWS × 3 COLUMNS (6 CARDS)
-========================= */
-document.addEventListener("DOMContentLoaded", function () {
+/* CERTIFICATE PAGINATION 2 ROWS × 3 COLUMNS */
+document.addEventListener("DOMContentLoaded", () => {
   const indicatorDots = $$(".indicator-dot");
+
   const progressBar = $(".pagination-progress");
+
   const certificatesGrid = $(".certificates-grid");
+
   const allCards = $$(".certificate-card");
 
-  if (!certificatesGrid || allCards.length === 0) return;
+  if (!certificatesGrid || allCards.length === 0) {
+    return;
+  }
 
   let currentGroup = 0;
+
   const cardsPerGroup = 6;
+
   const totalGroups = Math.ceil(allCards.length / cardsPerGroup);
 
-  // Remove animation classes and reset styles
+  /* CARD ANIMATIONS */
   function resetCardAnimations() {
     allCards.forEach((card) => {
       card.style.animation = "none";
@@ -480,17 +602,26 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Show specific group of 6 cards with animations
+  /* SHOW CERTIFICATE GROUP */
   function showGroup(groupIndex) {
-    const startIdx = groupIndex * cardsPerGroup;
-    const endIdx = startIdx + cardsPerGroup;
+    const startIndex = groupIndex * cardsPerGroup;
+
+    const endIndex = startIndex + cardsPerGroup;
 
     allCards.forEach((card, index) => {
-      if (index >= startIdx && index < endIdx) {
+      if (index >= startIndex && index < endIndex) {
         card.style.display = "flex";
+        card.style.pointerEvents = "auto";
 
-        // Determine animation type based on position (0-5)
-        const posInGroup = index - startIdx;
+        if (document.body.classList.contains("reduce-motion")) {
+          card.style.animation = "none";
+          card.style.opacity = "1";
+          card.style.transform = "translateY(0)";
+          return;
+        }
+
+        const position = index - startIndex;
+
         const animationTypes = [
           "cardEnterStagger1",
           "cardEnterStagger2",
@@ -500,18 +631,18 @@ document.addEventListener("DOMContentLoaded", function () {
           "cardEnterStagger3",
         ];
 
-        const animType = animationTypes[posInGroup];
-        const delay = posInGroup * 0.1;
+        const animationType = animationTypes[position];
 
-        // Force reflow to restart animation
+        const delay = position * 0.1;
+
+        /* Force reflow */
         card.style.animation = "none";
         void card.offsetWidth;
 
-        // Apply animation
-        card.style.animation = `${animType} 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) ${delay}s forwards`;
-
-        // Re-enable hover effects
-        card.style.pointerEvents = "auto";
+        card.style.animation =
+          `${animationType} 0.7s ` +
+          `cubic-bezier(0.34, 1.56, 0.64, 1) ` +
+          `${delay}s forwards`;
       } else {
         card.style.display = "none";
         card.style.pointerEvents = "none";
@@ -519,52 +650,57 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Update progress bar based on group
-  function updateProgress(groupIndex) {
+  /* PAGINATION PROGRESS */
+  function updateCertificateProgress(groupIndex) {
     const progress = ((groupIndex + 1) / totalGroups) * 100;
+
     if (progressBar) {
-      progressBar.style.width = progress + "%";
+      progressBar.style.width = `${progress}%`;
     }
   }
 
-  // Handle dot clicks
+  /* DOT CONTROLS */
   indicatorDots.forEach((dot) => {
     dot.addEventListener("click", () => {
-      const groupIndex = parseInt(dot.dataset.group);
+      const groupIndex = parseInt(dot.dataset.group, 10);
 
-      // Remove active from all dots
-      indicatorDots.forEach((d) => d.classList.remove("active"));
+      if (Number.isNaN(groupIndex) || groupIndex >= totalGroups) {
+        return;
+      }
 
-      // Add active to current dot
+      indicatorDots.forEach((item) => {
+        item.classList.remove("active");
+      });
+
       dot.classList.add("active");
 
-      // Update current group
       currentGroup = groupIndex;
 
-      // Show the group with animations
-      showGroup(groupIndex);
+      showGroup(currentGroup);
 
-      // Update progress bar
-      updateProgress(groupIndex);
-    });
-  });
+      updateCertificateProgress(currentGroup);
 
-  // Initialize - show first 6 cards (2 rows × 3 cols)
-  if (indicatorDots.length > 0) {
-    indicatorDots[0].classList.add("active");
-  }
-  showGroup(0);
-  updateProgress(0);
-
-  // Optional: Auto-scroll to certificates section when changing groups
-  indicatorDots.forEach((dot) => {
-    dot.addEventListener("click", () => {
       const certSection = $(".certificates-section");
-      if (certSection) {
+
+      if (certSection && !document.body.classList.contains("reduce-motion")) {
         setTimeout(() => {
-          certSection.scrollIntoView({ behavior: "smooth" });
+          certSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
         }, 100);
       }
     });
   });
+
+  /* INITIALIZE */
+  if (indicatorDots.length > 0) {
+    indicatorDots[0].classList.add("active");
+  }
+
+  resetCardAnimations();
+
+  showGroup(0);
+
+  updateCertificateProgress(0);
 });
