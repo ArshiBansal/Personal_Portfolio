@@ -1,16 +1,14 @@
-```html
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>News Pulse — Market News Intelligence | Arshi's Portfolio</title>
+    <title>News Sentiments Analyser | Arshi Bansal</title>
 
-    <link rel="icon" type="image/png" href="favicon.png" />
-
+    <!-- Reuse the existing portfolio styling for now -->
     <link rel="stylesheet" href="projectstyle.css" />
+    <link rel="icon" href="assets/favicon-normal.png" />
 
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -18,1253 +16,1107 @@
     />
 
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
       rel="stylesheet"
     />
 
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+
+    <style>
+      /* Project section navigator — intentionally independent of the main navbar */
+      .right-navbar .project-number-nav {
+        gap: 9px;
+        align-items: center;
+      }
+
+      .right-navbar .project-number-nav .nav-item {
+        position: relative;
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 50%;
+        color: rgba(255, 255, 255, 0.48);
+        background: rgba(255, 255, 255, 0.025);
+        font-family: "IBM Plex Mono", "Courier New", monospace;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-decoration: none;
+        transition:
+          color 220ms ease,
+          border-color 220ms ease,
+          background 220ms ease,
+          transform 220ms ease;
+      }
+
+      .right-navbar .project-number-nav .nav-item::before {
+        content: "";
+        position: absolute;
+        inset: -4px;
+        border: 1px solid transparent;
+        border-radius: 50%;
+        transition:
+          border-color 220ms ease,
+          transform 220ms ease;
+      }
+
+      .right-navbar .project-number-nav .nav-item:hover {
+        color: #fff;
+        border-color: rgba(59, 130, 246, 0.75);
+        background: rgba(59, 130, 246, 0.1);
+        transform: translateX(-3px);
+      }
+
+      .right-navbar .project-number-nav .nav-item:hover::before {
+        border-color: rgba(59, 130, 246, 0.18);
+        transform: scale(1.08);
+      }
+
+      .right-navbar .project-number-nav .nav-item.active {
+        color: #fff;
+        border-color: rgba(59, 130, 246, 0.95);
+        background: rgba(59, 130, 246, 0.16);
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.06);
+      }
+
+      .right-navbar .project-number-nav .nav-item.active::after {
+        content: "";
+        position: absolute;
+        right: -8px;
+        width: 3px;
+        height: 14px;
+        border-radius: 99px;
+        background: #3b82f6;
+      }
+
+      @media (max-width: 768px) {
+        .right-navbar .project-number-nav {
+          gap: 5px;
+        }
+
+        .right-navbar .project-number-nav .nav-item {
+          width: 28px;
+          height: 28px;
+          font-size: 8px;
+        }
+      }
+    </style>
   </head>
 
   <body>
-    <!-- BACKGROUND -->
-
-    <canvas id="network-bg"></canvas>
-
-    <div class="page-progress">
-      <div class="page-progress-bar"></div>
-    </div>
-
-    <!--  RIGHT NAVIGATION -->
-
-    <nav class="right-navbar" aria-label="Project navigation">
+    <!-- PROJECT NAVIGATION -->
+    <nav class="right-navbar">
       <div class="nav-track"></div>
 
-      <ul class="nav-links">
+      <ul class="nav-links project-number-nav">
         <li>
-          <a
-            href="#overview"
-            class="nav-item active"
-            aria-label="Overview"
-            title="Overview"
-          >
-            <i class="fa-solid fa-house"></i>
-          </a>
+          <a href="#problem" class="nav-item" aria-label="Section 01">01</a>
         </li>
-
+        <li><a href="#data" class="nav-item" aria-label="Section 02">02</a></li>
         <li>
-          <a
-            href="#problem"
-            class="nav-item"
-            aria-label="Problem"
-            title="Problem"
+          <a href="#architecture" class="nav-item" aria-label="Section 03"
+            >03</a
           >
-            <i class="fa-solid fa-circle-question"></i>
-          </a>
         </li>
-
         <li>
-          <a
-            href="#architecture"
-            class="nav-item"
-            aria-label="Architecture"
-            title="Architecture"
-          >
-            <i class="fa-solid fa-diagram-project"></i>
-          </a>
+          <a href="#models" class="nav-item" aria-label="Section 04">04</a>
         </li>
-
         <li>
-          <a
-            href="#features"
-            class="nav-item"
-            aria-label="Features"
-            title="Features"
-          >
-            <i class="fa-solid fa-bolt"></i>
-          </a>
+          <a href="#sentiment" class="nav-item" aria-label="Section 05">05</a>
         </li>
-
         <li>
-          <a
-            href="#technology"
-            class="nav-item"
-            aria-label="Technology"
-            title="Technology"
-          >
-            <i class="fa-solid fa-code"></i>
-          </a>
+          <a href="#evaluation" class="nav-item" aria-label="Section 06">06</a>
         </li>
-
         <li>
-          <a href="#data" class="nav-item" aria-label="Data" title="Data">
-            <i class="fa-solid fa-rss"></i>
-          </a>
+          <a href="#experiments" class="nav-item" aria-label="Section 07">07</a>
         </li>
-
         <li>
-          <a
-            href="#workflow"
-            class="nav-item"
-            aria-label="Workflow"
-            title="Workflow"
-          >
-            <i class="fa-solid fa-gears"></i>
-          </a>
+          <a href="#engineering" class="nav-item" aria-label="Section 08">08</a>
         </li>
-
         <li>
-          <a
-            href="#engineering"
-            class="nav-item"
-            aria-label="Engineering"
-            title="Engineering"
-          >
-            <i class="fa-solid fa-layer-group"></i>
-          </a>
+          <a href="#codebase" class="nav-item" aria-label="Section 09">09</a>
         </li>
-
         <li>
-          <a
-            href="#limitations"
-            class="nav-item"
-            aria-label="Limitations"
-            title="Limitations"
-          >
-            <i class="fa-solid fa-triangle-exclamation"></i>
-          </a>
+          <a href="#application" class="nav-item" aria-label="Section 10">10</a>
         </li>
-
         <li>
-          <a
-            href="#takeaways"
-            class="nav-item"
-            aria-label="Takeaways"
-            title="Takeaways"
-          >
-            <i class="fa-solid fa-flag-checkered"></i>
-          </a>
+          <a href="#limitations" class="nav-item" aria-label="Section 11">11</a>
+        </li>
+        <li><a href="#next" class="nav-item" aria-label="Section 12">12</a></li>
+        <li>
+          <a href="#takeaways" class="nav-item" aria-label="Section 13">13</a>
         </li>
       </ul>
     </nav>
 
-    <!-- SECTION 01 — HERO  -->
-
-    <header class="project-hero" id="overview">
-      <div class="hero-grid">
-        <div class="hero-index reveal">
-          <span>01</span>
-
-          <span> CASE STUDY </span>
-        </div>
-
-        <div class="hero-main reveal">
-          <div class="hero-eyebrow">NEWS INTELLIGENCE · NLP · FINTECH</div>
-
-          <h1 class="hero-title">News Pulse</h1>
-
-          <p class="hero-description">
-            A real-time market-news dashboard that turns free RSS feeds into
-            searchable, categorized and sentiment-aware financial intelligence.
-          </p>
-
-          <div class="hero-meta">
-            <div class="hero-meta-item">
-              <span> SOURCES </span>
-
-              <strong> RSS </strong>
+    <!-- PROJECT HEADER -->
+    <header class="ceo-line">
+      <div class="ceo-left">
+        <div class="live-card">
+          <div class="eyes">
+            <div class="eye">
+              <div class="pupil"></div>
             </div>
 
-            <div class="hero-meta-item">
-              <span> SENTIMENT </span>
-
-              <strong> VADER </strong>
-            </div>
-
-            <div class="hero-meta-item">
-              <span> DATABASE </span>
-
-              <strong> None </strong>
-            </div>
-
-            <div class="hero-meta-item">
-              <span> DEPLOYMENT </span>
-
-              <strong> Live </strong>
+            <div class="eye">
+              <div class="pupil"></div>
             </div>
           </div>
-        </div>
 
-        <div class="hero-side reveal">
-          <div class="signal-orbit">
-            <div class="orbit-ring orbit-ring-one"></div>
-
-            <div class="orbit-ring orbit-ring-two"></div>
-
-            <div class="orbit-ring orbit-ring-three"></div>
-
-            <div class="orbit-core">
-              <span>NP</span>
+          <div class="live-info">
+            <div class="live-top">
+              <span class="name">Arshi Bansal</span>
+              <span class="time" id="liveTime">--:--</span>
             </div>
 
-            <div class="orbit-node orbit-node-one">
-              <span>RSS</span>
-            </div>
-
-            <div class="orbit-node orbit-node-two">
-              <span>NLP</span>
-            </div>
-
-            <div class="orbit-node orbit-node-three">
-              <span>LIVE</span>
-            </div>
+            <div class="status">Project Case Study</div>
           </div>
         </div>
       </div>
 
-      <div class="hero-bottom reveal">
-        <div class="scroll-cue">
-          <span> SCROLL TO READ THE SIGNAL </span>
-
-          <i class="fa-solid fa-arrow-down"></i>
-        </div>
-
-        <div>
-          RAW FEEDS
-          <span>→</span>
-          MARKET CONTEXT
-        </div>
+      <div class="ceo-right">
+        <a href="../index.html" class="status-wrap">
+          <span class="dot"></span>
+          BACK TO PORTFOLIO
+        </a>
       </div>
     </header>
 
-    <!-- SECTION 02 — PROBLEM -->
-
-    <section class="project-section" id="problem">
-      <div class="section-header reveal">
-        <div class="section-number">02</div>
-
-        <div>
-          <div class="section-label">THE PROBLEM</div>
-
-          <h2 class="section-title">
-            Financial news is everywhere. Useful signal is not.
-          </h2>
-        </div>
-      </div>
-
-      <div class="story-content">
-        <div class="story-lead reveal">
-          Financial information is fragmented across feeds, headlines,
-          categories and sentiment — while premium terminals remain inaccessible
-          to many users.
-        </div>
-
-        <div class="story-copy reveal">
-          <p>News Pulse was built around a deliberately simple idea:</p>
-
-          <p class="story-highlight">
-            <span class="highlight-mark">
-              Make free financial news feel structured, searchable and useful.
-            </span>
-          </p>
-
-          <p>
-            The application combines live RSS feeds, sentiment analysis,
-            categorization, search and sorting into a single dashboard.
-          </p>
-
-          <p>
-            The result is not intended to replace a professional terminal. It is
-            a lightweight alternative for exploring market information without a
-            database, paid API or authentication layer.
-          </p>
-        </div>
-      </div>
-
-      <div class="data-grid">
-        <article class="data-card reveal">
-          <div class="data-index">01</div>
-
-          <div class="data-icon">
-            <i class="fa-solid fa-rss"></i>
-          </div>
-
-          <h3>Fragmented Feeds</h3>
-
-          <p>
-            Headlines arrive from multiple RSS sources with different structures
-            and update patterns.
-          </p>
-        </article>
-
-        <article class="data-card reveal">
-          <div class="data-index">02</div>
-
-          <div class="data-icon">
-            <i class="fa-solid fa-brain"></i>
-          </div>
-
-          <h3>Weak Context</h3>
-
-          <p>
-            Raw headlines become more useful when sentiment and categories are
-            added.
-          </p>
-        </article>
-
-        <article class="data-card reveal">
-          <div class="data-index">03</div>
-
-          <div class="data-icon">
-            <i class="fa-solid fa-filter"></i>
-          </div>
-
-          <h3>Information Overload</h3>
-
-          <p>
-            Search and sorting help users move from headline volume toward
-            relevant stories.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <!-- SECTION 03 — ARCHITECTURE -->
-
-    <section class="project-section" id="architecture">
-      <div class="section-header reveal">
-        <div class="section-number">03</div>
-
-        <div>
-          <div class="section-label">ARCHITECTURE</div>
-
-          <h2 class="section-title">From RSS feed to market mood.</h2>
-        </div>
-      </div>
-
-      <div class="architecture-flow reveal">
-        <div class="architecture-node">
-          <span class="architecture-number"> 01 </span>
-
-          <h3>RSS Sources</h3>
-
-          <p>Pull current headlines from crypto and financial news feeds.</p>
-        </div>
-
-        <div class="architecture-connector">→</div>
-
-        <div class="architecture-node">
-          <span class="architecture-number"> 02 </span>
-
-          <h3>Feed Parsing</h3>
-
-          <p>Requests and BeautifulSoup process incoming feed content.</p>
-        </div>
-
-        <div class="architecture-connector">→</div>
-
-        <div class="architecture-node">
-          <span class="architecture-number"> 03 </span>
-
-          <h3>NLP Layer</h3>
-
-          <p>VADER assigns sentiment to available headline text.</p>
-        </div>
-
-        <div class="architecture-connector">→</div>
-
-        <div class="architecture-node">
-          <span class="architecture-number"> 04 </span>
-
-          <h3>Dashboard</h3>
-
-          <p>
-            Streamlit presents categories, mood, search, sorting and timestamps.
-          </p>
-        </div>
-      </div>
-
-      <div class="pipeline reveal">
-        <div class="pipeline-step">
-          <span> 01 </span>
-
-          <strong> FETCH </strong>
-
-          <small> Live RSS feeds </small>
-        </div>
-
-        <div class="pipeline-step">
-          <span> 02 </span>
-
-          <strong> PARSE </strong>
-
-          <small> Headlines + metadata </small>
-        </div>
-
-        <div class="pipeline-step">
-          <span> 03 </span>
-
-          <strong> SCORE </strong>
-
-          <small> VADER sentiment </small>
-        </div>
-
-        <div class="pipeline-step">
-          <span> 04 </span>
-
-          <strong> CLASSIFY </strong>
-
-          <small> Market categories </small>
-        </div>
-
-        <div class="pipeline-step">
-          <span> 05 </span>
-
-          <strong> DISPLAY </strong>
-
-          <small> Interactive dashboard </small>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 04 — FEATURES -->
-
-    <section class="project-section" id="features">
-      <div class="section-header reveal">
-        <div class="section-number">04</div>
-
-        <div>
-          <div class="section-label">PRODUCT SURFACE</div>
-
-          <h2 class="section-title">
-            Small application. Surprisingly dense workflow.
-          </h2>
-        </div>
-      </div>
-
-      <div class="story-content">
-        <div class="story-lead reveal">
-          News Pulse keeps the interface compact while packing the workflow
-          around how people actually consume fast-moving financial headlines.
-        </div>
-
-        <div class="story-copy reveal">
-          <p>
-            The dashboard supports live feeds from CoinDesk, CoinTelegraph and
-            Yahoo Finance RSS.
-          </p>
-
-          <p class="story-highlight">
-            <span class="highlight-mark">
-              Search · Sort · Categorize · Score · Scan
-            </span>
-          </p>
-
-          <p>
-            Relative timestamps make recency immediately visible, while the
-            Market Mood bar compresses sentiment information into a quick
-            dashboard-level signal.
-          </p>
-        </div>
-      </div>
-
-      <div class="data-grid">
-        <article class="data-card reveal">
-          <div class="data-index">01</div>
-
-          <h3>Live Feeds</h3>
-
-          <p>
-            Current headlines from CoinDesk, CoinTelegraph and Yahoo Finance
-            RSS.
-          </p>
-        </article>
-
-        <article class="data-card reveal">
-          <div class="data-index">02</div>
-
-          <h3>Sentiment Badges</h3>
-
-          <p>
-            VADER sentiment is surfaced directly alongside individual stories.
-          </p>
-        </article>
-
-        <article class="data-card reveal">
-          <div class="data-index">03</div>
-
-          <h3>Market Mood</h3>
-
-          <p>
-            Aggregate sentiment is represented through a dashboard-level market
-            mood indicator.
-          </p>
-        </article>
-
-        <article class="data-card reveal">
-          <div class="data-index">04</div>
-
-          <h3>Search & Sort</h3>
-
-          <p>
-            Users can search headlines and sort stories, including by the most
-            negative sentiment.
-          </p>
-        </article>
-
-        <article class="data-card reveal">
-          <div class="data-index">05</div>
-
-          <h3>Categories</h3>
-
-          <p>
-            Bitcoin, DeFi, Regulation, Tech, Earnings, Macro and other market
-            themes organize the feed.
-          </p>
-        </article>
-
-        <article class="data-card reveal">
-          <div class="data-index">06</div>
-
-          <h3>Relative Time</h3>
-
-          <p>
-            Headlines are presented with relative timestamps for faster
-            scanning.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <!-- SECTION 05 — TECHNOLOGY -->
-
-    <section class="project-section" id="technology">
-      <div class="section-header reveal">
-        <div class="section-number">05</div>
-
-        <div>
-          <div class="section-label">TECHNOLOGY</div>
-
-          <h2 class="section-title">
-            A lightweight stack doing a very noisy job.
-          </h2>
-        </div>
-      </div>
-
-      <div class="model-grid">
-        <article class="model-card reveal">
-          <span class="model-type"> LANGUAGE </span>
-
-          <h3>Python</h3>
-
-          <p>
-            Core application language powering the feed-processing and dashboard
-            workflow.
-          </p>
-        </article>
-
-        <article class="model-card reveal">
-          <span class="model-type"> APPLICATION </span>
-
-          <h3>Streamlit</h3>
-
-          <p>
-            Provides the interactive dashboard and live application interface.
-          </p>
-        </article>
-
-        <article class="model-card reveal">
-          <span class="model-type"> WEB PARSING </span>
-
-          <h3>BeautifulSoup</h3>
-
-          <p>Supports extraction and processing of incoming feed content.</p>
-        </article>
-
-        <article class="model-card reveal">
-          <span class="model-type"> HTTP </span>
-
-          <h3>Requests</h3>
-
-          <p>Handles retrieval of live RSS feed data.</p>
-        </article>
-
-        <article class="model-card reveal">
-          <span class="model-type"> NLP </span>
-
-          <h3>VADER</h3>
-
-          <p>Performs sentiment analysis over financial headlines.</p>
-        </article>
-
-        <article class="model-card reveal">
-          <span class="model-type"> TIME </span>
-
-          <h3>dateutil</h3>
-
-          <p>
-            Helps normalize and work with timestamps across incoming news items.
-          </p>
-        </article>
-      </div>
-
-      <div class="feature-matrix reveal">
-        <div class="feature-row">
-          <span> Core language </span>
-
-          <strong> Python </strong>
-        </div>
-
-        <div class="feature-row">
-          <span> UI framework </span>
-
-          <strong> Streamlit </strong>
-        </div>
-
-        <div class="feature-row">
-          <span> Feed processing </span>
-
-          <strong> Requests + BeautifulSoup </strong>
-        </div>
-
-        <div class="feature-row">
-          <span> Sentiment </span>
-
-          <strong> VADER </strong>
-        </div>
-
-        <div class="feature-row">
-          <span> Time handling </span>
-
-          <strong> dateutil </strong>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 06 — DATA -->  
-
-    <section class="project-section" id="data">
-      <div class="section-header reveal">
-        <div class="section-number">06</div>
-
-        <div>
-          <div class="section-label">DATA SOURCES</div>
-
-          <h2 class="section-title">No database. No API keys. Just feeds.</h2>
-        </div>
-      </div>
-
-      <div class="story-content">
-        <div class="story-lead reveal">
-          The system deliberately keeps its infrastructure lightweight: live RSS
-          sources provide the data instead of a persistent database.
-        </div>
-
-        <div class="story-copy reveal">
-          <p>
-            Crypto news is collected from CoinDesk and CoinTelegraph RSS feeds.
-          </p>
-
-          <p>
-            Stock-market headlines use Yahoo Finance RSS, preserving the
-            project's intentionally simple data-access model.
-          </p>
-
-          <p class="story-highlight">
-            <span class="highlight-mark">
-              No external database is required.
-            </span>
-          </p>
-
-          <p>
-            The application can therefore focus its complexity on parsing,
-            sentiment analysis and presentation rather than infrastructure.
-          </p>
-        </div>
-      </div>
-
-      <div class="metric-panel reveal">
-        <div class="metrics-grid">
-          <div class="metric-card">
-            <span class="metric-label"> DATABASE </span>
-
-            <div class="data-value" data-count="0">0</div>
-
-            <p>Persistent database required</p>
-          </div>
-
-          <div class="metric-card">
-            <span class="metric-label"> API KEYS </span>
-
-            <div class="data-value" data-count="0">0</div>
-
-            <p>Required for the core application</p>
-          </div>
-
-          <div class="metric-card">
-            <span class="metric-label"> CRYPTO SOURCES </span>
-
-            <div class="data-value" data-count="2">0</div>
-
-            <p>CoinDesk + CoinTelegraph</p>
-          </div>
-
-          <div class="metric-card">
-            <span class="metric-label"> STOCK SOURCE </span>
-
-            <div class="data-value" data-count="1">0</div>
-
-            <p>Yahoo Finance RSS</p>
+    <!-- HERO / OVERVIEW -->
+    <main>
+      <section class="hero project-detail-hero" id="overview">
+        <canvas id="network-bg"></canvas>
+
+        <div class="container-fluid">
+          <div class="row align-items-center hero-row">
+            <div class="col-lg-1"></div>
+
+            <div class="col-lg-10 hero-text">
+              <p class="intro-label">
+                PROJECT 03 · NLP · SENTIMENT ANALYSIS · FINANCIAL NEWS
+              </p>
+
+              <h1 class="hero-title">News Sentiments Analyser</h1>
+
+              <p class="intro">
+                Real-Time Financial News Sentiment Intelligence
+              </p>
+
+              <p class="hero-desc">
+                A real-time financial news intelligence platform that aggregates
+                headlines from RSS feeds, applies VADER-based sentiment
+                analysis, classifies market narratives and presents the
+                resulting sentiment through an interactive Streamlit dashboard.
+              </p>
+
+              <div class="hero-buttons">
+                <a
+                  href="https://github.com/ArshiBansal/NEWS_SENTIMENTS_ANALYSER"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-main"
+                >
+                  <i class="fab fa-github"></i>
+                  View Repository
+                </a>
+
+                <a
+                  href="https://stocksnews.streamlit.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-main"
+                >
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  Live Dashboard
+                </a>
+              </div>
+
+              <div class="project-tech-strip">
+                <span>Python</span>
+                <span>Streamlit</span>
+                <span>VADER</span>
+                <span>BeautifulSoup</span>
+                <span>Requests</span>
+                <span>RSS</span>
+                <span>dateutil</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- SECTION 07 — WORKFLOW -->
-
-    <section class="project-section" id="workflow">
-      <div class="section-header reveal">
-        <div class="section-number">07</div>
-
-        <div>
-          <div class="section-label">USER WORKFLOW</div>
-
-          <h2 class="section-title">
-            From opening the app to finding the signal.
-          </h2>
-        </div>
-      </div>
-
-      <div class="application-flow reveal">
-        <div class="application-stage">
-          <span> 01 </span>
-
-          <strong> LAUNCH </strong>
-
-          <small> Run the Streamlit application </small>
-        </div>
-
-        <div class="application-arrow">→</div>
-
-        <div class="application-stage">
-          <span> 02 </span>
-
-          <strong> CHOOSE </strong>
-
-          <small> Crypto, stocks or both </small>
-        </div>
-
-        <div class="application-arrow">→</div>
-
-        <div class="application-stage">
-          <span> 03 </span>
-
-          <strong> SCAN </strong>
-
-          <small> Browse live headlines </small>
-        </div>
-
-        <div class="application-arrow">→</div>
-
-        <div class="application-stage">
-          <span> 04 </span>
-
-          <strong> FILTER </strong>
-
-          <small> Search or sort stories </small>
-        </div>
-
-        <div class="application-arrow">→</div>
-
-        <div class="application-stage">
-          <span> 05 </span>
-
-          <strong> INTERPRET </strong>
-
-          <small> Read sentiment + market mood </small>
-        </div>
-      </div>
-
-      <div class="story-content">
-        <div class="story-copy reveal">
-          <p>
-            The workflow is intentionally short. There is no account setup,
-            database migration or API-key configuration for the core
-            application.
-          </p>
-
-          <p class="story-highlight">
-            <span class="highlight-mark"> streamlit run app.py </span>
-          </p>
-
-          <p>
-            Once running, users can select the relevant market domain, scan
-            current headlines, search for stories, sort by sentiment and inspect
-            the dashboard's overall Market Mood.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 08 — ENGINEERING -->
-
-    <section class="project-section" id="engineering">
-      <div class="section-header reveal">
-        <div class="section-number">08</div>
-
-        <div>
-          <div class="section-label">ENGINEERING DETAILS</div>
-
-          <h2 class="section-title">
-            The difficult part is making messy feeds behave.
-          </h2>
-        </div>
-      </div>
-
-      <div class="engineering-grid">
-        <article class="engineering-card reveal">
-          <span> 01 </span>
-
-          <h3>RSS Retrieval</h3>
-
-          <p>
-            Pull live content from multiple external feeds with different
-            availability patterns.
-          </p>
-        </article>
-
-        <article class="engineering-card reveal">
-          <span> 02 </span>
-
-          <h3>Content Parsing</h3>
-
-          <p>
-            Process incoming feed information into a format suitable for the
-            dashboard.
-          </p>
-        </article>
-
-        <article class="engineering-card reveal">
-          <span> 03 </span>
-
-          <h3>Sentiment Layer</h3>
-
-          <p>
-            Apply VADER to headlines and expose the resulting sentiment
-            alongside each story.
-          </p>
-        </article>
-
-        <article class="engineering-card reveal">
-          <span> 04 </span>
-
-          <h3>Categorization</h3>
-
-          <p>
-            Organize news around themes including Bitcoin, DeFi, Regulation,
-            Tech, Earnings and Macro.
-          </p>
-        </article>
-
-        <article class="engineering-card reveal">
-          <span> 05 </span>
-
-          <h3>Time Normalization</h3>
-
-          <p>
-            Convert feed timestamps into relative time representations for
-            faster scanning.
-          </p>
-        </article>
-
-        <article class="engineering-card reveal">
-          <span> 06 </span>
-
-          <h3>Dashboard Presentation</h3>
-
-          <p>
-            Combine glassmorphism, gradients and animation into a compact
-            dark-mode interface.
-          </p>
-        </article>
-      </div>
-
-      <div class="decision-layout">
-        <div class="decision-card reveal">
-          <span class="decision-label"> DESIGN PRINCIPLE </span>
-
-          <h3>Keep the infrastructure smaller than the interface.</h3>
-
-          <p>
-            The project intentionally avoids introducing unnecessary
-            infrastructure when RSS feeds already provide the required live
-            data.
-          </p>
-        </div>
-
-        <div class="decision-notes">
-          <div class="decision-note reveal">
-            <strong> INPUT </strong>
-
-            <span> Live RSS feeds </span>
+      <!-- PROJECT SNAPSHOT -->
+      <section class="project-section project-snapshot-section">
+        <div class="projects-container">
+          <div class="projects-header">
+            <p class="project-meta">PROJECT SNAPSHOT</p>
+            <h2>THE SYSTEM AT A GLANCE.</h2>
           </div>
 
-          <div class="decision-note reveal">
-            <strong> PROCESS </strong>
+          <div class="metrics-row">
+            <div class="metric">
+              <div class="metric-value">LIVE</div>
+              <div class="metric-label">RSS News Aggregation</div>
+            </div>
 
-            <span> Parse + sentiment + categorize </span>
+            <div class="metric">
+              <div class="metric-value">VADER</div>
+              <div class="metric-label">Sentiment Engine</div>
+            </div>
+
+            <div class="metric">
+              <div class="metric-value">6+</div>
+              <div class="metric-label">News Categories</div>
+            </div>
+
+            <div class="metric">
+              <div class="metric-value">0</div>
+              <div class="metric-label">External API Keys Required</div>
+            </div>
           </div>
 
-          <div class="decision-note reveal">
-            <strong> OUTPUT </strong>
+          <div class="project-info-grid">
+            <div class="project-info-card">
+              <span class="core-label">TIMELINE</span>
+              <p>January 2026 – February 2026</p>
+            </div>
 
-            <span> Searchable market dashboard </span>
+            <div class="project-info-card">
+              <span class="core-label">DATA</span>
+              <p>Financial RSS headlines and article metadata</p>
+            </div>
+
+            <div class="project-info-card">
+              <span class="core-label">APPLICATION</span>
+              <p>Interactive Streamlit dashboard</p>
+            </div>
+
+            <div class="project-info-card">
+              <span class="core-label">OUTPUT</span>
+              <p>Article sentiment · Market mood · Category insights</p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- SECTION 09 — LIMITATIONS -->
+      <!-- 01 — THE PROBLEM -->
+      <section class="project-section case-study-section" id="problem">
+        <div class="projects-container">
+          <div class="case-study-header">
+            <span class="section-number">01</span>
+            <div>
+              <p class="project-meta">THE PROBLEM</p>
+              <h2>WHY FINANCIAL NEWS NEEDS MORE THAN A HEADLINE.</h2>
+            </div>
+          </div>
 
-    <section class="project-section" id="limitations">
-      <div class="section-header reveal">
-        <div class="section-number">09</div>
+          <div class="case-study-content">
+            <div class="case-study-lead">
+              <p>
+                Financial markets react quickly to information, but important
+                signals are scattered across large volumes of headlines and
+                articles. Reading every update manually makes it difficult to
+                identify the broader tone of the news stream and separate useful
+                signals from continuous information noise.
+              </p>
+            </div>
 
-        <div>
-          <div class="section-label">LIMITATIONS</div>
+            <div class="decision-card">
+              <span class="core-label">PRIMARY OBJECTIVE</span>
 
-          <h2 class="section-title">
-            Free feeds come with free-feed problems.
-          </h2>
+              <h3>
+                Turn a continuous stream of financial headlines into readable
+                sentiment intelligence.
+              </h3>
+
+              <p>
+                The system collects current financial headlines, scores their
+                sentiment, groups them into meaningful categories and aggregates
+                the results into a market-mood view that can be interpreted
+                quickly.
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div class="story-content">
-        <div class="story-lead reveal">
-          The application deliberately embraces lightweight infrastructure, but
-          that also exposes it to the weaknesses of external RSS sources and
-          older NLP tooling.
-        </div>
+      <!-- 02 — DATA PROFILE -->
+      <section class="project-section case-study-section" id="data">
+        <div class="projects-container">
+          <div class="case-study-header">
+            <span class="section-number">02</span>
+            <div>
+              <p class="project-meta">DATA PROFILE</p>
+              <h2>THE DATA ARRIVES THROUGH LIVE FEEDS.</h2>
+            </div>
+          </div>
 
-        <div class="story-copy reveal">
-          <p>
-            RSS feeds can disappear, change structure, rate-limit requests or
-            stop exposing useful media metadata.
-          </p>
+          <div class="data-table-wrapper">
+            <table class="project-data-table">
+              <thead>
+                <tr>
+                  <th>Source</th>
+                  <th>Content</th>
+                  <th>Purpose</th>
+                </tr>
+              </thead>
 
-          <p>
-            VADER also has obvious limitations when applied to complex financial
-            language, sarcasm and market-specific terminology.
-          </p>
+              <tbody>
+                <tr>
+                  <td>CoinDesk</td>
+                  <td>Financial / Crypto Headlines</td>
+                  <td>News aggregation</td>
+                </tr>
 
-          <p class="story-highlight">
-            <span class="highlight-mark">
-              The dashboard is useful context — not a trading oracle.
-            </span>
-          </p>
-        </div>
-      </div>
+                <tr>
+                  <td>CoinTelegraph</td>
+                  <td>Financial / Crypto Headlines</td>
+                  <td>News aggregation</td>
+                </tr>
 
-      <div class="limitations-grid">
-        <article class="limitation-card reveal">
-          <span> 01 </span>
+                <tr>
+                  <td>Yahoo Finance</td>
+                  <td>Market Headlines</td>
+                  <td>News aggregation</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-          <h3>Fragile RSS Sources</h3>
+          <div class="project-info-grid">
+            <div class="project-info-card">
+              <span class="core-label">INPUT</span>
+              <p>RSS article feeds</p>
+            </div>
 
-          <p>External feeds can change, fail or temporarily reject requests.</p>
-        </article>
+            <div class="project-info-card">
+              <span class="core-label">TEXT</span>
+              <p>Headline and article metadata</p>
+            </div>
 
-        <article class="limitation-card reveal">
-          <span> 02 </span>
+            <div class="project-info-card">
+              <span class="core-label">PROCESSING</span>
+              <p>Requests + BeautifulSoup</p>
+            </div>
 
-          <h3>Limited Media</h3>
+            <div class="project-info-card">
+              <span class="core-label">STORAGE</span>
+              <p>No external database required</p>
+            </div>
+          </div>
 
-          <p>
-            Some RSS sources provide little or no useful thumbnail information.
-          </p>
-        </article>
+          <div class="constraint-card">
+            <span class="core-label">DATA ENGINEERING CONSTRAINT</span>
 
-        <article class="limitation-card reveal">
-          <span> 03 </span>
-
-          <h3>VADER Constraints</h3>
-
-          <p>
-            Generic sentiment models can struggle with financial context and
-            nuanced headlines.
-          </p>
-        </article>
-
-        <article class="limitation-card reveal">
-          <span> 04 </span>
-
-          <h3>Source Coverage</h3>
-
-          <p>
-            The current implementation depends on a relatively small set of
-            feeds.
-          </p>
-        </article>
-
-        <article class="limitation-card reveal">
-          <span> 05 </span>
-
-          <h3>No Persistence</h3>
-
-          <p>
-            Without a database, the core application does not maintain a
-            historical news store.
-          </p>
-        </article>
-
-        <article class="limitation-card reveal">
-          <span> 06 </span>
-
-          <h3>Sentiment ≠ Prediction</h3>
-
-          <p>
-            Market mood is contextual information, not a guarantee of future
-            price movement.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <!-- SECTION 10 — ROADMAP -->
-
-    <section class="project-section" id="roadmap">
-      <div class="section-header reveal">
-        <div class="section-number">10</div>
-
-        <div>
-          <div class="section-label">NEXT ITERATION</div>
-
-          <h2 class="section-title">The feed gets smarter from here.</h2>
-        </div>
-      </div>
-
-      <div class="roadmap reveal">
-        <div class="roadmap-item">
-          <span> 01 </span>
-
-          <strong> RSS thumbnails and richer media support </strong>
-        </div>
-
-        <div class="roadmap-item">
-          <span> 02 </span>
-
-          <strong> Email alerts triggered by extreme sentiment </strong>
-        </div>
-
-        <div class="roadmap-item">
-          <span> 03 </span>
-
-          <strong> Additional financial news sources </strong>
-        </div>
-
-        <div class="roadmap-item">
-          <span> 04 </span>
-
-          <strong> Light-mode interface </strong>
-        </div>
-
-        <div class="roadmap-item">
-          <span> 05 </span>
-
-          <strong> PDF export for collected news </strong>
-        </div>
-
-        <div class="roadmap-item">
-          <span> 06 </span>
-
-          <strong> Modern financial sentiment model </strong>
-        </div>
-
-        <div class="roadmap-item">
-          <span> 07 </span>
-
-          <strong> More resilient RSS request handling </strong>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 11 — TAKEAWAYS -->
-
-    <section class="project-section final-section" id="takeaways">
-      <div class="section-header reveal">
-        <div class="section-number">11</div>
-
-        <div>
-          <div class="section-label">TAKEAWAYS</div>
-
-          <h2 class="section-title">What News Pulse actually demonstrates.</h2>
-        </div>
-      </div>
-
-      <div class="takeaways-content">
-        <div class="story-lead reveal">
-          News Pulse is deliberately small: a few hundred lines of Python
-          turning noisy, fragmented RSS feeds into a usable market-news
-          interface.
-        </div>
-
-        <div class="takeaway-grid">
-          <article class="takeaway-card reveal">
-            <span> 01 </span>
-
-            <h3>Data Collection</h3>
+            <h3>
+              External feeds are useful because they keep the dashboard current,
+              but they are not guaranteed to remain stable.
+            </h3>
 
             <p>
-              Multiple live RSS sources can be combined into one unified news
-              experience.
+              The application therefore works directly with RSS sources and
+              lightweight parsing rather than depending on a persistent
+              third-party financial-news database.
             </p>
-          </article>
-
-          <article class="takeaway-card reveal">
-            <span> 02 </span>
-
-            <h3>NLP</h3>
-
-            <p>
-              VADER adds a lightweight sentiment layer to otherwise unstructured
-              headlines.
-            </p>
-          </article>
-
-          <article class="takeaway-card reveal">
-            <span> 03 </span>
-
-            <h3>Product Thinking</h3>
-
-            <p>
-              Search, sorting, categories and timestamps turn raw feeds into a
-              usable workflow.
-            </p>
-          </article>
-
-          <article class="takeaway-card reveal">
-            <span> 04 </span>
-
-            <h3>Deployment</h3>
-
-            <p>
-              The project is packaged as a live interactive dashboard rather
-              than remaining a local script.
-            </p>
-          </article>
+          </div>
         </div>
+      </section>
 
-        <!-- LIVE DEMO -->
+      <!-- 03 — SYSTEM ARCHITECTURE -->
+      <section class="project-section case-study-section" id="architecture">
+        <div class="projects-container">
+          <div class="case-study-header">
+            <span class="section-number">03</span>
+            <div>
+              <p class="project-meta">SYSTEM ARCHITECTURE</p>
+              <h2>FROM HEADLINE TO MARKET MOOD.</h2>
+            </div>
+          </div>
 
-        <div class="project-resources reveal">
-          <div class="resources-heading">LIVE DEPLOYMENT</div>
+          <div class="architecture-flow">
+            <div class="architecture-node">
+              <span>01</span>
+              <strong>RSS FEEDS</strong>
+              <small>Live financial headlines</small>
+            </div>
 
-          <div class="project-links">
+            <div class="architecture-arrow">
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+
+            <div class="architecture-node">
+              <span>02</span>
+              <strong>FETCH</strong>
+              <small>Requests + feed retrieval</small>
+            </div>
+
+            <div class="architecture-arrow">
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+
+            <div class="architecture-node">
+              <span>03</span>
+              <strong>PARSE</strong>
+              <small>BeautifulSoup + metadata</small>
+            </div>
+
+            <div class="architecture-arrow">
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+
+            <div class="architecture-node">
+              <span>04</span>
+              <strong>SENTIMENT</strong>
+              <small>VADER scoring</small>
+            </div>
+
+            <div class="architecture-arrow">
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+
+            <div class="architecture-node">
+              <span>05</span>
+              <strong>DASHBOARD</strong>
+              <small>Market mood + insights</small>
+            </div>
+          </div>
+
+          <div class="architecture-note">
+            <span class="core-label">DESIGN PRINCIPLE</span>
+            <p>
+              Keep the pipeline lightweight and transparent: retrieve the latest
+              available headlines, process them immediately and expose the
+              resulting sentiment through a readable analytical interface.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 — SENTIMENT MODEL -->
+      <section class="project-section case-study-section" id="models">
+        <div class="projects-container">
+          <div class="case-study-header">
+            <span class="section-number">04</span>
+            <div>
+              <p class="project-meta">SENTIMENT ENGINE</p>
+              <h2>ONE SCORE. THREE READABLE SIGNALS.</h2>
+            </div>
+          </div>
+
+          <div class="model-grid">
+            <article class="model-card">
+              <div class="model-index">01</div>
+
+              <p class="project-meta">NLP ENGINE</p>
+
+              <h3>VADER</h3>
+
+              <p>
+                VADER is used to evaluate the sentiment expressed in financial
+                headlines and generate compound sentiment scores alongside
+                positive, negative and neutral components.
+              </p>
+
+              <div class="tech-tags">
+                <span>VADER</span>
+                <span>NLTK</span>
+                <span>Compound Score</span>
+                <span>Sentiment Lexicon</span>
+              </div>
+            </article>
+
+            <article class="model-card">
+              <div class="model-index">02</div>
+
+              <p class="project-meta">INTERPRETATION LAYER</p>
+
+              <h3>Market Mood</h3>
+
+              <p>
+                Individual article scores are aggregated into a broader market
+                mood representation, allowing the dashboard to communicate the
+                overall tone of the current news stream.
+              </p>
+
+              <div class="tech-tags">
+                <span>Positive</span>
+                <span>Negative</span>
+                <span>Neutral</span>
+                <span>Aggregation</span>
+              </div>
+            </article>
+          </div>
+
+          <div class="decision-card">
+            <span class="core-label">WHY THIS APPROACH?</span>
+
+            <h3>
+              A lightweight NLP engine keeps the system fast and interpretable.
+            </h3>
+
+            <p>
+              VADER provides a practical baseline for headline-level sentiment
+              without requiring model training, a dedicated inference server or
+              an external NLP API.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 — SENTIMENT INTERPRETATION -->
+      <section class="project-section case-study-section" id="sentiment">
+        <div class="projects-container">
+          <div class="case-study-header">
+            <span class="section-number">05</span>
+            <div>
+              <p class="project-meta">DECISION INTERPRETATION</p>
+              <h2>THE SENTIMENT IS ONLY USEFUL IF IT IS READABLE.</h2>
+            </div>
+          </div>
+
+          <div class="error-grid">
+            <div class="error-card">
+              <span class="error-label">POSITIVE</span>
+
+              <div class="error-flow">
+                <span>HEADLINE</span>
+                <i class="fa-solid fa-arrow-down"></i>
+                <span>POSITIVE SCORE</span>
+                <i class="fa-solid fa-arrow-down"></i>
+                <span>BULLISH SIGNAL</span>
+              </div>
+
+              <p>
+                Headlines with positive sentiment contribute toward a more
+                positive overall market narrative.
+              </p>
+            </div>
+
+            <div class="error-card">
+              <span class="error-label">NEGATIVE</span>
+
+              <div class="error-flow">
+                <span>HEADLINE</span>
+                <i class="fa-solid fa-arrow-down"></i>
+                <span>NEGATIVE SCORE</span>
+                <i class="fa-solid fa-arrow-down"></i>
+                <span>BEARISH SIGNAL</span>
+              </div>
+
+              <p>
+                Negative headlines contribute toward a more cautious or bearish
+                representation of the current news environment.
+              </p>
+            </div>
+          </div>
+
+          <div class="threshold-card">
+            <span class="core-label">INTERPRETATION LAYER</span>
+
+            <h3>
+              Positive, negative and neutral scores become a single market-mood
+              view.
+            </h3>
+
+            <p>
+              The dashboard combines article-level sentiment with aggregate
+              sentiment so users can move from individual headlines to the wider
+              narrative without manually inspecting every article.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 — EVALUATION -->
+      <section class="project-section case-study-section" id="evaluation">
+        <div class="projects-container">
+          <div class="case-study-header">
+            <span class="section-number">06</span>
+            <div>
+              <p class="project-meta">EVALUATION</p>
+              <h2>MEASURE THE SIGNAL, NOT JUST THE MODEL.</h2>
+            </div>
+          </div>
+
+          <div class="metrics-row evaluation-metrics">
+            <div class="metric">
+              <div class="metric-value">POS</div>
+              <div class="metric-label">Positive Sentiment</div>
+            </div>
+
+            <div class="metric">
+              <div class="metric-value">NEG</div>
+              <div class="metric-label">Negative Sentiment</div>
+            </div>
+
+            <div class="metric">
+              <div class="metric-value">NEU</div>
+              <div class="metric-label">Neutral Sentiment</div>
+            </div>
+
+            <div class="metric">
+              <div class="metric-value">MOOD</div>
+              <div class="metric-label">Aggregate Market Signal</div>
+            </div>
+          </div>
+
+          <div class="evaluation-explanation">
+            <div class="decision-card">
+              <span class="core-label">WHAT IS EVALUATED?</span>
+
+              <h3>
+                Whether the sentiment layer produces an interpretable view of
+                the incoming financial news stream.
+              </h3>
+
+              <p>
+                The application focuses on article-level sentiment categories,
+                compound scoring and aggregate market mood rather than claiming
+                predictive accuracy for future market prices.
+              </p>
+            </div>
+          </div>
+
+          <div class="benchmark-placeholder">
+            <span class="core-label">MODEL LIMITATION</span>
+            <p>
+              VADER is a lexicon-based sentiment method and may struggle with
+              financial language, sarcasm, domain-specific terminology and
+              headlines whose meaning depends heavily on context.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07 — EXPERIMENT TRACK -->
+      <section class="project-section case-study-section" id="experiments">
+        <div class="projects-container">
+          <div class="case-study-header">
+            <span class="section-number">07</span>
+            <div>
+              <p class="project-meta">EXPERIMENT TRACK</p>
+              <h2>FROM RAW FEEDS TO A USABLE DASHBOARD.</h2>
+            </div>
+          </div>
+
+          <div class="experiment-track">
+            <div class="experiment-step">
+              <span>01</span>
+              <div>
+                <p class="project-meta">INGESTION</p>
+                <h3>RSS Aggregation</h3>
+                <p>
+                  Retrieve the latest available headlines from supported
+                  financial news feeds.
+                </p>
+              </div>
+            </div>
+
+            <div class="experiment-step">
+              <span>02</span>
+              <div>
+                <p class="project-meta">PROCESSING</p>
+                <h3>Headline Parsing</h3>
+                <p>
+                  Extract relevant article information and normalise the
+                  retrieved feed content.
+                </p>
+              </div>
+            </div>
+
+            <div class="experiment-step">
+              <span>03</span>
+              <div>
+                <p class="project-meta">NLP</p>
+                <h3>VADER Scoring</h3>
+                <p>
+                  Generate positive, negative, neutral and compound sentiment
+                  scores for each article.
+                </p>
+              </div>
+            </div>
+
+            <div class="experiment-step">
+              <span>04</span>
+              <div>
+                <p class="project-meta">PRESENTATION</p>
+                <h3>Market Mood</h3>
+                <p>
+                  Convert individual sentiment results into an interactive
+                  market-news intelligence view.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 08 — ENGINEERING UNDER CONSTRAINTS -->
+      <section class="project-section case-study-section" id="engineering">
+        <div class="projects-container">
+          <div class="case-study-header">
+            <span class="section-number">08</span>
+            <div>
+              <p class="project-meta">ENGINEERING UNDER CONSTRAINTS</p>
+              <h2>CONSTRAINT → DECISION.</h2>
+            </div>
+          </div>
+
+          <div class="engineering-table-wrapper">
+            <table class="project-data-table engineering-table">
+              <thead>
+                <tr>
+                  <th>Constraint</th>
+                  <th>Engineering Decision</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>Live news availability</td>
+                  <td>RSS-based ingestion</td>
+                </tr>
+
+                <tr>
+                  <td>No dedicated news database</td>
+                  <td>Process feed content at runtime</td>
+                </tr>
+
+                <tr>
+                  <td>Multiple news sources</td>
+                  <td>Normalised feed-processing layer</td>
+                </tr>
+
+                <tr>
+                  <td>Headline-level NLP</td>
+                  <td>VADER sentiment scoring</td>
+                </tr>
+
+                <tr>
+                  <td>Fast interpretation</td>
+                  <td>Aggregate market-mood visualisation</td>
+                </tr>
+
+                <tr>
+                  <td>User exploration</td>
+                  <td>Search, filtering and sorting controls</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 09 — CODEBASE ARCHITECTURE -->
+      <section class="project-section case-study-section" id="codebase">
+        <div class="projects-container">
+          <div class="case-study-header">
+            <span class="section-number">09</span>
+            <div>
+              <p class="project-meta">CODEBASE ARCHITECTURE</p>
+              <h2>SMALL CODEBASE. COMPLETE DATA FLOW.</h2>
+            </div>
+          </div>
+
+          <div class="codebase-grid">
+            <div class="codebase-card">
+              <span class="core-label">APPLICATION</span>
+              <code>app.py</code>
+              <p>Streamlit application entry point and dashboard interface.</p>
+            </div>
+
+            <div class="codebase-card">
+              <span class="core-label">NEWS INGESTION</span>
+              <code>RSS / Requests</code>
+              <p>Retrieves financial news feeds and article metadata.</p>
+            </div>
+
+            <div class="codebase-card">
+              <span class="core-label">PARSING</span>
+              <code>BeautifulSoup</code>
+              <p>
+                Processes and extracts relevant content from feed responses.
+              </p>
+            </div>
+
+            <div class="codebase-card">
+              <span class="core-label">SENTIMENT</span>
+              <code>VADER</code>
+              <p>Calculates sentiment scores for incoming headlines.</p>
+            </div>
+
+            <div class="codebase-card">
+              <span class="core-label">TIME</span>
+              <code>dateutil</code>
+              <p>
+                Handles relative timestamps and publication-date processing.
+              </p>
+            </div>
+
+            <div class="codebase-card">
+              <span class="core-label">STYLING</span>
+              <code>CSS</code>
+              <p>Provides the dashboard's custom visual presentation.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10 — APPLICATION -->
+      <section class="project-section case-study-section" id="application">
+        <div class="projects-container">
+          <div class="case-study-header">
+            <span class="section-number">10</span>
+            <div>
+              <p class="project-meta">FROM RESEARCH → APPLICATION</p>
+              <h2>TURNING NEWS INTO AN INTERACTIVE EXPERIENCE.</h2>
+            </div>
+          </div>
+
+          <div class="application-flow">
+            <div class="application-node">
+              <span>INPUT</span>
+              <strong>Financial RSS Feeds</strong>
+            </div>
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+            <div class="application-node">
+              <span>PROCESSING</span>
+              <strong>Parse → Score → Categorise</strong>
+            </div>
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+            <div class="application-node">
+              <span>OUTPUT</span>
+              <strong>News Intelligence Dashboard</strong>
+            </div>
+          </div>
+
+          <div class="decision-card">
+            <span class="core-label">APPLICATION LAYER</span>
+
+            <h3>Streamlit-powered financial news intelligence.</h3>
+
+            <p>
+              The application presents current headlines through a responsive
+              interface with sentiment badges, market-mood aggregation, category
+              filtering, search and sorting capabilities.
+            </p>
+
             <a
               href="https://stocksnews.streamlit.app/"
-              class="project-link"
               target="_blank"
               rel="noopener noreferrer"
+              class="repo-btn"
             >
-              <span class="project-link-index"> 01 </span>
-
-              <span class="project-link-content">
-                <strong> Live News Pulse Dashboard </strong>
-
-                <small> Open the deployed application </small>
-              </span>
-
+              OPEN LIVE DASHBOARD
               <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
           </div>
         </div>
+      </section>
 
-        <!-- PROJECT RESOURCES -->
+      <!-- 11 — LIMITATIONS -->
+      <section class="project-section case-study-section" id="limitations">
+        <div class="projects-container">
+          <div class="case-study-header">
+            <span class="section-number">11</span>
+            <div>
+              <p class="project-meta">LIMITATIONS</p>
+              <h2>WHERE THE SYSTEM STILL HAS ROOM TO GROW.</h2>
+            </div>
+          </div>
 
-        <div class="project-resources reveal">
-          <div class="resources-heading">PROJECT RESOURCES</div>
+          <div class="limitations-grid">
+            <div class="limitation-card">
+              <span>01</span>
+              <h3>VADER Context</h3>
+              <p>
+                Lexicon-based sentiment can miss financial context, specialised
+                terminology and nuanced meanings within market headlines.
+              </p>
+            </div>
 
-          <div class="project-links">
-            <!-- Replace # with actual GitHub repository -->
+            <div class="limitation-card">
+              <span>02</span>
+              <h3>RSS Fragility</h3>
+              <p>
+                External feeds can change structure, availability or response
+                behaviour, which can affect downstream parsing.
+              </p>
+            </div>
+
+            <div class="limitation-card">
+              <span>03</span>
+              <h3>Headline Dependence</h3>
+              <p>
+                Sentiment is derived primarily from available headline-level
+                information and therefore does not represent complete article
+                context.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 12 — NEXT ITERATION -->
+      <section class="project-section case-study-section" id="next">
+        <div class="projects-container">
+          <div class="case-study-header">
+            <span class="section-number">12</span>
+            <div>
+              <p class="project-meta">NEXT ITERATION</p>
+              <h2>WHERE THIS SYSTEM CAN GO NEXT.</h2>
+            </div>
+          </div>
+
+          <div class="roadmap">
+            <div class="roadmap-step">
+              <span>01</span>
+              <strong>More News Sources</strong>
+              <p>
+                Expand feed coverage to improve breadth across financial markets
+                and economic topics.
+              </p>
+            </div>
+
+            <div class="roadmap-step">
+              <span>02</span>
+              <strong>Financial NLP Model</strong>
+              <p>
+                Evaluate domain-specific financial language models as an
+                alternative to general-purpose VADER scoring.
+              </p>
+            </div>
+
+            <div class="roadmap-step">
+              <span>03</span>
+              <strong>Historical Sentiment</strong>
+              <p>
+                Store sentiment observations so market mood can be analysed over
+                time rather than only at the current moment.
+              </p>
+            </div>
+
+            <div class="roadmap-step">
+              <span>04</span>
+              <strong>Alerts & Reporting</strong>
+              <p>
+                Add configurable alerts, scheduled reports and exportable
+                sentiment summaries.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 13 — TAKEAWAYS -->
+      <section class="project-section case-study-section" id="takeaways">
+        <div class="projects-container">
+          <div class="case-study-header">
+            <span class="section-number">13</span>
+            <div>
+              <p class="project-meta">PROJECT TAKEAWAYS</p>
+              <h2>WHAT THIS PROJECT CHANGED IN MY APPROACH.</h2>
+            </div>
+          </div>
+
+          <div class="takeaway-grid">
+            <div class="takeaway-card">
+              <span class="core-label">DATA INGESTION</span>
+              <h3>Live data changes the engineering problem.</h3>
+              <p>
+                Working with external feeds introduces availability, parsing and
+                freshness considerations that static datasets do not.
+              </p>
+            </div>
+
+            <div class="takeaway-card">
+              <span class="core-label">NLP</span>
+              <h3>Simple models can still create useful interfaces.</h3>
+              <p>
+                A lightweight sentiment engine can become valuable when its
+                output is contextualised, aggregated and presented clearly.
+              </p>
+            </div>
+
+            <div class="takeaway-card">
+              <span class="core-label">PRODUCT THINKING</span>
+              <h3>Analysis becomes stronger when users can explore it.</h3>
+              <p>
+                Search, filtering, sorting and market-mood views turn raw NLP
+                output into an experience designed for rapid interpretation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECT LINKS -->
+      <section class="project-section project-links-section">
+        <div class="projects-container">
+          <div class="projects-header">
+            <p class="project-meta">EXPLORE THE PROJECT</p>
+            <h2>GO DEEPER.</h2>
+          </div>
+
+          <div class="project-link-grid">
+            <a
+              href="https://github.com/ArshiBansal/NEWS_SENTIMENTS_ANALYSER"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="project-link-card"
+            >
+              <span>01</span>
+              <strong>GitHub Repository</strong>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
 
             <a
-              href="#"
-              class="project-link"
+              href="https://stocksnews.streamlit.app/"
               target="_blank"
               rel="noopener noreferrer"
+              class="project-link-card"
             >
-              <span class="project-link-index"> 01 </span>
-
-              <span class="project-link-content">
-                <strong> GitHub Repository </strong>
-
-                <small>
-                  Source code · Streamlit application · NLP workflow
-                </small>
-              </span>
-
+              <span>02</span>
+              <strong>Live Streamlit Dashboard</strong>
               <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
-
-            <!-- Replace # with actual dataset URL if applicable -->
 
             <a
-              href="#"
-              class="project-link"
+              href="https://www.coindesk.com/arc/outboundfeeds/rss/"
               target="_blank"
               rel="noopener noreferrer"
+              class="project-link-card"
             >
-              <span class="project-link-index"> 02 </span>
-
-              <span class="project-link-content">
-                <strong> Dataset </strong>
-
-                <small> Live RSS sources used by the application </small>
-              </span>
-
+              <span>03</span>
+              <strong>Financial RSS Source</strong>
               <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
           </div>
         </div>
-
-        <!-- DISCLAIMER -->
-
-        <div class="story-content">
-          <div class="story-copy reveal">
-            <p>
-              News Pulse is not financial advice and is not intended to predict
-              or guarantee market movement. Sentiment and market mood are
-              presented as contextual information.
-            </p>
-
-            <p class="story-highlight">
-              <span class="highlight-mark">
-                RSS is fragile. VADER has limits. The dashboard makes the noise
-                easier to read.
-              </span>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
     <!-- FOOTER -->
+    <footer class="footer-interesting">
+      <p class="footer-text">Built with data, logic, and intent.</p>
 
-    <footer class="footer-interesting reveal">
-      <div class="footer-text">
-        Free feeds. Live headlines. Just enough NLP to make the chaos readable.
-      </div>
-
-      <div class="footer-meta">
-        News Pulse · Market News Intelligence · <span id="year"></span>
-      </div>
+      <p class="footer-meta">© <span id="year"></span> Arshi Bansal</p>
     </footer>
 
-    <!-- SCRIPTS -->
-
     <script src="projectscript.js"></script>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </body>

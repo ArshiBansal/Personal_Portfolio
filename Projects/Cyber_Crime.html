@@ -1,834 +1,621 @@
-```html
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Cyber Crime Analysis — a multi-year cybersecurity incident intelligence and analytics system for understanding cyber threats, affected sectors and incident patterns."
+    />
 
     <title>Cyber Crime Analysis | Arshi's Portfolio</title>
 
+    <link rel="icon" href="favicon.ico" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="projectstyle.css" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap"
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
     />
 
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600;1,700&display=swap"
       rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
-
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-
-    <link rel="icon" href="favicon.ico" />
   </head>
 
   <body>
-    <!-- PAGE PROGRESS -->
+    <!-- Network background -->
+    <canvas id="network-bg"></canvas>
+
+    <!-- Scroll progress -->
     <div class="page-progress">
       <div class="page-progress-bar"></div>
     </div>
 
-    <!-- NETWORK BACKGROUND -->
-    <canvas id="network-bg"></canvas>
-
-    <!-- CUSTOM CURSOR -->
-    <div class="cursor-dot"></div>
-    <div class="cursor-ring"></div>
-    <div class="cursor-trail"></div>
-
-    <!-- RIGHT NAVIGATION -->
-    <nav class="right-navbar">
-      <div class="nav-track"></div>
-
-      <ul class="nav-links">
-        <li>
-          <a href="#overview" class="nav-item active" title="Overview">
-            <i class="fa-solid fa-shield-halved"></i>
-          </a>
-        </li>
-
-        <li>
-          <a href="#problem" class="nav-item" title="Problem">
-            <i class="fa-solid fa-crosshairs"></i>
-          </a>
-        </li>
-
-        <li>
-          <a href="#dataset" class="nav-item" title="Dataset">
-            <i class="fa-solid fa-database"></i>
-          </a>
-        </li>
-
-        <li>
-          <a href="#analysis" class="nav-item" title="Analysis">
-            <i class="fa-solid fa-chart-line"></i>
-          </a>
-        </li>
-
-        <li>
-          <a href="#insights" class="nav-item" title="Insights">
-            <i class="fa-solid fa-magnifying-glass-chart"></i>
-          </a>
-        </li>
-
-        <li>
-          <a href="#workflow" class="nav-item" title="Workflow">
-            <i class="fa-solid fa-diagram-project"></i>
-          </a>
-        </li>
-
-        <li>
-          <a href="#limitations" class="nav-item" title="Limitations">
-            <i class="fa-solid fa-triangle-exclamation"></i>
-          </a>
-        </li>
-
-        <li>
-          <a href="#future" class="nav-item" title="Future">
-            <i class="fa-solid fa-arrow-trend-up"></i>
-          </a>
-        </li>
-
-        <li>
-          <a href="#takeaways" class="nav-item" title="Takeaways">
-            <i class="fa-solid fa-flag-checkered"></i>
-          </a>
-        </li>
-      </ul>
-    </nav>
-
     <!-- HERO -->
-
-    <header class="project-hero reveal" id="overview">
+    <header class="project-hero" id="top">
       <div class="hero-grid">
         <div class="hero-index">
-          <span>04</span>
-          <small>CASE STUDY</small>
+          <span>PROJECT / 04</span>
+          <span>CYBERSECURITY · DATA · ANALYTICS</span>
         </div>
 
         <div class="hero-main">
-          <div class="hero-eyebrow">
-            <span>CYBERSECURITY</span>
-            <span class="hero-line"></span>
-            <span>2019 — 2024</span>
-          </div>
+          <div class="hero-eyebrow reveal">CYBER INCIDENT INTELLIGENCE</div>
 
-          <h1 class="hero-title">
-            Cyber Crime
-            <em>Analysis</em>
+          <h1 class="hero-title reveal">
+            Understanding what
+            <span>cyber incidents reveal.</span>
           </h1>
 
-          <p class="hero-description">
-            A visual and statistical investigation into cyber crime incidents,
-            affected data subjects, targeted sectors, incident categories,
-            response decisions, and temporal patterns across six years of
-            reported data.
+          <p class="hero-description reveal">
+            A multi-year cybersecurity analytics system designed to examine
+            incident patterns, affected subjects, targeted sectors, incident
+            categories and organizational responses across reported events from
+            2019 to 2024.
           </p>
 
-          <div class="hero-meta">
+          <div class="hero-meta reveal">
             <div class="hero-meta-item">
-              <span>DOMAIN</span>
-              <strong>Cybersecurity</strong>
+              <span class="meta-label">DOMAIN</span>
+              <strong>Cybersecurity Analytics</strong>
             </div>
 
             <div class="hero-meta-item">
-              <span>PERIOD</span>
-              <strong>2019–2024</strong>
+              <span class="meta-label">CORE</span>
+              <strong>Data Analysis</strong>
             </div>
 
             <div class="hero-meta-item">
-              <span>FOCUS</span>
-              <strong>Incident Intelligence</strong>
-            </div>
-
-            <div class="hero-meta-item">
-              <span>METHOD</span>
-              <strong>EDA + Visualization</strong>
+              <span class="meta-label">INPUT</span>
+              <strong>Incident Records</strong>
             </div>
           </div>
         </div>
 
-        <div class="hero-side">
+        <div class="hero-side reveal">
           <div class="signal-orbit">
-            <div class="orbit-ring ring-one"></div>
-            <div class="orbit-ring ring-two"></div>
-            <div class="orbit-ring ring-three"></div>
+            <div class="orbit-ring orbit-ring-one"></div>
+            <div class="orbit-ring orbit-ring-two"></div>
 
             <div class="orbit-core">
-              <i class="fa-solid fa-shield-halved"></i>
+              <span>04</span>
+              <small>INCIDENTS</small>
             </div>
 
-            <span class="orbit-node node-one"></span>
-            <span class="orbit-node node-two"></span>
-            <span class="orbit-node node-three"></span>
+            <span class="orbit-node node-one">DATA</span>
+            <span class="orbit-node node-two">RISK</span>
+            <span class="orbit-node node-three">CYBER</span>
           </div>
         </div>
       </div>
 
-      <div class="hero-bottom">
-        <div class="scroll-cue">
-          <span>SCROLL TO INVESTIGATE</span>
-          <i class="fa-solid fa-arrow-down"></i>
-        </div>
+      <div class="hero-bottom reveal">
+        <span>INCIDENTS / PATTERNS / IMPACT</span>
 
-        <div class="hero-status">
-          <span class="status-dot"></span>
-          INCIDENT DATA ANALYSIS
-        </div>
+        <a href="#origin" class="scroll-cue">
+          EXPLORE
+          <i class="fa-solid fa-arrow-down"></i>
+        </a>
       </div>
     </header>
 
-    <!-- SECTION 01 — PROBLEM -->
-
-    <section class="project-section" id="problem">
-      <div class="section-header">
+    <!-- 01 — ORIGIN -->
+    <section class="project-section origin-section" id="origin">
+      <div class="section-header reveal">
         <div class="section-number">01</div>
 
         <div>
-          <span class="section-label">THE QUESTION</span>
+          <span class="section-label"> THE QUESTION </span>
 
           <h2 class="section-title">
-            What happens when
-            <em>threats become data?</em>
+            What can years of cyber incident data tell us about digital risk?
           </h2>
         </div>
       </div>
 
       <div class="story-content">
-        <p class="story-lead">
-          Cyber incidents are not isolated technical failures. They leave behind
-          patterns — where attacks happen, which sectors are affected, how many
-          people are exposed, and what happens after an incident is reported.
-        </p>
+        <div class="story-lead reveal">
+          A cybersecurity incident is more than an isolated event. Across
+          thousands of records, patterns begin to emerge.
+        </div>
 
-        <div class="story-copy">
+        <div class="story-copy reveal">
           <p>
-            Between <strong>2019 and 2024</strong>, the dataset captures
-            reported incidents across different sectors, incident categories,
-            response decisions, and levels of affected data subjects.
+            Cyber incidents can involve data breaches, unauthorized access,
+            fraud, phishing, accidental exposure and other forms of security
+            compromise. Looking at individual incidents alone makes it difficult
+            to understand the broader threat landscape.
           </p>
 
           <p>
-            The challenge is not simply counting incidents. It is understanding
-            the structure behind them.
+            This project analyzes reported incidents across multiple years to
+            understand which sectors were affected, what types of incidents
+            occurred, how many subjects were impacted and what organizations did
+            after an incident.
           </p>
 
           <p>
-            Which sectors repeatedly appear in the data? Which incident types
-            dominate? Are certain periods associated with larger numbers of
-            affected individuals? And what decisions follow an incident once it
-            has been reported?
+            The project was built around a simple principle:
+            <strong>
+              turn incident records into evidence that can reveal patterns,
+              concentrations and changes in cybersecurity risk.
+            </strong>
           </p>
         </div>
 
-        <div class="story-highlight">
-          <span class="highlight-mark">01</span>
+        <div class="story-highlight reveal">
+          <span class="highlight-mark">THESIS</span>
 
-          <div>
-            <strong>
-              The objective was to turn incident records into interpretable
-              cyber-risk patterns.
-            </strong>
-
-            <p>
-              Instead of treating every record independently, the analysis
-              connects sector, incident category, affected subjects, response
-              action, and time.
-            </p>
-          </div>
+          <p>
+            The goal is not simply to count cyber incidents. It is to understand
+            where incidents concentrate, how their impact changes over time and
+            what the data reveals about organizational response.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 02 — DATASET -->
-
-    <section class="project-section" id="dataset">
-      <div class="section-header">
+    <!-- 02 — DATA -->
+    <section class="project-section" id="data">
+      <div class="section-header reveal">
         <div class="section-number">02</div>
 
         <div>
-          <span class="section-label">THE DATA</span>
+          <span class="section-label"> DATA </span>
 
           <h2 class="section-title">
-            Six years of
-            <em>incident records.</em>
+            Turning incident records into structured cybersecurity evidence.
           </h2>
         </div>
       </div>
 
-      <div class="data-grid">
-        <article class="data-card">
-          <span class="data-index">01</span>
+      <div class="story-content">
+        <div class="story-lead reveal">
+          Each incident contains multiple dimensions that become meaningful when
+          analyzed together.
+        </div>
 
-          <div class="data-icon">
-            <i class="fa-solid fa-calendar-days"></i>
-          </div>
+        <div class="data-grid">
+          <article class="data-card reveal">
+            <span class="data-index">01</span>
 
-          <h3>2019–2024</h3>
-
-          <p>
-            Multi-year incident records enabling temporal and quarterly trend
-            analysis.
-          </p>
-        </article>
-
-        <article class="data-card">
-          <span class="data-index">02</span>
-
-          <div class="data-icon">
-            <i class="fa-solid fa-building-shield"></i>
-          </div>
-
-          <h3>Multiple Sectors</h3>
-
-          <p>
-            Sector-level analysis covering areas such as healthcare, finance,
-            and government.
-          </p>
-        </article>
-
-        <article class="data-card">
-          <span class="data-index">03</span>
-
-          <div class="data-icon">
-            <i class="fa-solid fa-bug"></i>
-          </div>
-
-          <h3>Incident Types</h3>
-
-          <p>
-            Phishing, unauthorized access, misdelivery and other reported
-            incident categories.
-          </p>
-        </article>
-
-        <article class="data-card">
-          <span class="data-index">04</span>
-
-          <div class="data-icon">
-            <i class="fa-solid fa-users"></i>
-          </div>
-
-          <h3>Affected Subjects</h3>
-
-          <p>
-            Measures the number of individuals or data subjects affected by each
-            reported incident.
-          </p>
-        </article>
-
-        <article class="data-card">
-          <span class="data-index">05</span>
-
-          <div class="data-icon">
-            <i class="fa-solid fa-scale-balanced"></i>
-          </div>
-
-          <h3>Response Actions</h3>
-
-          <p>
-            Records decisions such as investigation, informal action and no
-            further action.
-          </p>
-        </article>
-
-        <article class="data-card">
-          <span class="data-index">06</span>
-
-          <div class="data-icon">
-            <i class="fa-solid fa-layer-group"></i>
-          </div>
-
-          <h3>Cyber Classification</h3>
-
-          <p>
-            Separates cyber and non-cyber incidents for comparative analysis.
-          </p>
-        </article>
-      </div>
-
-      <div class="metric-panel">
-        <div class="metrics-grid">
-          <div class="metric-card">
-            <span class="metric-label">TIME WINDOW</span>
-
-            <div class="data-value" data-count="6" data-suffix=" years">
-              0 years
+            <div class="data-icon">
+              <i class="fa-solid fa-building-shield"></i>
             </div>
 
-            <p>2019 through 2024</p>
+            <h3>Affected Sectors</h3>
+
+            <p>
+              Sector information helps identify which areas of the economy and
+              public infrastructure experience greater concentrations of
+              reported incidents.
+            </p>
+          </article>
+
+          <article class="data-card reveal">
+            <span class="data-index">02</span>
+
+            <div class="data-icon">
+              <i class="fa-solid fa-bug"></i>
+            </div>
+
+            <h3>Incident Types</h3>
+
+            <p>
+              Incident categories reveal recurring attack and exposure patterns,
+              including phishing, unauthorized access and misdelivery.
+            </p>
+          </article>
+
+          <article class="data-card reveal">
+            <span class="data-index">03</span>
+
+            <div class="data-icon">
+              <i class="fa-solid fa-users"></i>
+            </div>
+
+            <h3>Affected Subjects</h3>
+
+            <p>
+              The number of affected subjects provides an impact dimension that
+              distinguishes frequent incidents from high-scale incidents.
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <div class="metric-panel reveal">
+        <div class="metric-intro">
+          <span>DATA VIEW</span>
+
+          <p>
+            The dataset covers reported incidents across a six-year period,
+            allowing year-wise, sector-wise and incident-level analysis.
+          </p>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <span class="metric-label">TIME PERIOD</span>
+
+            <strong class="data-value" data-count="6">0</strong>
+
+            <small>2019 · 2020 · 2021 · 2022 · 2023 · 2024</small>
+          </div>
+
+          <div class="metric-card">
+            <span class="metric-label">ANALYSIS DIMENSIONS</span>
+
+            <strong class="data-value" data-count="8">0</strong>
+
+            <small>sector · type · impact · response · time · category</small>
           </div>
 
           <div class="metric-card">
             <span class="metric-label">TIME GRAIN</span>
 
-            <div class="data-value" data-count="4" data-suffix=" quarters">
-              0 quarters
-            </div>
+            <strong class="data-value" data-count="4">0</strong>
 
-            <p>Quarterly trend analysis</p>
-          </div>
-
-          <div class="metric-card">
-            <span class="metric-label">PRIMARY UNIT</span>
-
-            <div class="data-value">INCIDENT</div>
-
-            <p>Reported incident records</p>
-          </div>
-
-          <div class="metric-card">
-            <span class="metric-label">IMPACT VARIABLE</span>
-
-            <div class="data-value">SUBJECTS</div>
-
-            <p>Affected data subjects</p>
+            <small>quarterly incident analysis</small>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 03 — ANALYSIS -->
-
-    <section class="project-section" id="analysis">
-      <div class="section-header">
+    <!-- 03 — FEATURE READING -->
+    <section class="project-section" id="features">
+      <div class="section-header reveal">
         <div class="section-number">03</div>
 
         <div>
-          <span class="section-label">READING THE DATA</span>
+          <span class="section-label"> INCIDENT ANALYSIS </span>
 
           <h2 class="section-title">
-            From raw records
-            <em>to visible patterns.</em>
+            Teaching the analysis to look beyond incident counts.
           </h2>
         </div>
       </div>
 
       <div class="story-content">
-        <p class="story-lead">
-          The analysis was designed around one principle: every visualization
-          should answer a specific question about cyber incident behavior.
-        </p>
-      </div>
-
-      <div class="feature-matrix">
-        <div class="feature-row">
-          <span class="feature-number">01</span>
-
-          <div class="feature-content">
-            <strong>Sector Distribution</strong>
-            <p>
-              Identifies which sectors account for the highest number of
-              reported incidents.
-            </p>
-          </div>
-
-          <span class="feature-tag">SECTOR</span>
+        <div class="story-lead reveal">
+          A single incident count cannot explain cybersecurity risk. The
+          surrounding attributes provide the context.
         </div>
 
-        <div class="feature-row">
-          <span class="feature-number">02</span>
+        <div class="feature-matrix">
+          <div class="feature-row reveal">
+            <div class="feature-number">01</div>
 
-          <div class="feature-content">
-            <strong>Decision Analysis</strong>
-            <p>
-              Examines what actions are taken after an incident, including
-              investigation and informal action.
-            </p>
+            <div class="feature-main">
+              <h3>Sector concentration</h3>
+
+              <p>
+                Grouping incidents by sector reveals where reported
+                cybersecurity events are concentrated across different areas of
+                the economy.
+              </p>
+            </div>
+
+            <div class="feature-tag">SECTOR</div>
           </div>
 
-          <span class="feature-tag">RESPONSE</span>
+          <div class="feature-row reveal">
+            <div class="feature-number">02</div>
+
+            <div class="feature-main">
+              <h3>Incident patterns</h3>
+
+              <p>
+                Incident types are compared to identify recurring categories and
+                understand which forms of exposure appear most frequently.
+              </p>
+            </div>
+
+            <div class="feature-tag">TYPE</div>
+          </div>
+
+          <div class="feature-row reveal">
+            <div class="feature-number">03</div>
+
+            <div class="feature-main">
+              <h3>Impact distribution</h3>
+
+              <p>
+                Affected-subject counts provide a scale of impact and help
+                distinguish isolated events from incidents affecting larger
+                populations.
+              </p>
+            </div>
+
+            <div class="feature-tag">IMPACT</div>
+          </div>
+
+          <div class="feature-row reveal">
+            <div class="feature-number">04</div>
+
+            <div class="feature-main">
+              <h3>Response behavior</h3>
+
+              <p>
+                Post-incident decisions show how organizations responded after
+                reported events and whether further action was recorded.
+              </p>
+            </div>
+
+            <div class="feature-tag">RESPONSE</div>
+          </div>
         </div>
 
-        <div class="feature-row">
-          <span class="feature-number">03</span>
+        <div class="story-highlight reveal">
+          <span class="highlight-mark"> CORE IDEA </span>
 
-          <div class="feature-content">
-            <strong>Affected Subject Distribution</strong>
-            <p>
-              Studies the density and skewness of the number of people affected
-              by individual incidents.
-            </p>
-          </div>
-
-          <span class="feature-tag">IMPACT</span>
-        </div>
-
-        <div class="feature-row">
-          <span class="feature-number">04</span>
-
-          <div class="feature-content">
-            <strong>Cyber vs Non-Cyber</strong>
-            <p>
-              Compares incident classifications to understand the relative
-              contribution of cyber incidents.
-            </p>
-          </div>
-
-          <span class="feature-tag">CATEGORY</span>
-        </div>
-
-        <div class="feature-row">
-          <span class="feature-number">05</span>
-
-          <div class="feature-content">
-            <strong>Year-wise Impact</strong>
-            <p>
-              Tracks how affected-subject distributions change across the
-              six-year period.
-            </p>
-          </div>
-
-          <span class="feature-tag">TIME</span>
-        </div>
-
-        <div class="feature-row">
-          <span class="feature-number">06</span>
-
-          <div class="feature-content">
-            <strong>Incident Type Ranking</strong>
-            <p>
-              Surfaces the five most frequently reported incident types across
-              the dataset.
-            </p>
-          </div>
-
-          <span class="feature-tag">THREATS</span>
+          <p>
+            Cybersecurity intelligence becomes more useful when frequency,
+            affected population, incident type, sector and response are viewed
+            together rather than as isolated statistics.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 04 — ANALYTICAL WORKFLOW -->
-
-    <section class="project-section" id="workflow">
-      <div class="section-header">
+    <!-- 04 — ARCHITECTURE -->
+    <section class="project-section" id="architecture">
+      <div class="section-header reveal">
         <div class="section-number">04</div>
 
         <div>
-          <span class="section-label">ANALYTICAL WORKFLOW</span>
+          <span class="section-label"> ANALYTICS ARCHITECTURE </span>
 
           <h2 class="section-title">
-            A pipeline built to
-            <em>expose the signal.</em>
+            From raw incident records to a cybersecurity intelligence dashboard.
           </h2>
         </div>
       </div>
 
-      <div class="pipeline">
-        <div class="pipeline-step">
-          <span class="pipeline-number">01</span>
+      <div class="architecture-flow reveal">
+        <div class="architecture-node">
+          <span class="architecture-index">01</span>
 
-          <div>
-            <strong>Collect</strong>
-            <p>
-              Load the 2019–2024 incident records into the analytical
-              environment.
-            </p>
-          </div>
+          <i class="fa-solid fa-database"></i>
+
+          <h3>Incident Data</h3>
+
+          <p>
+            Reported cybersecurity incident records enter the analytical
+            workflow.
+          </p>
         </div>
 
-        <div class="pipeline-step">
-          <span class="pipeline-number">02</span>
-
-          <div>
-            <strong>Prepare</strong>
-            <p>
-              Organize categorical, temporal and numerical variables for
-              analysis.
-            </p>
-          </div>
+        <div class="architecture-connector">
+          <span></span>
         </div>
 
-        <div class="pipeline-step">
-          <span class="pipeline-number">03</span>
+        <div class="architecture-node">
+          <span class="architecture-index">02</span>
 
-          <div>
-            <strong>Segment</strong>
-            <p>
-              Break incidents down by sector, category, year, quarter and
-              response action.
-            </p>
-          </div>
+          <i class="fa-solid fa-filter"></i>
+
+          <h3>Data Preparation</h3>
+
+          <p>
+            Records are cleaned, structured and prepared for multi-dimensional
+            analysis.
+          </p>
         </div>
 
-        <div class="pipeline-step">
-          <span class="pipeline-number">04</span>
-
-          <div>
-            <strong>Visualize</strong>
-            <p>
-              Use statistical distributions, rankings, comparisons and temporal
-              plots.
-            </p>
-          </div>
+        <div class="architecture-connector">
+          <span></span>
         </div>
 
-        <div class="pipeline-step">
-          <span class="pipeline-number">05</span>
+        <div class="architecture-node">
+          <span class="architecture-index">03</span>
 
-          <div>
-            <strong>Interpret</strong>
-            <p>
-              Convert visual patterns into actionable observations about
-              cyber-risk behavior.
-            </p>
-          </div>
+          <i class="fa-solid fa-chart-column"></i>
+
+          <h3>Pattern Analysis</h3>
+
+          <p>
+            Incidents are grouped across sectors, categories, time periods and
+            affected populations.
+          </p>
+        </div>
+
+        <div class="architecture-connector">
+          <span></span>
+        </div>
+
+        <div class="architecture-node">
+          <span class="architecture-index">04</span>
+
+          <i class="fa-solid fa-shield-halved"></i>
+
+          <h3>Cyber Insights</h3>
+
+          <p>
+            Analytical findings are transformed into visual evidence about
+            cybersecurity incident patterns.
+          </p>
         </div>
       </div>
 
-      <div class="architecture-flow">
-        <div class="architecture-node">
-          <span>RAW</span>
-          <strong>Incident Records</strong>
+      <div class="pipeline reveal">
+        <div class="pipeline-line"></div>
+
+        <div class="pipeline-step">
+          <span>INPUT</span>
+
+          <strong>INCIDENT DATA</strong>
         </div>
 
-        <div class="architecture-connector"></div>
+        <div class="pipeline-step">
+          <span>CLEAN</span>
 
-        <div class="architecture-node">
-          <span>EDA</span>
-          <strong>Data Analysis</strong>
+          <strong>RECORDS</strong>
         </div>
 
-        <div class="architecture-connector"></div>
+        <div class="pipeline-step">
+          <span>GROUP</span>
 
-        <div class="architecture-node">
-          <span>VISUAL</span>
-          <strong>Pattern Detection</strong>
+          <strong>PATTERNS</strong>
         </div>
 
-        <div class="architecture-connector"></div>
+        <div class="pipeline-step">
+          <span>COMPARE</span>
 
-        <div class="architecture-node">
-          <span>INSIGHT</span>
-          <strong>Cyber Risk Understanding</strong>
+          <strong>IMPACT</strong>
+        </div>
+
+        <div class="pipeline-step">
+          <span>INTERPRET</span>
+
+          <strong>INSIGHTS</strong>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 05 — VISUAL ANALYSIS -->
-
-    <section class="project-section" id="visuals">
-      <div class="section-header">
+    <!-- 05 — MODEL -->
+    <section class="project-section" id="model">
+      <div class="section-header reveal">
         <div class="section-number">05</div>
 
         <div>
-          <span class="section-label">VISUAL INTELLIGENCE</span>
+          <span class="section-label"> ANALYTICS MODEL </span>
 
           <h2 class="section-title">
-            Every chart answers
-            <em>a different question.</em>
+            Multiple analytical views. One incident intelligence framework.
           </h2>
         </div>
       </div>
 
-      <div class="evaluation-grid">
-        <div class="evaluation-copy">
-          <p class="story-lead">
-            A single aggregate number cannot explain cyber risk.
-          </p>
-
-          <p>
-            The project therefore combines several visualization perspectives so
-            that frequency, severity, time and response behavior can be studied
-            independently.
-          </p>
-
-          <p>
-            This makes it possible to distinguish between
-            <strong>how often</strong> incidents occur and
-            <strong>how much impact</strong> they create.
-          </p>
+      <div class="story-content">
+        <div class="story-lead reveal">
+          The project does not depend on a predictive model. Its intelligence
+          comes from combining multiple analytical perspectives.
         </div>
 
-        <div class="evaluation-metrics">
-          <div class="evaluation-item">
-            <span>01</span>
+        <div class="model-grid">
+          <article class="model-card reveal">
+            <div class="model-top">
+              <span>DESCRIPTIVE</span>
 
-            <div>
-              <strong>Distribution</strong>
-              <small>Density of affected subjects</small>
+              <i class="fa-solid fa-arrow-right"></i>
             </div>
-          </div>
 
-          <div class="evaluation-item">
-            <span>02</span>
+            <h3>Incident Distribution</h3>
 
-            <div>
-              <strong>Comparison</strong>
-              <small>Cyber vs non-cyber incidents</small>
+            <p>
+              Analyze incident frequency across sectors, categories and
+              cybersecurity classifications to establish the overall threat
+              landscape.
+            </p>
+
+            <div class="model-footer">
+              <span>01</span>
+
+              OBSERVE
             </div>
-          </div>
+          </article>
 
-          <div class="evaluation-item">
-            <span>03</span>
+          <article class="model-card reveal">
+            <div class="model-top">
+              <span>TEMPORAL</span>
 
-            <div>
-              <strong>Ranking</strong>
-              <small>Top incident categories</small>
+              <i class="fa-solid fa-arrow-right"></i>
             </div>
-          </div>
 
-          <div class="evaluation-item">
-            <span>04</span>
+            <h3>Time-Based Analysis</h3>
 
-            <div>
-              <strong>Temporal</strong>
-              <small>Year and quarter patterns</small>
+            <p>
+              Examine year-wise and quarterly patterns to identify changes in
+              incident activity and affected populations over time.
+            </p>
+
+            <div class="model-footer">
+              <span>02</span>
+
+              TRACK
             </div>
-          </div>
+          </article>
 
-          <div class="evaluation-item">
-            <span>05</span>
+          <article class="model-card reveal">
+            <div class="model-top">
+              <span>RELATIONAL</span>
 
-            <div>
-              <strong>Cross-sectional</strong>
-              <small>Incident category by sector</small>
+              <i class="fa-solid fa-arrow-right"></i>
             </div>
-          </div>
+
+            <h3>Sector × Incident Analysis</h3>
+
+            <p>
+              Compare incident categories against sectors to identify recurring
+              combinations and areas of concentrated cybersecurity exposure.
+            </p>
+
+            <div class="model-footer">
+              <span>03</span>
+
+              CONNECT
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 06 — KEY FINDINGS -->
-
-    <section class="project-section" id="insights">
-      <div class="section-header">
+    <!-- 06 — DECISION -->
+    <section class="project-section" id="decision">
+      <div class="section-header reveal">
         <div class="section-number">06</div>
 
         <div>
-          <span class="section-label">WHAT THE DATA REVEALED</span>
+          <span class="section-label"> DECISION LAYER </span>
 
           <h2 class="section-title">
-            Patterns hidden inside
-            <em>the incident logs.</em>
-          </h2>
-        </div>
-      </div>
-
-      <div class="experiment-track">
-        <article class="experiment">
-          <div class="experiment-marker">01</div>
-
-          <div class="experiment-content">
-            <span>SECTOR</span>
-
-            <h3>Healthcare, Finance & Government</h3>
-
-            <p>
-              These sectors repeatedly appear among the most frequently targeted
-              areas in the analyzed records.
-            </p>
-          </div>
-        </article>
-
-        <article class="experiment">
-          <div class="experiment-marker">02</div>
-
-          <div class="experiment-content">
-            <span>RESPONSE</span>
-
-            <h3>No Further Action Appears Frequently</h3>
-
-            <p>
-              A significant portion of incidents are associated with no further
-              action, providing a useful dimension for examining post-incident
-              response behavior.
-            </p>
-          </div>
-        </article>
-
-        <article class="experiment">
-          <div class="experiment-marker">03</div>
-
-          <div class="experiment-content">
-            <span>THREAT TYPE</span>
-
-            <h3>Phishing & Unauthorized Access</h3>
-
-            <p>
-              Phishing and unauthorized access are among the recurring incident
-              categories within the dataset, alongside misdelivery.
-            </p>
-          </div>
-        </article>
-
-        <article class="experiment">
-          <div class="experiment-marker">04</div>
-
-          <div class="experiment-content">
-            <span>IMPACT</span>
-
-            <h3>Affected Subjects Are Highly Uneven</h3>
-
-            <p>
-              The distribution of affected individuals is skewed, meaning a
-              relatively small number of incidents can account for substantially
-              larger impact.
-            </p>
-          </div>
-        </article>
-
-        <article class="experiment">
-          <div class="experiment-marker">05</div>
-
-          <div class="experiment-content">
-            <span>TIME</span>
-
-            <h3>Impact Changes Across Periods</h3>
-
-            <p>
-              Quarterly and yearly analysis reveals fluctuations in average
-              affected subjects, highlighting periods of unusually high or low
-              reported impact.
-            </p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- SECTION 07 — SECTOR × INCIDENT -->
-
-    <section class="project-section">
-      <div class="section-header">
-        <div class="section-number">07</div>
-
-        <div>
-          <span class="section-label">CROSS-ANALYSIS</span>
-
-          <h2 class="section-title">
-            Where sector meets
-            <em>threat.</em>
+            Incident statistics become useful when their context is visible.
           </h2>
         </div>
       </div>
 
       <div class="decision-layout">
-        <div class="decision-card">
-          <span class="decision-label">QUESTION</span>
+        <div class="decision-card reveal">
+          <span class="decision-kicker"> SYSTEM OUTPUT </span>
 
-          <h3>Are all sectors exposed to the same kinds of incidents?</h3>
+          <div class="decision-symbol">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+
+          <h3>Cybersecurity Intelligence</h3>
 
           <p>
-            Sector-level aggregation alone can hide the nature of the threats.
-            Cross-analysis reveals how incident categories are distributed
-            within individual sectors.
+            The dashboard combines incident frequency, affected subjects, sector
+            distribution, incident categories and response patterns into a
+            consolidated analytical view.
           </p>
         </div>
 
-        <div class="decision-notes">
+        <div class="decision-notes reveal">
           <div class="decision-note">
             <span>01</span>
 
             <div>
-              <strong>Sector Frequency</strong>
+              <strong>Where?</strong>
+
               <p>
-                Identify sectors with the highest concentration of reported
-                incidents.
+                Which sectors account for the largest concentrations of reported
+                cybersecurity incidents?
               </p>
             </div>
           </div>
@@ -837,8 +624,12 @@
             <span>02</span>
 
             <div>
-              <strong>Threat Composition</strong>
-              <p>Compare incident categories inside each sector.</p>
+              <strong>What?</strong>
+
+              <p>
+                Which incident categories appear most frequently across the
+                available records?
+              </p>
             </div>
           </div>
 
@@ -846,10 +637,11 @@
             <span>03</span>
 
             <div>
-              <strong>Risk Context</strong>
+              <strong>Impact?</strong>
+
               <p>
-                Use sector-specific patterns to understand where security
-                controls may need different priorities.
+                How does the number of affected subjects change across years,
+                quarters and incident categories?
               </p>
             </div>
           </div>
@@ -857,504 +649,629 @@
       </div>
     </section>
 
-    <!-- SECTION 08 — INCIDENT TYPES -->
-
-    <section class="project-section">
-      <div class="section-header">
-        <div class="section-number">08</div>
+    <!-- 07 — ERROR ANALYSIS -->
+    <section class="project-section" id="errors">
+      <div class="section-header reveal">
+        <div class="section-number">07</div>
 
         <div>
-          <span class="section-label">THREAT LANDSCAPE</span>
+          <span class="section-label"> DATA ANALYSIS </span>
 
           <h2 class="section-title">
-            The attacks don't
-            <em>look the same.</em>
+            Where cybersecurity interpretation becomes difficult.
           </h2>
         </div>
       </div>
 
-      <div class="error-grid">
-        <article class="error-card">
-          <span>01</span>
+      <div class="story-content">
+        <div class="story-lead reveal">
+          Incident datasets describe reported events, but reporting data does
+          not automatically represent the complete cybersecurity threat
+          landscape.
+        </div>
 
-          <h3>Phishing</h3>
+        <div class="error-grid">
+          <article class="error-card reveal">
+            <span class="error-number">01</span>
 
-          <p>
-            Social-engineering-driven incidents remain one of the recurring
-            categories visible in the dataset.
-          </p>
-        </article>
+            <div class="error-icon">
+              <i class="fa-solid fa-database"></i>
+            </div>
 
-        <article class="error-card">
-          <span>02</span>
+            <h3>Reporting Bias</h3>
 
-          <h3>Unauthorized Access</h3>
+            <p>
+              The dataset represents reported incidents, meaning unreported or
+              undiscovered events may not appear in the analysis.
+            </p>
+          </article>
 
-          <p>
-            Incidents involving access without authorization form another
-            prominent part of the reported threat landscape.
-          </p>
-        </article>
+          <article class="error-card reveal">
+            <span class="error-number">02</span>
 
-        <article class="error-card">
-          <span>03</span>
+            <div class="error-icon">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
 
-          <h3>Misdelivery</h3>
+            <h3>Changing Patterns</h3>
 
-          <p>
-            Accidental or incorrect delivery of information appears alongside
-            explicitly malicious cyber incidents.
-          </p>
-        </article>
+            <p>
+              Cybersecurity threats evolve over time, so historical incident
+              distributions may not represent future attack patterns.
+            </p>
+          </article>
 
-        <article class="error-card">
-          <span>04</span>
+          <article class="error-card reveal">
+            <span class="error-number">03</span>
 
-          <h3>Other Categories</h3>
+            <div class="error-icon">
+              <i class="fa-solid fa-scale-balanced"></i>
+            </div>
 
-          <p>
-            The remaining incident types demonstrate that cyber-risk analysis
-            extends beyond a single attack vector.
-          </p>
-        </article>
+            <h3>Frequency vs Impact</h3>
+
+            <p>
+              A frequent incident type is not necessarily the one with the
+              greatest effect on affected populations or organizations.
+            </p>
+          </article>
+        </div>
       </div>
     </section>
 
-    <!-- SECTION 09 — IMPACT -->
+    <!-- 08 — EVALUATION -->
+    <section class="project-section" id="evaluation">
+      <div class="section-header reveal">
+        <div class="section-number">08</div>
 
-    <section class="project-section">
-      <div class="section-header">
+        <div>
+          <span class="section-label"> EVALUATION </span>
+
+          <h2 class="section-title">
+            Measuring the threat landscape from multiple perspectives.
+          </h2>
+        </div>
+      </div>
+
+      <div class="evaluation-grid">
+        <div class="evaluation-copy reveal">
+          <span class="section-label"> ANALYTICAL LOGIC </span>
+
+          <h3>A cybersecurity dashboard needs more than one number.</h3>
+
+          <p>
+            The project evaluates the incident landscape through multiple
+            dimensions so that frequency, affected populations, sectors,
+            incident types and responses can be interpreted together.
+          </p>
+        </div>
+
+        <div class="evaluation-metrics">
+          <div class="evaluation-item reveal">
+            <span>01</span>
+
+            <strong>INCIDENT FREQUENCY</strong>
+
+            <p>
+              Measures how often different incident categories and sectors
+              appear across the dataset.
+            </p>
+          </div>
+
+          <div class="evaluation-item reveal">
+            <span>02</span>
+
+            <strong>AFFECTED SUBJECTS</strong>
+
+            <p>
+              Examines the scale of populations affected by reported incidents.
+            </p>
+          </div>
+
+          <div class="evaluation-item reveal">
+            <span>03</span>
+
+            <strong>SECTOR DISTRIBUTION</strong>
+
+            <p>
+              Identifies sectors with higher concentrations of reported
+              cybersecurity events.
+            </p>
+          </div>
+
+          <div class="evaluation-item reveal">
+            <span>04</span>
+
+            <strong>TEMPORAL PATTERNS</strong>
+
+            <p>
+              Tracks changes in incidents and affected subjects across years and
+              quarters.
+            </p>
+          </div>
+
+          <div class="evaluation-item reveal">
+            <span>05</span>
+
+            <strong>RESPONSE PATTERNS</strong>
+
+            <p>
+              Examines documented decisions and actions following reported
+              incidents.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 — EXPERIMENTS -->
+    <section class="project-section" id="experiments">
+      <div class="section-header reveal">
         <div class="section-number">09</div>
 
         <div>
-          <span class="section-label">IMPACT ANALYSIS</span>
+          <span class="section-label"> ANALYTICAL EXPLORATION </span>
 
           <h2 class="section-title">
-            Frequency tells one story.
-            <em>Impact tells another.</em>
+            Building the intelligence layer through comparison.
+          </h2>
+        </div>
+      </div>
+
+      <div class="experiment-track">
+        <div class="experiment reveal">
+          <div class="experiment-marker">01</div>
+
+          <div class="experiment-content">
+            <span>LANDSCAPE</span>
+
+            <h3>Establish the incident baseline.</h3>
+
+            <p>
+              Begin with the overall distribution of reported incidents across
+              the available cybersecurity and non-cybersecurity categories.
+            </p>
+          </div>
+        </div>
+
+        <div class="experiment reveal">
+          <div class="experiment-marker">02</div>
+
+          <div class="experiment-content">
+            <span>SECTORS</span>
+
+            <h3>Identify concentrated exposure.</h3>
+
+            <p>
+              Compare sectors to understand where incident activity is
+              concentrated and which industries appear repeatedly in the data.
+            </p>
+          </div>
+        </div>
+
+        <div class="experiment reveal">
+          <div class="experiment-marker">03</div>
+
+          <div class="experiment-content">
+            <span>IMPACT</span>
+
+            <h3>Separate frequency from scale.</h3>
+
+            <p>
+              Analyze affected-subject distributions to understand which
+              incidents had broader reported population impact.
+            </p>
+          </div>
+        </div>
+
+        <div class="experiment reveal">
+          <div class="experiment-marker">04</div>
+
+          <div class="experiment-content">
+            <span>TIME</span>
+
+            <h3>Track how the landscape changes.</h3>
+
+            <p>
+              Compare annual and quarterly patterns to identify changes and
+              recurring fluctuations across the observation period.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 — ENGINEERING -->
+    <section class="project-section" id="engineering">
+      <div class="section-header reveal">
+        <div class="section-number">10</div>
+
+        <div>
+          <span class="section-label"> ENGINEERING </span>
+
+          <h2 class="section-title">
+            Turning raw cybersecurity records into an analytical workflow.
           </h2>
         </div>
       </div>
 
       <div class="engineering-grid">
-        <article class="engineering-card">
-          <span class="engineering-index">01</span>
+        <article class="engineering-card reveal">
+          <span>01</span>
 
-          <h3>Incident Count</h3>
+          <i class="fa-solid fa-table"></i>
+
+          <h3>Data Preparation</h3>
 
           <p>
-            Measures how frequently incidents are reported across sectors and
-            categories.
+            Python, Pandas and NumPy are used to prepare incident records for
+            structured exploration and analysis.
           </p>
-
-          <strong>HOW OFTEN?</strong>
         </article>
 
-        <article class="engineering-card">
-          <span class="engineering-index">02</span>
+        <article class="engineering-card reveal">
+          <span>02</span>
 
-          <h3>Affected Subjects</h3>
+          <i class="fa-solid fa-chart-column"></i>
+
+          <h3>Analytical Visualization</h3>
 
           <p>
-            Measures the scale of individuals affected by individual incidents.
+            Visual analysis makes sector concentration, incident categories,
+            affected subjects and temporal patterns easier to interpret.
           </p>
-
-          <strong>HOW MUCH?</strong>
         </article>
 
-        <article class="engineering-card">
-          <span class="engineering-index">03</span>
+        <article class="engineering-card reveal">
+          <span>03</span>
 
-          <h3>Average Impact</h3>
+          <i class="fa-solid fa-code"></i>
 
-          <p>
-            Quarterly averages expose periods where incident impact increases or
-            decreases substantially.
-          </p>
-
-          <strong>WHEN?</strong>
-        </article>
-
-        <article class="engineering-card">
-          <span class="engineering-index">04</span>
-
-          <h3>Distribution Shape</h3>
+          <h3>Reproducible Workflow</h3>
 
           <p>
-            Density and violin plots reveal whether impact is concentrated
-            around typical values or dominated by extreme incidents.
+            The analysis is implemented as a structured Python workflow so
+            transformations and visual outputs can be reproduced consistently.
           </p>
-
-          <strong>HOW UNEVEN?</strong>
         </article>
       </div>
     </section>
 
-    <!-- SECTION 10 — TEMPORAL ANALYSIS -->
-
-    <section class="project-section">
-      <div class="section-header">
-        <div class="section-number">10</div>
+    <!-- 11 — APPLICATION -->
+    <section class="project-section" id="application">
+      <div class="section-header reveal">
+        <div class="section-number">11</div>
 
         <div>
-          <span class="section-label">TIME SERIES VIEW</span>
+          <span class="section-label"> APPLICATION </span>
 
           <h2 class="section-title">
-            Six years.
-            <em>Different threat periods.</em>
+            From incident records to a cybersecurity investigation workflow.
           </h2>
         </div>
       </div>
 
       <div class="application-flow">
-        <div class="application-stage">
-          <span>YEAR</span>
+        <div class="application-stage reveal">
+          <span>01</span>
 
-          <strong>2019</strong>
+          <div class="application-icon">
+            <i class="fa-solid fa-database"></i>
+          </div>
 
-          <p>Establishes the beginning of the analyzed period.</p>
-        </div>
-
-        <div class="application-arrow">→</div>
-
-        <div class="application-stage">
-          <span>YEAR</span>
-
-          <strong>2020–2022</strong>
+          <h3>Collect</h3>
 
           <p>
-            Enables comparison of changing incident and affected-subject
-            patterns.
+            Begin with reported cybersecurity incident records spanning the
+            available observation period.
           </p>
         </div>
 
-        <div class="application-arrow">→</div>
+        <div class="application-arrow reveal">
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
 
-        <div class="application-stage">
-          <span>YEAR</span>
+        <div class="application-stage reveal">
+          <span>02</span>
 
-          <strong>2023</strong>
+          <div class="application-icon">
+            <i class="fa-solid fa-magnifying-glass-chart"></i>
+          </div>
+
+          <h3>Analyze</h3>
 
           <p>
-            Continues the longitudinal comparison of reported cyber activity.
+            Compare sectors, incident types, affected subjects, responses and
+            temporal distributions.
           </p>
         </div>
 
-        <div class="application-arrow">→</div>
-
-        <div class="application-stage">
-          <span>YEAR</span>
-
-          <strong>2024</strong>
-
-          <p>Provides the latest period represented in the dataset.</p>
+        <div class="application-arrow reveal">
+          <i class="fa-solid fa-arrow-right"></i>
         </div>
-      </div>
 
-      <div class="story-highlight">
-        <span class="highlight-mark">TIME</span>
+        <div class="application-stage reveal">
+          <span>03</span>
 
-        <div>
-          <strong>
-            Quarterly analysis adds another layer of resolution.
-          </strong>
+          <div class="application-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+
+          <h3>Interpret</h3>
 
           <p>
-            Rather than relying only on annual totals, quarterly average
-            affected-subject counts help reveal short-term fluctuations and
-            unusually high-impact periods.
+            Convert observed patterns into evidence about cybersecurity
+            exposure, impact and incident behavior.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 11 — LIMITATIONS -->
-
+    <!-- 12 — LIMITATIONS -->
     <section class="project-section" id="limitations">
-      <div class="section-header">
-        <div class="section-number">11</div>
+      <div class="section-header reveal">
+        <div class="section-number">12</div>
 
         <div>
-          <span class="section-label">BOUNDARIES</span>
+          <span class="section-label"> LIMITATIONS </span>
 
           <h2 class="section-title">
-            What the dataset
-            <em>cannot tell us.</em>
+            Knowing what incident data cannot tell us.
           </h2>
         </div>
       </div>
 
       <div class="limitations-grid">
-        <article class="limitation-card">
+        <article class="limitation-card reveal">
           <span>01</span>
 
-          <h3>Reported Incidents</h3>
+          <h3>Reported Events</h3>
 
           <p>
-            The analysis reflects reported records and therefore cannot
-            automatically represent every cyber incident that occurred.
+            The analysis reflects reported incidents and cannot represent
+            cybersecurity events that were never reported or discovered.
           </p>
         </article>
 
-        <article class="limitation-card">
+        <article class="limitation-card reveal">
           <span>02</span>
 
-          <h3>No Causal Claims</h3>
+          <h3>Historical Scope</h3>
 
           <p>
-            Observed trends describe associations in the dataset; they do not
-            establish why a particular pattern occurred.
+            The analysis covers the available historical period and should not
+            be treated as a complete representation of current or future
+            threats.
           </p>
         </article>
 
-        <article class="limitation-card">
+        <article class="limitation-card reveal">
           <span>03</span>
 
-          <h3>Historical View</h3>
+          <h3>Classification</h3>
 
           <p>
-            The current project analyzes historical data rather than providing
-            real-time threat intelligence.
+            Incident categories depend on the underlying dataset definitions,
+            which may not capture every technical distinction between events.
           </p>
         </article>
 
-        <article class="limitation-card">
+        <article class="limitation-card reveal">
           <span>04</span>
 
-          <h3>Descriptive Analysis</h3>
+          <h3>Correlation</h3>
 
           <p>
-            The current implementation focuses on exploratory and statistical
-            analysis rather than predictive cybersecurity modeling.
+            Observed relationships between sectors, incident types and impact do
+            not by themselves establish causal relationships.
           </p>
         </article>
       </div>
+
+      <div class="story-highlight reveal">
+        <span class="highlight-mark"> IMPORTANT </span>
+
+        <p>
+          The dashboard describes patterns within the available incident data.
+          It should be interpreted as an analytical view of reported events, not
+          as a complete measurement of global cybersecurity risk.
+        </p>
+      </div>
     </section>
 
-    <!-- SECTION 12 — FUTURE -->
-
+    <!-- 13 — NEXT ITERATION -->
     <section class="project-section" id="future">
-      <div class="section-header">
-        <div class="section-number">12</div>
+      <div class="section-header reveal">
+        <div class="section-number">13</div>
 
         <div>
-          <span class="section-label">NEXT ITERATION</span>
+          <span class="section-label"> NEXT ITERATION </span>
 
           <h2 class="section-title">
-            From historical analysis
-            <em>to cyber intelligence.</em>
+            What happens when historical incident analysis becomes predictive?
           </h2>
         </div>
       </div>
 
       <div class="roadmap">
-        <div class="roadmap-item">
-          <span class="roadmap-number">01</span>
+        <div class="roadmap-item reveal">
+          <div class="roadmap-index">01</div>
 
           <div>
-            <h3>Real-Time Data Integration</h3>
+            <span>REAL-TIME DATA</span>
+
+            <h3>Move from historical to continuous monitoring.</h3>
 
             <p>
-              Connect live incident feeds and security datasets to transform the
-              analysis into a continuously updated monitoring system.
+              Integrate continuously updated cybersecurity incident sources to
+              monitor changes in the threat landscape more frequently.
             </p>
           </div>
         </div>
 
-        <div class="roadmap-item">
-          <span class="roadmap-number">02</span>
+        <div class="roadmap-item reveal">
+          <div class="roadmap-index">02</div>
 
           <div>
-            <h3>Predictive Risk Modeling</h3>
+            <span>PREDICTION</span>
+
+            <h3>Forecast emerging incident patterns.</h3>
 
             <p>
-              Apply machine learning to forecast high-risk periods, sectors or
-              incident categories.
+              Apply machine learning and time-series techniques to investigate
+              whether historical patterns can support future incident trend
+              forecasting.
             </p>
           </div>
         </div>
 
-        <div class="roadmap-item">
-          <span class="roadmap-number">03</span>
+        <div class="roadmap-item reveal">
+          <div class="roadmap-index">03</div>
 
           <div>
-            <h3>Geographical Intelligence</h3>
+            <span>GEOLOCATION</span>
+
+            <h3>Add geographic intelligence.</h3>
 
             <p>
-              Extend the dataset with geographic dimensions to identify regional
-              differences in cyber incidents.
+              Incorporate geographic information to identify regional
+              concentrations and visualize the spatial distribution of reported
+              incidents.
             </p>
           </div>
         </div>
 
-        <div class="roadmap-item">
-          <span class="roadmap-number">04</span>
+        <div class="roadmap-item reveal">
+          <div class="roadmap-index">04</div>
 
           <div>
-            <h3>Automated Threat Monitoring</h3>
+            <span>INTELLIGENCE</span>
+
+            <h3>Connect patterns to risk signals.</h3>
 
             <p>
-              Combine statistical trends with automated alerts for unusual
-              spikes in incident volume or impact.
+              Combine incident characteristics, sector behavior and temporal
+              patterns to develop a richer cybersecurity intelligence layer.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 13 — TAKEAWAYS -->
-
+    <!-- FINAL TAKEAWAY -->
     <section class="project-section final-section" id="takeaways">
-      <div class="section-header">
-        <div class="section-number">13</div>
+      <div class="takeaways-content reveal">
+        <span class="section-label"> FINAL SIGNAL </span>
 
-        <div>
-          <span class="section-label">TAKEAWAYS</span>
+        <h2>
+          The project started with cyber incident records. It became an exercise
+          in understanding how digital risk leaves patterns behind.
+        </h2>
 
-          <h2 class="section-title">
-            What this analysis
-            <em>actually uncovered.</em>
-          </h2>
-        </div>
+        <p>
+          The central lesson is simple: cybersecurity data becomes more useful
+          when incident frequency, affected populations, sectors, categories,
+          responses and time are analyzed together rather than viewed as
+          isolated records.
+        </p>
       </div>
 
-      <div class="takeaways-content">
-        <p class="story-lead">
-          Cybersecurity data becomes useful when frequency, impact, time and
-          context are analyzed together.
-        </p>
+      <div class="takeaway-grid">
+        <div class="takeaway-card reveal">
+          <span>01</span>
 
-        <div class="takeaway-grid">
-          <article class="takeaway-card">
-            <span>01</span>
+          <strong>OBSERVE</strong>
 
-            <strong> Sector concentration matters. </strong>
+          <p>Understand the incident landscape before drawing conclusions.</p>
+        </div>
 
-            <p>
-              Healthcare, finance and government repeatedly emerge as important
-              areas of incident activity.
-            </p>
-          </article>
+        <div class="takeaway-card reveal">
+          <span>02</span>
 
-          <article class="takeaway-card">
-            <span>02</span>
+          <strong>CONNECT</strong>
 
-            <strong> Common threats remain visible. </strong>
+          <p>
+            Relate incidents to sectors, categories and affected populations.
+          </p>
+        </div>
 
-            <p>
-              Phishing, unauthorized access and misdelivery appear prominently
-              across the analyzed records.
-            </p>
-          </article>
+        <div class="takeaway-card reveal">
+          <span>03</span>
 
-          <article class="takeaway-card">
-            <span>03</span>
+          <strong>MEASURE</strong>
 
-            <strong> Impact is not evenly distributed. </strong>
+          <p>
+            Compare frequency, impact and temporal behavior across the data.
+          </p>
+        </div>
 
-            <p>
-              Incident frequency and affected-subject count measure different
-              dimensions of cyber risk.
-            </p>
-          </article>
+        <div class="takeaway-card reveal">
+          <span>04</span>
 
-          <article class="takeaway-card">
-            <span>04</span>
+          <strong>ITERATE</strong>
 
-            <strong> Time changes the picture. </strong>
-
-            <p>
-              Yearly and quarterly analysis reveals fluctuations that disappear
-              inside aggregate totals.
-            </p>
-          </article>
-
-          <article class="takeaway-card">
-            <span>05</span>
-
-            <strong> Response behavior is another signal. </strong>
-
-            <p>
-              Post-incident decisions provide an additional perspective beyond
-              the incident itself.
-            </p>
-          </article>
-
-          <article class="takeaway-card">
-            <span>06</span>
-
-            <strong> Visualization turns records into intelligence. </strong>
-
-            <p>
-              Combining distributions, rankings, comparisons and temporal
-              analysis makes complex incident data easier to interpret.
-            </p>
-          </article>
+          <p>
+            Extend historical analysis toward real-time and predictive
+            intelligence.
+          </p>
         </div>
       </div>
     </section>
 
     <!-- PROJECT RESOURCES -->
-
     <section class="project-resources reveal">
       <div class="resources-heading">
-        <span>PROJECT RESOURCES</span>
+        <span class="section-label"> PROJECT RESOURCES </span>
 
-        <h2>
-          Explore the
-          <em>analysis.</em>
-        </h2>
+        <h2>Explore the analysis.</h2>
+
+        <p>Dataset and implementation.</p>
       </div>
 
       <div class="project-links">
         <a
-          href="#"
+          class="project-link"
+          href="https://huggingface.co/datasets/Sashank-810/crisisnet-dataset"
           target="_blank"
           rel="noopener noreferrer"
-          class="project-link"
         >
-          <span class="project-link-index">01</span>
+          <span class="project-link-index"> 01 </span>
 
-          <div class="project-link-content">
-            <span>DATASET</span>
+          <span class="project-link-content">
+            <small>DATASET</small>
 
-            <strong>
-              View Dataset
-              <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </strong>
-          </div>
+            <strong> CrisisNet Dataset </strong>
+          </span>
+
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
         </a>
 
         <a
+          class="project-link"
           href="https://github.com/ArshiBansal/Cyber_Crime_Analysis"
           target="_blank"
           rel="noopener noreferrer"
-          class="project-link"
         >
-          <span class="project-link-index">02</span>
+          <span class="project-link-index"> 02 </span>
 
-          <div class="project-link-content">
-            <span>SOURCE CODE</span>
+          <span class="project-link-content">
+            <small>SOURCE CODE</small>
 
-            <strong>
-              View on GitHub
-              <i class="fa-brands fa-github"></i>
-            </strong>
-          </div>
+            <strong> GitHub Repository </strong>
+          </span>
+
+          <i class="fa-brands fa-github"></i>
         </a>
       </div>
     </section>
 
     <!-- FOOTER -->
-
     <footer class="footer-interesting reveal">
-      <p class="footer-text">
-        Turning incident records into patterns worth investigating.
-      </p>
+      <div class="footer-text">Built to turn incidents into intelligence.</div>
 
-      <p class="footer-meta">
-        © <span id="year"></span> Arshi Bansal · Cyber Crime Analysis
-      </p>
+      <div class="footer-meta">
+        Cyber Crime Analysis · <span id="year"></span>
+      </div>
     </footer>
 
     <script src="projectscript.js"></script>
