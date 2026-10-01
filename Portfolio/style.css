@@ -32,17 +32,24 @@ body {
 }
 
 /* HERO SECTION */
+
 .hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
   position: relative;
-  padding-top: 60px;
+
+  /* FIX: creates enough breathing room below the floating top card */
+  padding-top: 125px;
+  padding-bottom: 65px;
 }
 
 .hero-row {
   padding-left: clamp(30px, 6vw, 100px);
   padding-right: clamp(30px, 6vw, 100px);
+
+  /* FIX: slight vertical separation from CEO/live card */
+  padding-top: 25px;
 }
 
 /* SOCIAL BAR & CODING BAR */
@@ -162,6 +169,7 @@ body {
 }
 
 /* HERO TEXT */
+
 .intro {
   position: relative;
   font-size: 20px;
@@ -326,6 +334,7 @@ body {
 }
 
 /* ABOUT SECTION */
+
 .about-section {
   padding: 160px 0;
   position: relative;
@@ -446,9 +455,8 @@ body {
   left: 100%;
 }
 
-/* ===============================
-   SKILLS & EDUCATION SECTION
-================================= */
+/* SKILLS & EDUCATION SECTION */
+
 .capabilities-section {
   padding: 120px 0 140px;
   position: relative;
@@ -704,9 +712,8 @@ body {
   }
 }
 
-/* ===============================
-   PROJECTS SECTION
-================================= */
+/* PROJECTS SECTION */
+
 .projects-section {
   position: relative;
   padding: 130px 0 20px;
@@ -872,61 +879,74 @@ body {
 }
 
 /* PROJECT ACTIONS */
+
 .project-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 12px;
+  flex-wrap: nowrap;
 }
 
-/* REPOSITORY BUTTON */
-.repo-btn {
+/* BOTH PROJECT BUTTONS USE THE SAME PILL STYLE */
+.repo-btn,
+.project-page-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 12px 22px;
+
+  height: 48px;
+  padding: 0 22px;
+
   border-radius: 50px;
   border: 1.5px solid #111827;
+
   background: transparent;
   color: #111827;
+
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.8px;
+
   text-decoration: none;
-  width: fit-content;
-  transition: all 0.3s ease;
+  white-space: nowrap;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-.repo-btn:hover {
+/* GITHUB + PROJECT BUTTON HOVER */
+.repo-btn:hover,
+.project-page-btn:hover {
   background: #111827;
-  color: #fff;
-  transform: translateY(-2px);
+  color: #ffffff;
+  transform: translateY(-3px);
   box-shadow: 0 10px 25px rgba(17, 24, 39, 0.2);
 }
 
-.repo-btn i {
-  font-size: 16px;
-}
-
-/* PROJECT CASE STUDY ICON */
-.project-page-btn {
-  width: 46px;
-  height: 46px;
-  padding: 0;
-  flex: 0 0 46px;
-  border-radius: 50%;
-}
-
+/* ICONS */
+.repo-btn i,
 .project-page-btn i {
   font-size: 16px;
+  flex-shrink: 0;
 }
 
-.project-page-btn:hover {
-  transform: translateY(-3px) rotate(3deg);
+/*
+   IMPORTANT:
+   Do NOT make project-page-btn circular.
+   It intentionally uses the same pill structure as GitHub.
+*/
+.project-page-btn {
+  width: auto;
+  min-width: 150px;
+  flex: 0 0 auto;
 }
 
 /* PROJECT RIGHT */
+
 .project-right {
   display: flex;
   flex-direction: column;
@@ -991,6 +1011,7 @@ body {
 }
 
 /* PROJECTS RESPONSIVE */
+
 @media (max-width: 900px) {
   .project-card {
     grid-template-columns: 1fr;
@@ -1037,21 +1058,33 @@ body {
 @media (max-width: 600px) {
   .project-actions {
     width: 100%;
+    gap: 10px;
   }
 
-  .project-actions .repo-btn {
-    flex: 1;
-    justify-content: center;
-  }
-
+  .project-actions .repo-btn,
   .project-actions .project-page-btn {
-    flex: 0 0 46px;
+    flex: 1;
+    min-width: 0;
+    justify-content: center;
+    padding: 0 14px;
   }
 }
 
-/* ===============================
-   AWARDS SECTION
-================================= */
+@media (max-width: 400px) {
+  .project-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .project-actions .repo-btn,
+  .project-actions .project-page-btn {
+    width: 100%;
+    flex: none;
+  }
+}
+
+/* AWARDS SECTION */
+
 .awards-section {
   padding: 140px 0;
   position: relative;
@@ -1212,9 +1245,8 @@ body {
   }
 }
 
-/* ===============================
-   CERTIFICATES SECTION
-================================= */
+/* CERTIFICATES SECTION */
+
 .certificates-section {
   position: relative;
   padding: 120px 0 100px;
@@ -1628,9 +1660,8 @@ body {
   }
 }
 
-/* ===============================
-   CONTACT SECTION
-================================= */
+/* CONTACT SECTION */
+
 .contact-section {
   padding: 140px 0 120px;
 }
@@ -1939,9 +1970,8 @@ body {
   }
 }
 
-/* ===============================
-   RIGHT SIDE NAVBAR
-================================= */
+/* RIGHT SIDE NAVBAR */
+
 .right-navbar {
   position: fixed;
   right: 25px;
@@ -2104,9 +2134,8 @@ body {
   }
 }
 
-/* ===============================
-   CURSOR SYSTEM
-================================= */
+/* CURSOR SYSTEM */
+
 .cursor-dot {
   position: fixed;
   width: 8px;
@@ -2170,9 +2199,8 @@ body {
   border-color: rgba(0, 0, 0, 0.8);
 }
 
-/* ===============================
-   CEO FLOATING LINE
-================================= */
+/* CEO FLOATING LINE */
+
 .ceo-line {
   position: absolute;
   top: 20px;
@@ -2327,6 +2355,9 @@ body {
     0 2px 6px rgba(0, 0, 0, 0.2);
   color: #000;
   transition: all 0.25s ease;
+
+  /* FIX: prevent the floating card from becoming too wide */
+  max-width: 390px;
 }
 
 .live-card:hover {
@@ -2339,6 +2370,7 @@ body {
 .eyes {
   display: flex;
   gap: 6px;
+  flex-shrink: 0;
 }
 
 .eye {
@@ -2374,28 +2406,33 @@ body {
   display: flex;
   flex-direction: column;
   line-height: 1.2;
+  min-width: 0;
 }
 
 .live-top {
   display: flex;
   gap: 10px;
   align-items: center;
+  flex-wrap: nowrap;
 }
 
 .name {
   font-weight: 700;
   font-size: 14px;
+  white-space: nowrap;
 }
 
 .time {
   font-size: 13px;
   color: #444;
+  white-space: nowrap;
 }
 
 .status {
   font-size: 12px;
   color: #777;
   margin-top: 2px;
+  white-space: nowrap;
 }
 
 @keyframes jitter {
@@ -2426,9 +2463,8 @@ body {
   animation: jitter 0.2s infinite;
 }
 
-/* ===============================
-   TRAINING SECTION
-================================= */
+/* TRAINING SECTION */
+
 .training-section {
   padding: 140px 0;
   position: relative;
@@ -2606,9 +2642,8 @@ body {
   background: #000;
 }
 
-/* ===============================
-   FOOTER
-================================= */
+/* FOOTER */
+
 .footer-interesting {
   padding: 40px 20px;
   text-align: center;
@@ -2665,9 +2700,8 @@ body {
   color: #9a9a9a;
 }
 
-/* ===============================
-   DOWNLOAD BUTTON
-================================= */
+/* DOWNLOAD BUTTON */
+
 .download-btn {
   position: relative;
   overflow: hidden;
@@ -2696,9 +2730,8 @@ body {
   transform: translateY(2px);
 }
 
-/* ===============================
-   GLOBAL RESPONSIVE
-================================= */
+/* GLOBAL RESPONSIVE */
+
 @media (max-width: 1024px) {
   .right-navbar {
     right: 15px;
@@ -2712,6 +2745,11 @@ body {
 
   .nav-item::before {
     right: 50px;
+  }
+
+  /* Slightly reduce hero spacing on smaller laptops */
+  .hero {
+    padding-top: 110px;
   }
 }
 
@@ -2729,6 +2767,11 @@ body {
     grid-template-columns: 1fr;
     gap: 50px;
   }
+
+  /* Keep project actions visually aligned */
+  .project-actions {
+    justify-content: flex-start;
+  }
 }
 
 @media (max-width: 768px) {
@@ -2737,6 +2780,36 @@ body {
   .right-navbar,
   .ceo-line {
     display: none;
+  }
+
+  /* MOBILE HERO FIX */
+  .hero {
+    min-height: auto;
+    padding-top: 70px;
+    padding-bottom: 80px;
+  }
+
+  .hero-row {
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 0;
+  }
+
+  .intro-label {
+    margin-top: 0;
+  }
+
+  .hero-title {
+    font-size: clamp(44px, 12vw, 64px);
+  }
+
+  .hero-desc {
+    max-width: 100%;
+  }
+
+  .hero-buttons {
+    flex-wrap: wrap;
+    gap: 12px;
   }
 
   .skills-grid {
@@ -2803,5 +2876,51 @@ body {
   .training-item::before {
     left: 20px;
     width: 20px;
+  }
+}
+
+/* SMALL MOBILE HERO / PROJECT SAFETY */
+
+@media (max-width: 480px) {
+  .hero {
+    padding-top: 55px;
+    padding-bottom: 60px;
+  }
+
+  .hero-row {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .hero-title {
+    font-size: 43px;
+    line-height: 1.05;
+  }
+
+  .intro {
+    font-size: 17px;
+    margin-left: 20px;
+  }
+
+  .hero-desc {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .hero-buttons {
+    width: 100%;
+  }
+
+  .btn-main {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .project-card {
+    padding: 25px 18px;
+  }
+
+  .project-actions {
+    width: 100%;
   }
 }
