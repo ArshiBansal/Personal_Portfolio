@@ -704,3 +704,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateCertificateProgress(0);
 });
+
+/* =========================================================
+   OPEN SOURCE TIMELINE
+   ========================================================= */
+
+const openSourceSection = document.querySelector("#opensource");
+
+if (openSourceSection) {
+  const timeline = openSourceSection.querySelector(".opensource-timeline");
+
+  if (timeline) {
+    const openSourceObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            timeline.classList.add("active");
+            openSourceObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+      },
+    );
+
+    openSourceObserver.observe(openSourceSection);
+  }
+}
