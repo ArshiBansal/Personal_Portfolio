@@ -2759,12 +2759,6 @@ select {
   left: 180px;
   width: 1px;
   background: #d9dde3;
-  transform-origin: top;
-  transform: scaleY(0);
-}
-
-.opensource-timeline.active::before {
-  animation: opensource-line 1.4s ease forwards;
 }
 
 .opensource-item {
@@ -2800,17 +2794,14 @@ select {
   content: "";
   position: absolute;
   top: 0;
-  width: 11px;
-  height: 11px;
+  left: 50%;
+  width: 13px;
+  height: 13px;
   border: 2px solid #111827;
   background: #ffffff;
   border-radius: 50%;
-  box-shadow: 0 0 0 7px #ffffff;
-  transform: scale(0);
-}
-
-.opensource-timeline.active .opensource-marker::before {
-  animation: opensource-marker 0.55s ease 0.7s forwards;
+  transform: translateX(-50%);
+  box-shadow: 0 0 0 6px #ffffff;
 }
 
 .opensource-marker span {
@@ -2850,12 +2841,13 @@ select {
 }
 
 .opensource-content h3 {
+  max-width: 850px;
   margin: 0;
-  font-size: clamp(40px, 5vw, 62px);
-  line-height: 0.98;
-  font-weight: 800;
-  letter-spacing: -2.5px;
-  color: #111827;
+  font-size: clamp(22px, 2.4vw, 32px);
+  line-height: 1.15;
+  font-weight: 500;
+  letter-spacing: -0.8px;
+  color: #4f5661;
 }
 
 .opensource-org {
@@ -2932,77 +2924,50 @@ select {
   border-left: 1px solid #e1e4e8;
 }
 
-.opensource-btn > span:last-child {
-  font-size: 15px;
-  color: #9ca3af;
-  transition:
-    transform 0.3s ease,
-    color 0.3s ease;
-}
-
 .opensource-btn:hover {
-  padding-left: 23px;
   background: #111827;
   color: #ffffff;
+  padding-left: 24px;
 }
 
-.opensource-btn:hover > span:last-child {
-  color: #ffffff;
-  transform: translate(3px, -3px);
-}
-
-/* RESPONSIVE — TABLET */
 @media (max-width: 900px) {
-  .opensource-section {
-    padding: 110px 0;
-  }
-
-  .opensource-container {
-    width: 88%;
-  }
-
-  .opensource-header {
-    margin-bottom: 90px;
-  }
-
   .opensource-item {
-    grid-template-columns: 90px 60px minmax(0, 1fr);
+    grid-template-columns: 105px 28px minmax(0, 1fr);
   }
 
   .opensource-timeline::before {
-    left: 120px;
+    left: 119px;
   }
 
-  .opensource-links {
-    width: 100%;
-    min-width: 0;
+  .opensource-year {
+    padding-right: 20px;
   }
 
-  .opensource-btn {
-    min-width: 0;
-    flex: 1;
+  .opensource-content {
+    padding-left: 25px;
+  }
+
+  .opensource-content h3 {
+    font-size: clamp(22px, 3.2vw, 30px);
   }
 }
 
-/* RESPONSIVE — MOBILE */
 @media (max-width: 600px) {
   .opensource-section {
-    padding: 90px 0;
+    padding: 100px 0;
   }
 
-  .opensource-bg-text {
-    top: 20px;
-    left: 0;
-    font-size: 85px;
-    letter-spacing: -5px;
+  .opensource-container {
+    width: 90%;
   }
 
   .opensource-header {
-    margin-bottom: 70px;
+    margin-bottom: 85px;
+    white-space: normal;
   }
 
   .opensource-header h2 {
-    font-size: 40px;
+    font-size: 42px;
     letter-spacing: -2px;
   }
 
@@ -3038,6 +3003,7 @@ select {
   .opensource-marker::before {
     width: 10px;
     height: 10px;
+    left: 50%;
   }
 
   .opensource-content {
@@ -3056,8 +3022,10 @@ select {
   }
 
   .opensource-content h3 {
-    font-size: 39px;
-    letter-spacing: -1.8px;
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    font-weight: 500;
   }
 
   .opensource-desc {
