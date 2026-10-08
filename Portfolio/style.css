@@ -2695,7 +2695,7 @@ select {
 /* OPEN SOURCE CONTRIBUTIONS SECTION */
 .opensource-section {
   position: relative;
-  padding: 140px 0;
+  padding: 140px 0 40px;
   overflow: hidden;
 }
 
@@ -2766,7 +2766,7 @@ select {
   display: grid;
   grid-template-columns: 140px 80px minmax(0, 1fr);
   column-gap: 0;
-  margin-bottom: 100px;
+  margin-bottom: 10px;
 }
 
 .opensource-year {
