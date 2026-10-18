@@ -303,32 +303,32 @@
         <div class="project-card reveal">
           <!-- LEFT -->
           <div class="project-left">
-            <div class="project-meta">01 · PYTHON · ML · DL · NLP · GRADIO</div>
+            <div class="project-meta">01 · PYTHON · ML · NLP · STREAMLIT · MONGODB</div>
 
             <h3 class="project-title">
-              PhreshPhish: Low False-Positive Phishing Webpage Classifier
+              Intelligent URL Threat Analyzer
             </h3>
 
-            <p class="project-duration">August 2026 – September 2026</p>
+            <p class="project-duration">September 2026 – October 2026</p>
 
             <div class="core-tech">
               <span class="core-label">CORE TECH</span>
 
               <div class="tech-tags">
                 <span>Python</span>
-                <span>XGBoost</span>
-                <span>Transformers</span>
-                <span>DistilBERT</span>
-                <span>TF-IDF</span>
-                <span>Gradio</span>
-                <span>Hugging Face</span>
+                <span>Streamlit</span>
+                <span>MongoDB</span>
                 <span>Scikit-learn</span>
+                <span>XGBoost</span>
+                <span>Hugging Face</span>
+                <span>BeautifulSoup</span>
+                <span>PyMongo</span>
               </div>
             </div>
 
             <div class="project-actions">
               <a
-                href="Projects/phishing_detection.html"
+                href="Projects/intelligent_url_threat_analyzer.html"
                 class="repo-btn project-page-btn"
                 title="View Project"
               >
@@ -337,7 +337,7 @@
               </a>
 
               <a
-                href="https://github.com/ArshiBansal/ai-phishing-detection-system"
+                href="https://github.com/ArshiBansal/Intelligent_URL_Threat_Analyzer"
                 target="_blank"
                 class="repo-btn"
                 title="View GitHub Repository"
@@ -352,18 +352,18 @@
           <div class="project-right">
             <div class="metrics-row">
               <div class="metric">
-                <div class="metric-value">666k+</div>
-                <div class="metric-label">Webpages Analysed</div>
+                <div class="metric-value">53</div>
+                <div class="metric-label">URL + HTML Features</div>
               </div>
 
               <div class="metric">
-                <div class="metric-value">Low-FP</div>
-                <div class="metric-label">Optimised Design</div>
+                <div class="metric-value">6</div>
+                <div class="metric-label">Classical ML Models</div>
               </div>
 
               <div class="metric">
-                <div class="metric-value">Ensemble</div>
-                <div class="metric-label">ML + Transformer</div>
+                <div class="metric-value">95%</div>
+                <div class="metric-label">Test Accuracy (RF)</div>
               </div>
             </div>
 
@@ -372,10 +372,10 @@
                 <span class="point-num">01</span>
 
                 <p>
-                  Developed a production-oriented phishing webpage classifier
-                  trained on the large-scale PhreshPhish dataset, prioritising
-                  high precision and minimal false-positive rates for realistic
-                  low-base-rate scenarios.
+                  Built a Streamlit phishing analysis application on the
+                  PhreshPhish dataset that classifies URLs and optional HTML
+                  as benign or phish, with confidence scores, risk bands, and
+                  feature-level evidence.
                 </p>
               </div>
 
@@ -383,10 +383,10 @@
                 <span class="point-num">02</span>
 
                 <p>
-                  Implemented a hybrid architecture combining classical machine
-                  learning (XGBoost with TF-IDF and engineered URL/HTML
-                  features) and fine-tuned transformer models for contextual
-                  understanding of webpage content.
+                  Engineered a fixed 53-feature pipeline (34 URL and 19 HTML
+                  attributes) and trained six classical models, evaluated with
+                  accuracy, F1-score, ROC-AUC, and PR-AUC on a stratified
+                  train–test split.
                 </p>
               </div>
 
@@ -394,9 +394,9 @@
                 <span class="point-num">03</span>
 
                 <p>
-                  Designed memory-efficient streaming data pipelines and robust
-                  HTML cleaning procedures to handle full webpage content
-                  without requiring full dataset materialisation on disk.
+                  Implemented streaming data ingestion into MongoDB with
+                  SHA-256 upserts for labeled records, enabling efficient
+                  storage, exploration, and prediction history.
                 </p>
               </div>
 
@@ -404,10 +404,9 @@
                 <span class="point-num">04</span>
 
                 <p>
-                  Delivered an interactive Gradio application for real-time
-                  inference, supported by rigorous evaluation focused on Average
-                  Precision and Precision@Recall under simulated real-world base
-                  rates.
+                  Delivered an interactive multi-tab Streamlit interface for
+                  analysis, dataset exploration, model performance review, and
+                  prediction history, backed by offline-trained joblib models.
                 </p>
               </div>
             </div>
