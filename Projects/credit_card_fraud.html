@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Credit Card Fraud Detection — imbalanced learning, SHAP explainability and cost-aware threshold selection."
+    />
+    <title>Credit Card Fraud Detection | Arshi's Portfolio</title>
+
+    <link rel="icon" href="../assets/favicon-normal.png" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="projectstyle.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- Network background -->
+    <canvas id="network-bg"></canvas>
+
+    <!-- Scroll progress -->
+    <div class="page-progress">
+      <div class="page-progress-bar"></div>
+    </div>
+
+    <!-- RIGHT NAVBAR -->
+    <nav class="right-navbar">
+      <div class="nav-track"></div>
+      <ul class="nav-links">
+        <li><a href="#origin" class="nav-item">01</a></li>
+        <li><a href="#data" class="nav-item">02</a></li>
+        <li><a href="#approach" class="nav-item">03</a></li>
+        <li><a href="#insights" class="nav-item">04</a></li>
+        <li><a href="#limitations" class="nav-item">05</a></li>
+        <li><a href="#future" class="nav-item">06</a></li>
+        <li><a href="#takeaways" class="nav-item">07</a></li>
+      </ul>
+    </nav>
+
+    <!-- HERO -->
+    <header class="project-hero" id="top">
+      <div class="hero-grid">
+        <div class="hero-index">
+          <span>PROJECT / 01</span>
+          <span>ML · IMBALANCED LEARNING · SHAP</span>
+        </div>
+
+        <div class="hero-main">
+          <div class="hero-eyebrow reveal">FRAUD DETECTION SYSTEM</div>
+
+          <h1 class="hero-title reveal">
+            Find the fraud.
+            <span>Understand the why.</span>
+          </h1>
+
+          <p class="hero-description reveal">
+            An end-to-end fraud detection pipeline on the classic credit-card
+            dataset that addresses extreme class imbalance, compares multiple
+            models, explains predictions with SHAP, and selects a threshold
+            using explicit business costs.
+          </p>
+
+          <div class="hero-meta reveal">
+            <div class="hero-meta-item">
+              <span class="meta-label">DOMAIN</span>
+              <strong>Financial Risk</strong>
+            </div>
+            <div class="hero-meta-item">
+              <span class="meta-label">CORE</span>
+              <strong>Imbalanced Learning</strong>
+            </div>
+            <div class="hero-meta-item">
+              <span class="meta-label">FOCUS</span>
+              <strong>Cost-Aware Decisions</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-side reveal">
+          <div class="signal-orbit">
+            <div class="orbit-ring orbit-ring-one"></div>
+            <div class="orbit-ring orbit-ring-two"></div>
+            <div class="orbit-core">
+              <span>01</span>
+              <small>FRAUD</small>
+            </div>
+            <span class="orbit-node node-one">ML</span>
+            <span class="orbit-node node-two">SHAP</span>
+            <span class="orbit-node node-three">COST</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-bottom reveal">
+        <span>DETECT / EXPLAIN / DECIDE</span>
+        <a href="#origin" class="scroll-cue">
+          EXPLORE
+          <i class="fa-solid fa-arrow-down"></i>
+        </a>
+      </div>
+    </header>
+
+    <!-- 01 — ORIGIN -->
+    <section class="project-section origin-section" id="origin">
+      <div class="section-header reveal">
+        <div class="section-number">01</div>
+        <div>
+          <span class="section-label">THE QUESTION</span>
+          <h2 class="section-title">
+            How do you find a handful of fraudulent transactions in a sea of
+            legitimate ones?
+          </h2>
+        </div>
+      </div>
+
+      <div class="story-content">
+        <div class="story-lead reveal">
+          Most transactions are legitimate. A model that simply predicts
+          “legitimate” most of the time can look accurate while missing the
+          point entirely.
+        </div>
+
+        <div class="story-copy reveal">
+          <p>
+            Fraud detection is not just a modelling exercise. It is a sequence
+            of practical questions: What does the data look like? Can a model
+            find the rare signal? Why did it raise an alert? And when should an
+            alert actually be raised?
+          </p>
+          <p>
+            This project walks through that path — from stratified preparation
+            and imbalance-aware modelling to SHAP explanations and
+            cost-sensitive threshold selection.
+          </p>
+        </div>
+
+        <div class="story-highlight reveal">
+          <span class="highlight-mark">THESIS</span>
+          <p>
+            A prediction score is only useful when its consequences are
+            understood. The real test is finding rare fraud without overwhelming
+            analysts with false alarms.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 — DATA -->
+    <section class="project-section" id="data">
+      <div class="section-header reveal">
+        <div class="section-number">02</div>
+        <div>
+          <span class="section-label">DATA</span>
+          <h2 class="section-title">
+            Extreme imbalance forces every modelling choice.
+          </h2>
+        </div>
+      </div>
+
+      <div class="story-content">
+        <div class="story-lead reveal">
+          The classic credit-card dataset provides anonymised PCA features
+          alongside Time and Amount. Fraud is rare by design.
+        </div>
+
+        <div class="data-grid">
+          <article class="data-card reveal">
+            <span class="data-index">01</span>
+            <div class="data-icon">
+              <i class="fa-solid fa-database"></i>
+            </div>
+            <h3>Transaction Records</h3>
+            <p>
+              PCA-transformed features plus Time and Amount, split into 227,845
+              training and 56,962 test transactions.
+            </p>
+          </article>
+
+          <article class="data-card reveal">
+            <span class="data-index">02</span>
+            <div class="data-icon">
+              <i class="fa-solid fa-scale-unbalanced"></i>
+            </div>
+            <h3>Extreme Imbalance</h3>
+            <p>
+              Fraud cases represent roughly 0.17 % of the data, so accuracy
+              alone is a misleading success metric.
+            </p>
+          </article>
+
+          <article class="data-card reveal">
+            <span class="data-index">03</span>
+            <div class="data-icon">
+              <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <h3>Four Notebooks</h3>
+            <p>
+              Preparation → Modelling → SHAP explainability → Cost-sensitive
+              threshold evaluation form a complete analysis path.
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <div class="metric-panel reveal">
+        <div class="metric-intro">
+          <span>DATA VIEW</span>
+          <p>
+            Stratified splits, class weighting and SMOTE-style strategies keep
+            the rare fraud examples visible throughout training and evaluation.
+          </p>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <span class="metric-label">FRAUD RATE</span>
+            <strong>0.17%</strong>
+            <small>extreme class imbalance</small>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">NOTEBOOKS</span>
+            <strong class="data-value" data-count="4">0</strong>
+            <small>end-to-end analysis</small>
+          </div>
+          <div class="metric-card">
+            <span class="metric-label">EXPLAINABILITY</span>
+            <strong>SHAP</strong>
+            <small>global + local</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 — APPROACH -->
+    <section class="project-section" id="approach">
+      <div class="section-header reveal">
+        <div class="section-number">03</div>
+        <div>
+          <span class="section-label">APPROACH</span>
+          <h2 class="section-title">
+            From raw transactions to a cost-aware decision.
+          </h2>
+        </div>
+      </div>
+
+      <div class="architecture-flow reveal">
+        <div class="architecture-node">
+          <span class="architecture-index">01</span>
+          <i class="fa-solid fa-table"></i>
+          <h3>Prepare</h3>
+          <p>Explore, scale, and create a stratified train/test split.</p>
+        </div>
+        <div class="architecture-connector"><span></span></div>
+        <div class="architecture-node">
+          <span class="architecture-index">02</span>
+          <i class="fa-solid fa-brain"></i>
+          <h3>Model</h3>
+          <p>Compare Logistic Regression, RF, XGBoost and LightGBM.</p>
+        </div>
+        <div class="architecture-connector"><span></span></div>
+        <div class="architecture-node">
+          <span class="architecture-index">03</span>
+          <i class="fa-solid fa-magnifying-glass-chart"></i>
+          <h3>Explain</h3>
+          <p>SHAP global importance and local force/waterfall plots.</p>
+        </div>
+        <div class="architecture-connector"><span></span></div>
+        <div class="architecture-node">
+          <span class="architecture-index">04</span>
+          <i class="fa-solid fa-scale-balanced"></i>
+          <h3>Decide</h3>
+          <p>
+            Choose a threshold using explicit false-positive and false-negative
+            costs.
+          </p>
+        </div>
+      </div>
+
+      <div class="pipeline reveal">
+        <div class="pipeline-line"></div>
+        <div class="pipeline-step">
+          <span>PREPARE</span><strong>DATA</strong>
+        </div>
+        <div class="pipeline-step">
+          <span>TRAIN</span><strong>MODELS</strong>
+        </div>
+        <div class="pipeline-step">
+          <span>EXPLAIN</span><strong>SHAP</strong>
+        </div>
+        <div class="pipeline-step">
+          <span>COST</span><strong>THRESHOLD</strong>
+        </div>
+        <div class="pipeline-step">
+          <span>FLAG</span><strong>REVIEW</strong>
+        </div>
+      </div>
+
+      <div class="engineering-grid" style="margin-top: 80px">
+        <article class="engineering-card reveal">
+          <span>01</span>
+          <i class="fa-solid fa-code"></i>
+          <h3>Imbalance Handling</h3>
+          <p>
+            Class weighting, stratified splits and resampling strategies keep
+            the rare fraud class visible during training.
+          </p>
+        </article>
+        <article class="engineering-card reveal">
+          <span>02</span>
+          <i class="fa-solid fa-chart-line"></i>
+          <h3>Proper Metrics</h3>
+          <p>
+            Precision, recall, F1, PR-AUC and ROC-AUC replace accuracy as the
+            primary evaluation lens.
+          </p>
+        </article>
+        <article class="engineering-card reveal">
+          <span>03</span>
+          <i class="fa-solid fa-lightbulb"></i>
+          <h3>SHAP + Cost</h3>
+          <p>
+            Global and local explanations sit alongside a cost matrix so the
+            operating threshold reflects real trade-offs.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 04 — KEY INSIGHTS -->
+    <section class="project-section" id="insights">
+      <div class="section-header reveal">
+        <div class="section-number">04</div>
+        <div>
+          <span class="section-label">KEY INSIGHTS</span>
+          <h2 class="section-title">What the checked-in experiment reports.</h2>
+        </div>
+      </div>
+
+      <div class="evaluation-grid">
+        <div class="evaluation-copy reveal">
+          <span class="section-label">RESULTS</span>
+          <h3>XGBoost with scale_pos_weight as the strongest performer.</h3>
+          <p>
+            Metrics describe the saved experiment. They are not a promise of
+            future performance on live traffic.
+          </p>
+        </div>
+
+        <div class="evaluation-metrics">
+          <div class="evaluation-item reveal">
+            <span>01</span>
+            <strong>PRECISION 0.872</strong>
+            <p>
+              High fraction of flagged transactions that are truly fraudulent.
+            </p>
+          </div>
+          <div class="evaluation-item reveal">
+            <span>02</span>
+            <strong>RECALL 0.837</strong>
+            <p>Strong ability to surface the rare fraud cases.</p>
+          </div>
+          <div class="evaluation-item reveal">
+            <span>03</span>
+            <strong>F1 0.854 · PR-AUC 0.879</strong>
+            <p>Balanced detection quality under severe class imbalance.</p>
+          </div>
+          <div class="evaluation-item reveal">
+            <span>04</span>
+            <strong>ROC-AUC 0.979</strong>
+            <p>Strong ranking ability across the full score spectrum.</p>
+          </div>
+          <div class="evaluation-item reveal">
+            <span>05</span>
+            <strong>THRESHOLD 0.64</strong>
+            <p>
+              Minimum-cost operating point under FN cost 150, FP cost 5, TP cost
+              10 (recorded test cost 9,160).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 — LIMITATIONS -->
+    <section class="project-section" id="limitations">
+      <div class="section-header reveal">
+        <div class="section-number">05</div>
+        <div>
+          <span class="section-label">LIMITATIONS</span>
+          <h2 class="section-title">
+            Where this analysis still has clear boundaries.
+          </h2>
+        </div>
+      </div>
+
+      <div class="limitations-grid">
+        <article class="limitation-card reveal">
+          <span>01</span>
+          <h3>Anonymised Features</h3>
+          <p>
+            PCA-transformed columns limit domain interpretation even though SHAP
+            can still rank their influence.
+          </p>
+        </article>
+        <article class="limitation-card reveal">
+          <span>02</span>
+          <h3>Static Dataset</h3>
+          <p>
+            The classic dataset does not reflect concept drift, new attack
+            patterns or changing transaction behaviour over time.
+          </p>
+        </article>
+        <article class="limitation-card reveal">
+          <span>03</span>
+          <h3>Cost Assumptions</h3>
+          <p>
+            The recorded threshold depends on the chosen cost matrix. Different
+            business costs produce different operating points.
+          </p>
+        </article>
+        <article class="limitation-card reveal">
+          <span>04</span>
+          <h3>No Production Stack</h3>
+          <p>
+            The project contains no live ingestion, monitoring, feedback loops
+            or operational controls.
+          </p>
+        </article>
+      </div>
+
+      <div class="story-highlight reveal">
+        <span class="highlight-mark">IMPORTANT</span>
+        <p>
+          This is a learning and analysis project. Do not use the saved model or
+          threshold for real-world decisions without proper validation and
+          domain review.
+        </p>
+      </div>
+    </section>
+
+    <!-- 06 — NEXT STEPS -->
+    <section class="project-section" id="future">
+      <div class="section-header reveal">
+        <div class="section-number">06</div>
+        <div>
+          <span class="section-label">NEXT STEPS</span>
+          <h2 class="section-title">
+            Where a research pipeline can become operational.
+          </h2>
+        </div>
+      </div>
+
+      <div class="roadmap">
+        <div class="roadmap-item reveal">
+          <div class="roadmap-index">01</div>
+          <div>
+            <span>DRIFT</span>
+            <h3>Monitor feature and score distributions.</h3>
+            <p>
+              Add continuous checks so shifts in transaction behaviour surface
+              before model performance quietly degrades.
+            </p>
+          </div>
+        </div>
+        <div class="roadmap-item reveal">
+          <div class="roadmap-index">02</div>
+          <div>
+            <span>FEEDBACK</span>
+            <h3>Close the loop with analyst labels.</h3>
+            <p>
+              Capture true outcomes of flagged transactions so future training
+              and threshold choices improve from real decisions.
+            </p>
+          </div>
+        </div>
+        <div class="roadmap-item reveal">
+          <div class="roadmap-index">03</div>
+          <div>
+            <span>CALIBRATION</span>
+            <h3>Treat probabilities as probabilities.</h3>
+            <p>
+              Improve score calibration so cost calculations rest on better
+              estimates of true fraud likelihood.
+            </p>
+          </div>
+        </div>
+        <div class="roadmap-item reveal">
+          <div class="roadmap-index">04</div>
+          <div>
+            <span>DEPLOYMENT</span>
+            <h3>Move from notebooks to a service.</h3>
+            <p>
+              Package the best model behind a scored API with monitoring, audit
+              logs and human review queues.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL TAKEAWAY -->
+    <section class="project-section final-section" id="takeaways">
+      <div class="takeaways-content reveal">
+        <span class="section-label">FINAL SIGNAL</span>
+        <h2>
+          The project started with rare fraud labels. It became an exercise in
+          making the decision cost explicit.
+        </h2>
+        <p>
+          Finding the signal is only half the work. Explaining why a transaction
+          was flagged and choosing a threshold under real cost assumptions turns
+          a score into an actionable review policy.
+        </p>
+      </div>
+
+      <div class="takeaway-grid">
+        <div class="takeaway-card reveal">
+          <span>01</span>
+          <strong>DETECT</strong>
+          <p>Surface rare fraud without drowning in false alarms.</p>
+        </div>
+        <div class="takeaway-card reveal">
+          <span>02</span>
+          <strong>EXPLAIN</strong>
+          <p>Use SHAP so analysts can see what the model is responding to.</p>
+        </div>
+        <div class="takeaway-card reveal">
+          <span>03</span>
+          <strong>COST</strong>
+          <p>
+            Let business costs, not a default 0.5 threshold, set the operating
+            point.
+          </p>
+        </div>
+        <div class="takeaway-card reveal">
+          <span>04</span>
+          <strong>ITERATE</strong>
+          <p>
+            Treat the pipeline as a living system that must track drift and
+            feedback.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECT RESOURCES -->
+    <section class="project-resources reveal">
+      <div class="resources-heading">
+        <span class="section-label">PROJECT RESOURCES</span>
+        <h2>Explore the investigation.</h2>
+        <p>Notebooks and source code.</p>
+      </div>
+
+      <div class="project-links">
+        <a
+          class="project-link"
+          href="https://github.com/ArshiBansal/credit-card-fraud-detection-ml"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="project-link-index">01</span>
+          <span class="project-link-content">
+            <small>SOURCE CODE</small>
+            <strong>GitHub Repository</strong>
+          </span>
+          <i class="fa-brands fa-github"></i>
+        </a>
+
+        <a
+          class="project-link"
+          href="https://huggingface.co/datasets/Barvero/Credit_Card_Fraud_Analysis_Project"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="project-link-index">02</span>
+          <span class="project-link-content">
+            <small>DATASET</small>
+            <strong>Credit Card Fraud Data</strong>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-interesting reveal">
+      <div class="footer-text">
+        Built to find the fraud and understand the why.
+      </div>
+      <div class="footer-meta">
+        Credit Card Fraud Detection · <span id="year"></span>
+      </div>
+    </footer>
+
+    <script src="projectscript.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
