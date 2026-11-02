@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Multi-Model Equity Forecasting Platform — ensemble of classical and deep learning models with live news sentiment."
+      content="Zephyr — Multi-Model Equity Forecasting Platform with classical ML, deep learning and chronological validation."
     />
-    <title>Multi-Model Equity Forecasting | Arshi's Portfolio</title>
+    <title>Zephyr | Multi-Model Equity Forecasting | Arshi's Portfolio</title>
 
     <link rel="icon" href="../assets/favicon-normal.png" />
     <link
@@ -62,15 +62,15 @@
           <div class="hero-eyebrow reveal">EQUITY FORECASTING PLATFORM</div>
 
           <h1 class="hero-title reveal">
-            Eight models.
-            <span>One ensemble.</span>
+            Multiple models.
+            <span>One rigorous pipeline.</span>
           </h1>
 
           <p class="hero-description reveal">
-            An end-to-end equity forecasting platform that combines classical
-            machine learning, deep learning and time-series models into a
-            weighted ensemble, enriched with live market data and VADER-based
-            news sentiment.
+            Zephyr is an end-to-end equity forecasting platform that combines
+            classical machine learning and deep learning models, leakage-free
+            feature engineering, and chronological validation across 65
+            high-profile global companies.
           </p>
 
           <div class="hero-meta reveal">
@@ -80,11 +80,11 @@
             </div>
             <div class="hero-meta-item">
               <span class="meta-label">CORE</span>
-              <strong>Ensemble Learning</strong>
+              <strong>Model Comparison</strong>
             </div>
             <div class="hero-meta-item">
               <span class="meta-label">MODELS</span>
-              <strong>8 Complementary Models</strong>
+              <strong>8+ Complementary Models</strong>
             </div>
           </div>
         </div>
@@ -99,13 +99,13 @@
             </div>
             <span class="orbit-node node-one">ML</span>
             <span class="orbit-node node-two">DL</span>
-            <span class="orbit-node node-three">NLP</span>
+            <span class="orbit-node node-three">TS</span>
           </div>
         </div>
       </div>
 
       <div class="hero-bottom reveal">
-        <span>MODELS / ENSEMBLE / SENTIMENT</span>
+        <span>MODELS / VALIDATION / DASHBOARD</span>
         <a href="#origin" class="scroll-cue">
           EXPLORE
           <i class="fa-solid fa-arrow-down"></i>
@@ -120,39 +120,38 @@
         <div>
           <span class="section-label">THE QUESTION</span>
           <h2 class="section-title">
-            Can multiple complementary models produce more stable equity
-            forecasts than any single algorithm?
+            Do machine learning and deep learning models improve short-horizon
+            stock forecasts over simple baselines?
           </h2>
         </div>
       </div>
 
       <div class="story-content">
         <div class="story-lead reveal">
-          No single forecasting method dominates across all market regimes.
+          Most forecasting projects stop at a single model. Real insight comes
+          from disciplined comparison.
         </div>
 
         <div class="story-copy reveal">
           <p>
-            Classical models capture different patterns from deep learning
-            sequences. Tree-based methods handle non-linear relationships well,
-            while Prophet and recurrent networks specialise in temporal
-            structure. Relying on only one of them leaves the system exposed to
-            the weaknesses of that particular approach.
+            Classical tree-based models, gradient boosting methods and recurrent
+            networks each capture different structures in price data. Without a
+            consistent evaluation framework it is impossible to know whether
+            added complexity actually improves forecasts.
           </p>
           <p>
-            This platform was designed to run eight complementary models in
-            parallel, combine their outputs through a performance-weighted
-            ensemble, and contextualise the quantitative forecasts with live
-            news sentiment.
+            Zephyr was built to run multiple complementary models under the same
+            chronological conditions, measure them against strong naïve
+            baselines, and surface the results through an interactive dashboard.
           </p>
         </div>
 
         <div class="story-highlight reveal">
           <span class="highlight-mark">THESIS</span>
           <p>
-            A carefully weighted ensemble of diverse models can deliver more
-            robust multi-horizon price predictions than any individual algorithm
-            alone.
+            A transparent, leakage-free multi-model pipeline reveals whether
+            model complexity delivers real gains over simple baselines on
+            short-horizon equity returns.
           </p>
         </div>
       </div>
@@ -165,15 +164,15 @@
         <div>
           <span class="section-label">DATA</span>
           <h2 class="section-title">
-            Market prices, technical features and live news in one pipeline.
+            Market prices and carefully engineered technical features.
           </h2>
         </div>
       </div>
 
       <div class="story-content">
         <div class="story-lead reveal">
-          The system combines historical price data with real-time news
-          sentiment to support both quantitative and narrative context.
+          The system focuses on high-quality price data and features that
+          respect the flow of time.
         </div>
 
         <div class="data-grid">
@@ -184,8 +183,8 @@
             </div>
             <h3>Price History</h3>
             <p>
-              Historical OHLCV data forms the core time-series input for all
-              forecasting models.
+              Daily OHLCV data for 65 high-profile companies across the US, UK,
+              Europe and Australia forms the foundation of every experiment.
             </p>
           </article>
 
@@ -196,20 +195,21 @@
             </div>
             <h3>Technical Features</h3>
             <p>
-              Engineered indicators and lag features feed the classical and
-              gradient-boosting models.
+              Lagged returns, multiple moving averages, rolling volatility,
+              momentum and volume features — all constructed without future
+              information.
             </p>
           </article>
 
           <article class="data-card reveal">
             <span class="data-index">03</span>
             <div class="data-icon">
-              <i class="fa-solid fa-newspaper"></i>
+              <i class="fa-solid fa-shield-halved"></i>
             </div>
-            <h3>Live News</h3>
+            <h3>No Leakage Design</h3>
             <p>
-              Real-time headlines are scored with VADER to provide sentiment
-              context alongside the price forecasts.
+              Every feature uses only data available at prediction time. Targets
+              are strictly shifted to prevent look-ahead bias.
             </p>
           </article>
         </div>
@@ -219,8 +219,8 @@
         <div class="metric-intro">
           <span>DATA VIEW</span>
           <p>
-            Eight models trained on the same price series, combined through a
-            back-tested weighted ensemble and enriched with live sentiment.
+            Multiple models trained and evaluated on the same chronological
+            splits using identical feature sets and baselines.
           </p>
         </div>
 
@@ -231,14 +231,14 @@
             <small>classical + deep learning</small>
           </div>
           <div class="metric-card">
-            <span class="metric-label">ENSEMBLE</span>
-            <strong>Weighted</strong>
-            <small>performance-based combination</small>
+            <span class="metric-label">COMPANIES</span>
+            <strong>65</strong>
+            <small>high-profile global names</small>
           </div>
           <div class="metric-card">
-            <span class="metric-label">SENTIMENT</span>
-            <strong>Live</strong>
-            <small>VADER news analysis</small>
+            <span class="metric-label">VALIDATION</span>
+            <strong>Chronological</strong>
+            <small>walk-forward ready</small>
           </div>
         </div>
       </div>
@@ -251,7 +251,7 @@
         <div>
           <span class="section-label">APPROACH</span>
           <h2 class="section-title">
-            From individual forecasts to a single ensemble signal.
+            From raw prices to comparable model forecasts.
           </h2>
         </div>
       </div>
@@ -261,28 +261,28 @@
           <span class="architecture-index">01</span>
           <i class="fa-solid fa-database"></i>
           <h3>Market Data</h3>
-          <p>Historical prices and engineered technical features.</p>
+          <p>Historical OHLCV and engineered technical features.</p>
         </div>
         <div class="architecture-connector"><span></span></div>
         <div class="architecture-node">
           <span class="architecture-index">02</span>
           <i class="fa-solid fa-brain"></i>
-          <h3>Eight Models</h3>
-          <p>LightGBM, XGBoost, Prophet, RF, LSTM, GRU and more.</p>
+          <h3>Multiple Models</h3>
+          <p>XGBoost, LightGBM, Random Forest, LSTM, GRU and baselines.</p>
         </div>
         <div class="architecture-connector"><span></span></div>
         <div class="architecture-node">
           <span class="architecture-index">03</span>
           <i class="fa-solid fa-scale-balanced"></i>
-          <h3>Weighted Ensemble</h3>
-          <p>Outputs combined according to back-tested performance.</p>
+          <h3>Chronological Eval</h3>
+          <p>Train-test splits and metrics that respect time order.</p>
         </div>
         <div class="architecture-connector"><span></span></div>
         <div class="architecture-node">
           <span class="architecture-index">04</span>
           <i class="fa-solid fa-chart-simple"></i>
           <h3>Dashboard</h3>
-          <p>Forecasts, signals and live news sentiment.</p>
+          <p>Interactive exploration of forecasts and performance.</p>
         </div>
       </div>
 
@@ -292,16 +292,16 @@
           <span>INPUT</span><strong>PRICES</strong>
         </div>
         <div class="pipeline-step">
-          <span>TRAIN</span><strong>8 MODELS</strong>
+          <span>FEATURES</span><strong>NO LEAKAGE</strong>
         </div>
         <div class="pipeline-step">
-          <span>WEIGHT</span><strong>ENSEMBLE</strong>
+          <span>TRAIN</span><strong>8+ MODELS</strong>
         </div>
         <div class="pipeline-step">
-          <span>SIGNAL</span><strong>BUY / SELL</strong>
+          <span>EVALUATE</span><strong>CHRONOLOGICAL</strong>
         </div>
         <div class="pipeline-step">
-          <span>CONTEXT</span><strong>NEWS</strong>
+          <span>VIEW</span><strong>DASHBOARD</strong>
         </div>
       </div>
 
@@ -311,26 +311,26 @@
           <i class="fa-solid fa-code"></i>
           <h3>Model Diversity</h3>
           <p>
-            LightGBM, XGBoost, Random Forest, Prophet, LSTM and GRU capture
-            different aspects of the price series.
+            Baselines, tree-based models, gradient boosting and recurrent
+            networks are evaluated side-by-side under identical conditions.
           </p>
         </article>
         <article class="engineering-card reveal">
           <span>02</span>
           <i class="fa-solid fa-layer-group"></i>
-          <h3>Ensemble Logic</h3>
+          <h3>Leakage-Free Design</h3>
           <p>
-            Individual forecasts are combined using weights derived from
-            historical back-tested performance metrics.
+            All features are constructed using only past information. Targets
+            are shifted so no future data enters the training process.
           </p>
         </article>
         <article class="engineering-card reveal">
           <span>03</span>
-          <i class="fa-solid fa-newspaper"></i>
-          <h3>Sentiment Layer</h3>
+          <i class="fa-solid fa-chart-line"></i>
+          <h3>Interactive Dashboard</h3>
           <p>
-            Live news is aggregated and scored with VADER so quantitative
-            forecasts sit inside the current market narrative.
+            A six-tab Streamlit application lets users inspect data quality,
+            technical features, model performance and individual forecasts.
           </p>
         </article>
       </div>
@@ -342,60 +342,62 @@
         <div class="section-number">04</div>
         <div>
           <span class="section-label">KEY INSIGHTS</span>
-          <h2 class="section-title">What the ensemble approach delivers.</h2>
+          <h2 class="section-title">
+            What disciplined model comparison reveals.
+          </h2>
         </div>
       </div>
 
       <div class="evaluation-grid">
         <div class="evaluation-copy reveal">
           <span class="section-label">RESULTS</span>
-          <h3>Stability through diversity.</h3>
+          <h3>Complexity does not automatically win.</h3>
           <p>
-            Combining models with different inductive biases reduces reliance on
-            any single forecasting style and produces more consistent
-            multi-horizon predictions.
+            When models are evaluated fairly against strong baselines using
+            chronological splits, the advantage of more sophisticated algorithms
+            is often smaller than expected.
           </p>
         </div>
 
         <div class="evaluation-metrics">
           <div class="evaluation-item reveal">
             <span>01</span>
-            <strong>EIGHT-MODEL COVERAGE</strong>
+            <strong>MULTI-MODEL COVERAGE</strong>
             <p>
-              Classical, gradient-boosting, time-series and recurrent models run
-              side-by-side on the same data.
+              Classical, gradient-boosting and recurrent models run on the same
+              feature set and time splits.
             </p>
           </div>
           <div class="evaluation-item reveal">
             <span>02</span>
-            <strong>WEIGHTED ENSEMBLE</strong>
+            <strong>STRONG BASELINES</strong>
             <p>
-              Model contributions are adjusted according to back-tested accuracy
-              rather than equal weighting.
+              Naïve last-close and last-return baselines provide a clear
+              reference point for measuring real improvement.
             </p>
           </div>
           <div class="evaluation-item reveal">
             <span>03</span>
-            <strong>BUY–SELL SIGNALS</strong>
+            <strong>CHRONOLOGICAL VALIDATION</strong>
             <p>
-              Ensemble moving-average crossovers generate actionable signals on
-              top of the price forecasts.
+              All evaluation respects time order. Walk-forward testing is
+              supported for more robust assessment.
             </p>
           </div>
           <div class="evaluation-item reveal">
             <span>04</span>
-            <strong>LIVE SENTIMENT</strong>
+            <strong>CLEAR METRICS</strong>
             <p>
-              Real-time news aggregation and VADER scoring place the numerical
-              forecasts in current market context.
+              MAE, RMSE and Directional Accuracy are reported consistently
+              across every model.
             </p>
           </div>
           <div class="evaluation-item reveal">
             <span>05</span>
-            <strong>INTERACTIVE VIEW</strong>
+            <strong>INTERACTIVE EXPLORATION</strong>
             <p>
-              Plotly-powered charts and Streamlit controls let users inspect
-              individual model behaviour and ensemble output.
+              The Streamlit dashboard makes it easy to inspect individual
+              tickers, features, training behaviour and forecast quality.
             </p>
           </div>
         </div>
@@ -425,26 +427,26 @@
         </article>
         <article class="limitation-card reveal">
           <span>02</span>
-          <h3>Sentiment Noise</h3>
+          <h3>Low Signal-to-Noise</h3>
           <p>
-            VADER is a general lexicon model and can misread financial jargon,
-            irony or headlines that require deeper context.
+            Short-horizon equity returns are inherently noisy. Even well-built
+            models often achieve only modest directional accuracy.
           </p>
         </article>
         <article class="limitation-card reveal">
           <span>03</span>
-          <h3>Look-ahead Risk</h3>
+          <h3>Data Constraints</h3>
           <p>
-            Feature engineering and ensemble weighting must be carefully
-            isolated from future information to avoid leakage.
+            Yahoo Finance data contains delays, gaps and occasional
+            corporate-action artefacts, especially for non-US listings.
           </p>
         </article>
         <article class="limitation-card reveal">
           <span>04</span>
           <h3>No Guarantee of Alpha</h3>
           <p>
-            Improved forecast stability does not automatically translate into
-            profitable trading after costs and slippage.
+            Better forecast metrics do not automatically translate into
+            profitable trading after costs, slippage and risk management.
           </p>
         </article>
       </div>
@@ -452,7 +454,7 @@
       <div class="story-highlight reveal">
         <span class="highlight-mark">IMPORTANT</span>
         <p>
-          This platform is a research and decision-support system. It is not a
+          This platform is an educational and research system. It is not a
           trading bot and does not constitute financial advice.
         </p>
       </div>
@@ -475,7 +477,7 @@
             <span>REGIME AWARENESS</span>
             <h3>Detect and adapt to market regimes.</h3>
             <p>
-              Introduce regime detection so model weights and feature sets can
+              Introduce regime detection so model selection and feature sets can
               shift when volatility or correlation structure changes.
             </p>
           </div>
@@ -483,11 +485,11 @@
         <div class="roadmap-item reveal">
           <div class="roadmap-index">02</div>
           <div>
-            <span>BETTER NLP</span>
-            <h3>Finance-specific language models.</h3>
+            <span>RICHER FEATURES</span>
+            <h3>Alternative data and cross-sectional signals.</h3>
             <p>
-              Replace or augment VADER with domain-adapted models that better
-              understand financial language and event context.
+              Explore additional technical, fundamental and cross-sectional
+              features while maintaining strict leakage control.
             </p>
           </div>
         </div>
@@ -497,19 +499,19 @@
             <span>PORTFOLIO LAYER</span>
             <h3>From single-asset to multi-asset views.</h3>
             <p>
-              Extend the ensemble framework to cross-sectional ranking and
-              simple portfolio construction logic.
+              Extend the evaluation framework toward ranking and simple
+              portfolio construction logic across the universe.
             </p>
           </div>
         </div>
         <div class="roadmap-item reveal">
           <div class="roadmap-index">04</div>
           <div>
-            <span>LIVE EXECUTION</span>
-            <h3>Paper-trading and monitoring.</h3>
+            <span>LIVE MONITORING</span>
+            <h3>Paper-trading and ongoing tracking.</h3>
             <p>
-              Connect the signal layer to a paper-trading environment so
-              forecast quality can be tracked under realistic conditions.
+              Connect the forecasting pipeline to a paper-trading environment so
+              model behaviour can be monitored over time.
             </p>
           </div>
         </div>
@@ -522,13 +524,13 @@
         <span class="section-label">FINAL SIGNAL</span>
         <h2>
           The project started with individual models. It became an exercise in
-          making diversity work as a single forecasting system.
+          honest, time-aware evaluation.
         </h2>
         <p>
-          Combining classical, boosting and deep-learning approaches through a
-          performance-weighted ensemble produces more stable multi-horizon
-          forecasts than any one model in isolation, especially when the
-          numerical output is placed inside live market narrative.
+          Running multiple model families under identical chronological
+          conditions, against strong baselines, and with leakage-free features
+          produces clearer insight than chasing the single highest back-test
+          score.
         </p>
       </div>
 
@@ -536,19 +538,21 @@
         <div class="takeaway-card reveal">
           <span>01</span>
           <strong>DIVERSITY</strong>
-          <p>Different model families capture different market structures.</p>
+          <p>
+            Different model families capture different structures in price data.
+          </p>
         </div>
         <div class="takeaway-card reveal">
           <span>02</span>
-          <strong>ENSEMBLE</strong>
-          <p>Performance-based weighting turns disagreement into robustness.</p>
+          <strong>DISCIPLINE</strong>
+          <p>
+            Chronological validation and strong baselines keep claims honest.
+          </p>
         </div>
         <div class="takeaway-card reveal">
           <span>03</span>
-          <strong>CONTEXT</strong>
-          <p>
-            Live sentiment keeps quantitative forecasts inside the news flow.
-          </p>
+          <strong>TRANSPARENCY</strong>
+          <p>An interactive dashboard makes model behaviour inspectable.</p>
         </div>
         <div class="takeaway-card reveal">
           <span>04</span>
@@ -590,7 +594,7 @@
           <span class="project-link-index">02</span>
           <span class="project-link-content">
             <small>PROJECT</small>
-            <strong>Stock Market Analysis</strong>
+            <strong>Zephyr — Stock Market Analysis</strong>
           </span>
           <i class="fa-solid fa-arrow-up-right-from-square"></i>
         </a>
@@ -599,9 +603,9 @@
 
     <!-- FOOTER -->
     <footer class="footer-interesting reveal">
-      <div class="footer-text">Built to make ensemble forecasts practical.</div>
+      <div class="footer-text">Built for honest multi-model evaluation.</div>
       <div class="footer-meta">
-        Multi-Model Equity Forecasting · <span id="year"></span>
+        Zephyr — Multi-Model Equity Forecasting · <span id="year"></span>
       </div>
     </footer>
 
