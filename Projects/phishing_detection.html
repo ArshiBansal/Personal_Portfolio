@@ -7,18 +7,46 @@
       name="description"
       content="Intelligent URL Threat Analyzer — phishing URL and HTML classification using 53 features and classical ML models."
     />
-    <title>Intelligent URL Threat Analyzer | Arshi's Portfolio</title>
+    <meta name="author" content="Arshi Bansal" />
+    <meta name="theme-color" content="#fafafa" />
+    <link
+      rel="canonical"
+      href="https://arshibansal.github.io/Personal_Portfolio/Projects/phishing_detection.html"
+    />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:title"
+      content="Intelligent URL Threat Analyzer | Arshi Bansal"
+    />
+    <meta
+      property="og:url"
+      content="https://arshibansal.github.io/Personal_Portfolio/Projects/phishing_detection.html"
+    />
+    <meta
+      property="og:image"
+      content="https://arshibansal.github.io/Personal_Portfolio/assets/profile.jpg"
+    />
+    <meta
+      property="og:description"
+      content="A phishing URL analysis project using 53 deterministic signals and classical machine-learning models."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Intelligent URL Threat Analyzer | Arshi Bansal"
+    />
+    <meta
+      name="twitter:description"
+      content="A phishing URL analysis project using 53 deterministic signals and classical machine-learning models."
+    />
+    <title>URL Threat Analyzer | Arshi Bansal, Final-Year CSE</title>
 
     <link rel="icon" href="../assets/favicon-normal.png" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="projectstyle.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link
@@ -29,7 +57,7 @@
 
   <body>
     <!-- Network background -->
-    <canvas id="network-bg"></canvas>
+    <canvas id="network-bg" aria-hidden="true"></canvas>
 
     <!-- Scroll progress -->
     <div class="page-progress">
@@ -37,7 +65,7 @@
     </div>
 
     <!-- RIGHT NAVBAR -->
-    <nav class="right-navbar">
+    <nav class="right-navbar" aria-label="Project sections">
       <div class="nav-track"></div>
       <ul class="nav-links">
         <li><a href="#origin" class="nav-item">01</a></li>
@@ -106,6 +134,10 @@
 
       <div class="hero-bottom reveal">
         <span>URL / FEATURES / EVIDENCE</span>
+        <a href="../index.html" class="portfolio-return">
+          PORTFOLIO
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
         <a href="#origin" class="scroll-cue">
           EXPLORE
           <i class="fa-solid fa-arrow-down"></i>
@@ -584,13 +616,24 @@
 
     <!-- FOOTER -->
     <footer class="footer-interesting reveal">
-      <div class="footer-text">Built to inspect the link before the click.</div>
+      <div class="project-footer-about">
+        <span class="section-label">WHAT I’M LOOKING FOR NEXT</span>
+        <p>
+          Building this analyzer made me think about trustworthy, usable ML.
+          I’m now looking for an entry-level team where I can keep learning by
+          shipping real data products.
+        </p>
+        <div class="project-footer-actions">
+          <a href="../index.html#about">MY STORY</a>
+          <a href="../assets/resume.pdf">RÉSUMÉ</a>
+          <a href="mailto:arshi122022@gmail.com">CONTACT</a>
+        </div>
+      </div>
       <div class="footer-meta">
-        Intelligent URL Threat Analyzer · <span id="year"></span>
+        Intelligent URL Threat Analyzer · Arshi Bansal · <span id="year"></span>
       </div>
     </footer>
 
     <script src="projectscript.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

@@ -1,13 +1,13 @@
-@import url("https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900,300i,400i,500i,700i,900i&display=swap");
-
 /*  ROOT */
 :root {
+  --font-body: "Manrope", sans-serif;
+  --font-heading: "DM Serif Display", serif;
   --ink: #111111;
   --muted: #6b6b6b;
   --soft: #8a8a8a;
   --line: rgba(17, 17, 17, 0.12);
   --line-strong: rgba(17, 17, 17, 0.22);
-  --paper: #f7f7f5;
+  --paper: #fafafa;
   --white: #ffffff;
   --panel: rgba(255, 255, 255, 0.72);
   --dark: #111111;
@@ -20,9 +20,8 @@
 /*  RESET */
 * {
   box-sizing: border-box;
-  font-family: "IBM Plex Sans", sans-serif;
-  font-style: italic;
-  cursor: none !important;
+  font-family: var(--font-body);
+  font-style: normal;
 }
 
 html {
@@ -35,7 +34,6 @@ body {
   color: var(--ink);
   background: var(--paper);
   -webkit-font-smoothing: antialiased;
-  user-select: none;
 }
 
 a {
@@ -151,7 +149,7 @@ a {
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.78);
   color: #777;
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: var(--font-body);
   font-size: 10px;
   font-weight: 700;
   font-style: normal;
@@ -265,10 +263,10 @@ a {
 .hero-title {
   max-width: 900px;
   margin: 0;
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-heading);
   font-size: clamp(4rem, 8vw, 8.8rem);
   font-weight: 500;
-  font-style: italic;
+  font-style: normal;
   line-height: 0.88;
   letter-spacing: -0.065em;
 }
@@ -443,6 +441,29 @@ a {
   transition: gap 0.3s ease;
 }
 
+.portfolio-return {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #333;
+  font-size: 9px;
+  font-style: normal;
+  transition:
+    color 0.25s ease,
+    gap 0.25s ease;
+}
+
+.portfolio-return:hover {
+  gap: 12px;
+  color: #000;
+}
+
+.portfolio-return:focus-visible,
+a:focus-visible {
+  outline: 2px solid #111;
+  outline-offset: 4px;
+}
+
 .scroll-cue:hover {
   gap: 18px;
 }
@@ -485,10 +506,10 @@ a {
 
 .section-number {
   color: #aaa;
-  font-family: "Playfair Display", serif;
-  font-size: 44px;
+  font-family: var(--font-heading);
+  font-size: 38px;
   font-weight: 400;
-  font-style: italic;
+  font-style: normal;
   line-height: 1;
 }
 
@@ -496,7 +517,7 @@ a {
   display: block;
   margin-bottom: 14px;
   color: #888;
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
   font-style: normal;
   letter-spacing: 2.2px;
@@ -505,10 +526,10 @@ a {
 .section-title {
   max-width: 800px;
   margin: 0;
-  font-family: "Playfair Display", serif;
-  font-size: clamp(2.6rem, 5vw, 5.4rem);
+  font-family: var(--font-heading);
+  font-size: clamp(2.25rem, 4vw, 4rem);
   font-weight: 500;
-  font-style: italic;
+  font-style: normal;
   line-height: 0.98;
   letter-spacing: -0.045em;
 }
@@ -518,14 +539,14 @@ a {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
   gap: 75px;
-  align-items: start;
+  align-items: center;
 }
 
 .story-lead {
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-heading);
   font-size: clamp(1.8rem, 3vw, 3rem);
   font-weight: 500;
-  font-style: italic;
+  font-style: normal;
   line-height: 1.08;
 }
 
@@ -569,9 +590,9 @@ a {
 .story-highlight p {
   max-width: 900px;
   margin: 0;
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-heading);
   font-size: clamp(1.4rem, 2.3vw, 2.2rem);
-  font-style: italic;
+  font-style: normal;
   line-height: 1.3;
 }
 
@@ -643,10 +664,10 @@ a {
 
 .data-card h3 {
   margin: 25px 0 10px;
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-heading);
   font-size: 25px;
   font-weight: 500;
-  font-style: italic;
+  font-style: normal;
 }
 
 .data-card p {
@@ -722,10 +743,10 @@ a {
 .metric-card strong {
   display: block;
   margin-top: 20px;
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-heading);
   font-size: 44px;
   font-weight: 500;
-  font-style: italic;
+  font-style: normal;
 }
 
 .metric-card small {
@@ -767,10 +788,10 @@ a {
 
 .feature-main h3 {
   margin: 0 0 7px;
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-heading);
   font-size: 25px;
   font-weight: 500;
-  font-style: italic;
+  font-style: normal;
 }
 
 .feature-main p {
@@ -832,9 +853,9 @@ a {
 
 .architecture-node h3 {
   margin: 0 0 8px;
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-heading);
   font-size: 20px;
-  font-style: italic;
+  font-style: normal;
 }
 
 .architecture-node p {
@@ -941,9 +962,9 @@ a {
 
 .engineering-card h3 {
   margin: 22px 0 10px;
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-heading);
   font-size: 24px;
-  font-style: italic;
+  font-style: normal;
 }
 
 .engineering-card p {
@@ -964,10 +985,10 @@ a {
 
 .evaluation-copy h3 {
   margin: 0 0 18px;
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-heading);
   font-size: clamp(1.8rem, 3vw, 2.8rem);
   font-weight: 500;
-  font-style: italic;
+  font-style: normal;
   line-height: 1.15;
 }
 
@@ -1052,9 +1073,9 @@ a {
 
 .limitation-card h3 {
   margin: 45px 0 10px;
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-heading);
   font-size: 25px;
-  font-style: italic;
+  font-style: normal;
 }
 
 .limitation-card p {
@@ -1107,10 +1128,10 @@ a {
 
 .roadmap-item h3 {
   margin: 10px 0;
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-heading);
   font-size: 29px;
   font-weight: 500;
-  font-style: italic;
+  font-style: normal;
 }
 
 .roadmap-item p {
@@ -1138,10 +1159,10 @@ a {
 
 .takeaways-content h2 {
   margin: 0;
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-heading);
   font-size: clamp(3rem, 6vw, 6.8rem);
   font-weight: 500;
-  font-style: italic;
+  font-style: normal;
   line-height: 0.94;
   letter-spacing: -0.055em;
 }
@@ -1211,10 +1232,10 @@ a {
 
 .resources-heading h2 {
   margin: 0;
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.7rem, 5vw, 5rem);
   font-weight: 500;
-  font-style: italic;
+  font-style: normal;
   line-height: 0.95;
 }
 
@@ -1294,10 +1315,10 @@ a {
 }
 
 .project-link-content strong {
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-heading);
   font-size: 21px;
   font-weight: 500;
-  font-style: italic;
+  font-style: normal;
 }
 
 .project-link > i {
@@ -1313,7 +1334,7 @@ a {
 
 /* FOOTER */
 .footer-interesting {
-  padding: 45px 20px 55px;
+  padding: 60px 24px 55px;
   text-align: center;
   opacity: 0;
   transform: translateY(15px);
@@ -1360,71 +1381,60 @@ a {
 }
 
 .footer-meta {
+  margin-top: 24px;
   color: #222;
   font-size: 10px;
   font-weight: 600;
 }
 
-/* CURSOR */
-.cursor-dot {
-  position: fixed;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #000;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-  transition: transform 0.2s ease;
+.project-footer-about {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #fff;
 }
 
-.cursor-ring {
-  position: fixed;
-  width: 38px;
-  height: 38px;
-  border: 1.5px solid rgba(0, 0, 0, 0.35);
-  border-radius: 50%;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: 9998;
+.project-footer-about .section-label {
+  margin-bottom: 12px;
+}
+
+.project-footer-about p {
+  margin: 0 auto 20px;
+  color: #555;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.project-footer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.project-footer-actions a {
+  padding: 10px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 30px;
+  color: #111;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
   transition:
-    transform 0.2s ease,
-    border-color 0.2s ease;
+    color 0.25s ease,
+    background 0.25s ease;
 }
 
-.cursor-dot.hover {
-  transform: translate(-50%, -50%) scale(1.15);
+.project-footer-actions a:hover {
+  color: #fff;
+  background: #111;
 }
 
-.cursor-ring.hover {
-  transform: translate(-50%, -50%) scale(1.55);
-  border-color: rgba(0, 0, 0, 0.8);
-}
-
-.cursor-trail {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9997;
-}
-
-.trail-dot {
-  position: absolute;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: rgba(110, 110, 110, 0.75);
-  transform: translate(-50%, -50%) scale(1);
-  opacity: 1;
-  filter: blur(2px);
-  transition:
-    transform 0.6s ease,
-    opacity 0.6s ease;
-}
-
-.trail-dot.fade {
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.2);
+.project-footer-actions a:focus-visible {
+  outline: 2px solid #111;
+  outline-offset: 3px;
 }
 
 /* REVEAL STATES */
@@ -1436,9 +1446,28 @@ a {
     transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
+.reveal--left {
+  transform: translateX(-24px);
+}
+
+.reveal--right {
+  transform: translateX(24px);
+}
+
+.reveal--scale {
+  transform: scale(0.96);
+}
+
 .reveal.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
+}
+
+.reduce-motion .reveal,
+.reduce-motion .project-section {
+  opacity: 1;
+  transform: none;
+  transition: none;
 }
 
 /* REDUCED MOTION */
@@ -1483,9 +1512,6 @@ a {
 
 /* MOBILE */
 @media (max-width: 768px) {
-  * {
-    cursor: auto !important;
-  }
   .right-navbar {
     right: 10px;
     padding: 7px;
@@ -1615,11 +1641,6 @@ a {
     padding-left: 7vw;
     padding-right: 7vw;
   }
-  .cursor-dot,
-  .cursor-ring,
-  .cursor-trail {
-    display: none;
-  }
 }
 
 /* SMALL MOBILE */
@@ -1681,4 +1702,24 @@ a {
 ::selection {
   color: #fff;
   background: #111;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal,
+  .project-section {
+    opacity: 1;
+    transform: none;
+  }
 }

@@ -1,22 +1,18 @@
 # Arshi Bansal
 
-Curiosity is what led me into coding, and it is what keeps me building.
+I’m a final-year Computer Science & Engineering student at Lovely Professional University, building a foundation in machine learning, data, and software through hands-on projects.
 
-This portfolio reflects my work in data, AI, machine learning, and analytical problem solving — all shaped by hands-on experimentation and a desire to turn ideas into meaningful solutions.
+My projects have taken me from imbalanced fraud detection and phishing analysis to equity forecasting, financial-news sentiment, and cyber-incident data. I care about how a result is reached, whether it can be trusted, and how clearly another person can understand it.
 
-## Explore my work
+I’m actively seeking entry-level opportunities in AI/ML, data science, data analytics, or software roles with a data focus. I’m keen to contribute, learn from a team, and grow into the work.
 
-Visit the portfolio: [https://arshibansal.github.io/Personal_Portfolio/](https://arshibansal.github.io/Personal_Portfolio/)
+## Portfolio
 
-### Highlights
-- Data analysis and predictive modeling
-- Machine learning projects
-- AI-driven problem solving
-- Interactive dashboards and practical experiments
+Explore my projects, education, technical toolkit, coding practice, and selected credentials: [arshibansal.github.io/Personal_Portfolio](https://arshibansal.github.io/Personal_Portfolio/)
 
-### Connect
-- GitHub: [ArshiBansal](https://github.com/ArshiBansal)
-- LinkedIn: [Arshi Bansal](https://www.linkedin.com/in/arshibansal97/)
-- Email: arshi122022@gmail.com
+## Connect
 
-> Curious minds build better systems.
+- [GitHub](https://github.com/ArshiBansal)
+- [LinkedIn](https://www.linkedin.com/in/arshibansal97/)
+- [Email](mailto:arshi122022@gmail.com)
+- [Résumé](assets/resume.pdf)

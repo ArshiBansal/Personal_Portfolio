@@ -33,7 +33,9 @@ function initSmoothScroll() {
 
       event.preventDefault();
       target.scrollIntoView({
-        behavior: "smooth",
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "auto"
+          : "smooth",
         block: "start",
       });
     });
@@ -47,8 +49,15 @@ let projectSections = [];
 function initReveal() {
   revealElements = $$(".reveal");
   projectSections = $$(".project-section");
+  const revealStyles = [
+    "reveal--rise",
+    "reveal--left",
+    "reveal--scale",
+    "reveal--right",
+  ];
 
   revealElements.forEach((element, index) => {
+    element.classList.add(revealStyles[index % revealStyles.length]);
     element.style.transitionDelay = `${Math.min(index * 0.035, 0.35)}s`;
   });
 }
@@ -76,6 +85,13 @@ let navItems = [];
 
 function initNav() {
   navItems = $$(".nav-item");
+  navItems.forEach((item) => {
+    const section = $(item.getAttribute("href"));
+    const title = section && $(".section-title", section);
+    if (title) {
+      item.setAttribute("aria-label", `Jump to ${title.textContent.trim()}`);
+    }
+  });
 }
 
 function updateActiveNav() {
@@ -97,7 +113,13 @@ function updateActiveNav() {
 
   navItems.forEach((item) => {
     const target = item.getAttribute("href");
-    item.classList.toggle("active", target === `#${currentSection}`);
+    const isCurrent = target === `#${currentSection}`;
+    item.classList.toggle("active", isCurrent);
+    if (isCurrent) {
+      item.setAttribute("aria-current", "location");
+    } else {
+      item.removeAttribute("aria-current");
+    }
   });
 }
 
@@ -207,107 +229,10 @@ function initNetworkBackground() {
   window.addEventListener(
     "scroll",
     () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
       const offset = Math.min(window.scrollY * 0.035, 80);
       canvas.style.transform = `translateY(${offset}px)`;
-    },
-    { passive: true },
-  );
-}
-
-/* CUSTOM CURSOR + TRAIL */
-function initCursor() {
-  const canUseCustomCursor =
-    window.innerWidth > 768 &&
-    !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  if (!canUseCustomCursor) return;
-
-  const cursorDot = document.createElement("div");
-  const cursorRing = document.createElement("div");
-  cursorDot.className = "cursor-dot";
-  cursorRing.className = "cursor-ring";
-  document.body.append(cursorDot, cursorRing);
-
-  let mouseX = window.innerWidth / 2;
-  let mouseY = window.innerHeight / 2;
-  let dotX = mouseX;
-  let dotY = mouseY;
-  let ringX = mouseX;
-  let ringY = mouseY;
-
-  document.addEventListener(
-    "mousemove",
-    (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    },
-    { passive: true },
-  );
-
-  function animateCursor() {
-    dotX += (mouseX - dotX) * 0.38;
-    dotY += (mouseY - dotY) * 0.38;
-    ringX += (mouseX - ringX) * 0.15;
-    ringY += (mouseY - ringY) * 0.15;
-
-    cursorDot.style.left = `${dotX}px`;
-    cursorDot.style.top = `${dotY}px`;
-    cursorRing.style.left = `${ringX}px`;
-    cursorRing.style.top = `${ringY}px`;
-
-    requestAnimationFrame(animateCursor);
-  }
-  animateCursor();
-
-  // Hover interactions
-  $$(
-    "a, button, .nav-item, .data-card, .project-link, .architecture-node, .engineering-card",
-  ).forEach((el) => {
-    el.addEventListener("mouseenter", () => {
-      cursorDot.classList.add("hover");
-      cursorRing.classList.add("hover");
-    });
-    el.addEventListener("mouseleave", () => {
-      cursorDot.classList.remove("hover");
-      cursorRing.classList.remove("hover");
-      el.style.transform = "";
-    });
-  });
-
-  // Magnetic effect
-  $$(".nav-item, .project-link").forEach((el) => {
-    el.addEventListener("mousemove", (e) => {
-      const rect = el.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      el.style.transform = `translate(${x * 0.08}px, ${y * 0.08}px)`;
-    });
-    el.addEventListener("mouseleave", () => {
-      el.style.transform = "";
-    });
-  });
-
-  // Trail
-  const trailContainer = document.createElement("div");
-  trailContainer.className = "cursor-trail";
-  document.body.appendChild(trailContainer);
-
-  let lastTrailTime = 0;
-  document.addEventListener(
-    "mousemove",
-    (e) => {
-      const now = performance.now();
-      if (now - lastTrailTime < 35) return;
-      lastTrailTime = now;
-
-      const dot = document.createElement("div");
-      dot.className = "trail-dot";
-      dot.style.left = `${e.clientX}px`;
-      dot.style.top = `${e.clientY}px`;
-      trailContainer.appendChild(dot);
-
-      requestAnimationFrame(() => dot.classList.add("fade"));
-      setTimeout(() => dot.remove(), 650);
     },
     { passive: true },
   );
@@ -325,6 +250,11 @@ function animateMetric(element) {
 
   const prefix = element.dataset.prefix || "";
   const suffix = element.dataset.suffix || "";
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    element.textContent = `${prefix}${target.toLocaleString()}${suffix}`;
+    return;
+  }
+
   const duration = Number(element.dataset.duration) || 1200;
   const start = performance.now();
 
@@ -399,6 +329,8 @@ function prepareCardStagger() {
 
 /* PARALLAX */
 function updateParallax() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
   const scrollY = window.scrollY;
   const orbit = $(".signal-orbit");
 
@@ -418,6 +350,8 @@ function updateParallax() {
 
 /* HOVER TILT */
 function enableTiltCards() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
   $$(".data-card, .architecture-node").forEach((card) => {
     card.addEventListener("mousemove", (event) => {
       if (window.innerWidth <= 768) return;
@@ -465,7 +399,6 @@ function initializePage() {
   initReveal();
   initNav();
   initNetworkBackground();
-  initCursor();
   prepareCardStagger();
   enableTiltCards();
 
