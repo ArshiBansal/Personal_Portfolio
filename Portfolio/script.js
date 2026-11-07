@@ -19,6 +19,21 @@ if (reducedMotionQuery.addEventListener) {
   reducedMotionQuery.addEventListener("change", applyMotionPreference);
 }
 
+/* Discourage casual copying of portfolio content. */
+["copy", "cut", "paste", "contextmenu", "dragstart"].forEach((eventName) => {
+  document.addEventListener(eventName, (event) => event.preventDefault());
+});
+
+document.addEventListener("keydown", (event) => {
+  const key = event.key.toLowerCase();
+  const modifier = event.ctrlKey || event.metaKey;
+
+  if ((modifier && ["a", "c", "x", "v"].includes(key)) ||
+      ((event.ctrlKey || event.shiftKey) && key === "insert")) {
+    event.preventDefault();
+  }
+});
+
 /* LIVE TIME */
 function updateLiveTime() {
   const el = $("#liveTime");

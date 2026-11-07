@@ -4,7 +4,7 @@ I’m a final-year Computer Science & Engineering student at Lovely Professional
 
 My projects have taken me from imbalanced fraud detection and phishing analysis to equity forecasting, financial-news sentiment, and cyber-incident data. I care about how a result is reached, whether it can be trusted, and how clearly another person can understand it.
 
-I’m actively seeking entry-level opportunities in AI/ML, data science, data analytics, or software roles with a data focus. I’m keen to contribute, learn from a team, and grow into the work.
+I’m open for entry-level opportunities in AI/ML, data science, data analytics, or software roles with a data focus. I’m keen to contribute, learn from a team, and grow into the work.
 
 ## Portfolio
 

@@ -28,6 +28,9 @@
   font-family: var(--font-body);
   margin: 0;
   padding: 0;
+  cursor: url("../assets/cursor.svg") 28 28, auto;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 h1,
@@ -51,7 +54,12 @@ body {
   text-rendering: optimizeLegibility;
   background: var(--bg);
   color: var(--text);
-  cursor: default;
+}
+
+a,
+button,
+[role="button"] {
+  cursor: url("../assets/cursor.svg") 28 28, pointer;
 }
 
 :focus-visible {
@@ -498,6 +506,11 @@ select {
   margin-bottom: 20px;
   max-width: 520px;
   padding-left: 22px;
+  border-left: 1px solid #c8c8c8;
+}
+
+.about-text + .about-text {
+  border-left-color: #111;
 }
 
 .about-left:hover .about-text {
@@ -531,7 +544,7 @@ select {
   border-radius: 24px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
   transition: all 0.35s ease;
-  cursor: pointer;
+  cursor: url("../assets/cursor.svg") 28 28, pointer;
   position: relative;
   overflow: hidden;
   border: 1px solid #000;
@@ -871,11 +884,16 @@ select {
 
 .projects-header {
   max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
   margin-bottom: 60px;
 }
 
 .projects-header h2 {
   max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
   font-size: clamp(30px, 4vw, 42px);
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -892,6 +910,11 @@ select {
   max-width: 720px;
   margin: 12px 0 0;
   letter-spacing: 0;
+}
+
+.projects-header .section-desc {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* PROJECT CARD */
@@ -1209,15 +1232,18 @@ select {
 .awards-section::before {
   content: "ACHIEVEMENTS";
   position: absolute;
-  top: -40px;
-  left: 5%;
-  font-size: clamp(120px, 18vw, 260px);
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(64px, 10vw, 150px);
   font-weight: 900;
-  letter-spacing: 12px;
+  letter-spacing: 0.06em;
   color: black;
-  opacity: var(--bg-text-opacity);
+  opacity: 0.035;
   z-index: 0;
   font-style: italic;
+  white-space: nowrap;
+  pointer-events: none;
 }
 
 .awards-container {
@@ -1412,6 +1438,14 @@ select {
   margin: 0 auto;
 }
 
+@media (min-width: 769px) {
+  .certificate-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    width: calc(50% - 12px);
+    justify-self: center;
+  }
+}
+
 /* CERTIFICATE CARD */
 .certificate-card {
   position: relative;
@@ -1503,7 +1537,7 @@ select {
   letter-spacing: 1.1px;
   font-weight: 700;
   text-transform: uppercase;
-  color: #a2a2a2;
+  color: #666;
   margin-bottom: 6px;
   transition: color 0.3s ease;
 }
@@ -1515,7 +1549,7 @@ select {
 .cert-date {
   font-size: 12px;
   font-weight: 600;
-  color: #bcbcbc;
+  color: #666;
   margin-bottom: 16px;
 }
 
@@ -2292,11 +2326,11 @@ select {
 
 /* FOOTER */
 .footer-interesting {
-  padding: 40px 20px;
-  text-align: center;
+  padding: 52px clamp(24px, 7vw, 100px) 28px;
   opacity: 0;
   transform: translateY(12px);
   transition: all 0.7s ease;
+  border-top: 1px solid var(--line);
 }
 
 .footer-interesting.visible {
@@ -2304,47 +2338,70 @@ select {
   transform: translateY(0);
 }
 
-.footer-text {
-  font-size: 0.85rem;
-  color: #444444;
-  margin-bottom: 8px;
-  letter-spacing: 0.3px;
-  position: relative;
+.footer-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.footer-identity {
+  text-align: left;
+}
+
+.footer-name {
   display: inline-block;
-  transition: all 0.3s ease;
-  font-weight: 400;
+  color: #111;
+  font-family: var(--font-heading);
+  font-size: 24px;
+  line-height: 1.2;
 }
 
-.footer-text::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 0%;
-  height: 1px;
-  background: #888;
-  transition: width 0.4s ease;
+.footer-identity p {
+  margin: 6px 0 0;
+  color: #555;
+  font-size: 13px;
+  line-height: 1.6;
 }
 
-.footer-interesting:hover .footer-text::after {
-  width: 100%;
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px 24px;
 }
 
-.footer-interesting:hover .footer-text {
-  letter-spacing: 0.5px;
-  color: #484848;
+.footer-links a {
+  color: #333;
+  font-size: 13px;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover,
+.footer-name:hover {
+  color: #777;
 }
 
 .footer-meta {
-  font-size: 0.9rem;
-  color: #202020;
-  margin-top: 4px;
-  transition: color 0.3s ease;
-  font-weight: 600;
+  max-width: 1280px;
+  margin: 28px auto 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: #666;
+  font-size: 11px;
 }
 
-.footer-interesting:hover .footer-meta {
-  color: #9a9a9a;
+@media (max-width: 640px) {
+  .footer-main {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .footer-links {
+    justify-content: flex-start;
+  }
 }
 
 .download-btn {
