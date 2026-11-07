@@ -95,9 +95,10 @@
           </h1>
 
           <p class="hero-description reveal">
-            A real-time financial news platform that aggregates live RSS feeds,
-            scores sentiment with VADER, categorises narratives and presents an
-            interactive market-mood view through a Streamlit dashboard.
+            A real-time financial news platform that aggregates live RSS and
+            Atom feeds, scores sentiment with VADER, classifies narratives, and
+            presents an interactive market-mood view through a Streamlit
+            dashboard.
           </p>
 
           <div class="hero-meta reveal">
@@ -151,8 +152,8 @@
         <div>
           <span class="section-label">THE QUESTION</span>
           <h2 class="section-title">
-            How can a noisy stream of financial headlines become a clear
-            market signal?
+            How can a noisy stream of financial headlines become a clear market
+            signal?
           </h2>
         </div>
       </div>
@@ -202,8 +203,8 @@
 
       <div class="story-content">
         <div class="story-lead reveal">
-          External RSS sources keep the dashboard current without requiring API
-          keys or a dedicated news database.
+          External RSS and Atom sources keep the dashboard current without
+          requiring API keys or a dedicated news database.
         </div>
 
         <div class="data-grid">
@@ -212,7 +213,7 @@
             <div class="data-icon">
               <i class="fa-solid fa-rss"></i>
             </div>
-            <h3>RSS Feeds</h3>
+            <h3>RSS / Atom Feeds</h3>
             <p>
               Live headlines from CoinDesk, CoinTelegraph and Yahoo Finance form
               the continuous input stream.
@@ -226,8 +227,8 @@
             </div>
             <h3>Headline Text</h3>
             <p>
-              Article titles and metadata are extracted and normalised before
-              sentiment scoring.
+              Titles, summaries and metadata are extracted, cleaned and
+              normalised before sentiment scoring.
             </p>
           </article>
 
@@ -238,8 +239,9 @@
             </div>
             <h3>Categories</h3>
             <p>
-              Headlines are grouped into Bitcoin, DeFi, Regulation, Tech,
-              Earnings, Macro and related narratives.
+              Headlines are classified into Bitcoin & Major Coins, DeFi,
+              Regulation, NFTs, Technology, Earnings, Macro and related
+              narratives.
             </p>
           </article>
         </div>
@@ -249,8 +251,8 @@
         <div class="metric-intro">
           <span>DATA VIEW</span>
           <p>
-            No external API keys. No persistent database. Just live RSS feeds
-            processed at runtime.
+            No external API keys. No persistent database. Just live RSS/Atom
+            feeds processed at runtime with caching and size limits.
           </p>
         </div>
 
@@ -290,7 +292,7 @@
         <div class="architecture-node">
           <span class="architecture-index">01</span>
           <i class="fa-solid fa-rss"></i>
-          <h3>RSS Feeds</h3>
+          <h3>RSS / Atom Feeds</h3>
           <p>Live financial and crypto headlines enter the pipeline.</p>
         </div>
         <div class="architecture-connector"><span></span></div>
@@ -298,7 +300,7 @@
           <span class="architecture-index">02</span>
           <i class="fa-solid fa-download"></i>
           <h3>Fetch & Parse</h3>
-          <p>Requests + BeautifulSoup extract titles and metadata.</p>
+          <p>Requests + BeautifulSoup extract titles, summaries and links.</p>
         </div>
         <div class="architecture-connector"><span></span></div>
         <div class="architecture-node">
@@ -312,7 +314,7 @@
           <span class="architecture-index">04</span>
           <i class="fa-solid fa-chart-line"></i>
           <h3>Dashboard</h3>
-          <p>Market mood, categories and interactive exploration.</p>
+          <p>Market mood, categories, filters and interactive exploration.</p>
         </div>
       </div>
 
@@ -343,11 +345,11 @@
         </article>
         <article class="engineering-card reveal">
           <span>02</span>
-          <i class="fa-solid fa-bolt"></i>
-          <h3>Runtime Processing</h3>
+          <i class="fa-solid fa-shield-halved"></i>
+          <h3>Robust Fetching</h3>
           <p>
-            Feeds are fetched and scored on demand. No database or background
-            workers are required.
+            Size limits, per-source error handling, deduplication and 15-minute
+            caching protect the pipeline from fragile feeds.
           </p>
         </article>
         <article class="engineering-card reveal">
@@ -355,8 +357,8 @@
           <i class="fa-solid fa-eye"></i>
           <h3>Readable Output</h3>
           <p>
-            Sentiment badges, market-mood aggregation, search, filtering and
-            sorting turn raw scores into an explorable interface.
+            Sentiment badges, market-mood aggregation, search, filtering,
+            sorting and CSV export turn raw scores into an explorable interface.
           </p>
         </article>
       </div>
@@ -388,7 +390,7 @@
             <strong>LIVE AGGREGATION</strong>
             <p>
               Continuous retrieval of financial and crypto headlines from
-              multiple RSS sources.
+              multiple RSS and Atom sources with caching and size limits.
             </p>
           </div>
           <div class="evaluation-item reveal">
@@ -396,31 +398,32 @@
             <strong>VADER SENTIMENT</strong>
             <p>
               Article-level positive, negative, neutral and compound scores
-              generated in real time.
+              generated in real time with clear thresholds.
             </p>
           </div>
           <div class="evaluation-item reveal">
             <span>03</span>
             <strong>MARKET MOOD</strong>
             <p>
-              Individual scores are aggregated into a single bullish / bearish /
-              neutral market-mood view.
+              Individual scores are aggregated into overall tone, average
+              sentiment and a sentiment distribution chart.
             </p>
           </div>
           <div class="evaluation-item reveal">
             <span>04</span>
             <strong>CATEGORY VIEWS</strong>
             <p>
-              Headlines are organised into Bitcoin, DeFi, Regulation, Tech,
-              Earnings and Macro narratives.
+              Headlines are organised into Bitcoin, DeFi, Regulation, NFTs,
+              Technology, Earnings, Macro and related narratives.
             </p>
           </div>
           <div class="evaluation-item reveal">
             <span>05</span>
             <strong>EXPLORATION</strong>
             <p>
-              Search, filtering and “most negative” sorting support rapid
-              inspection of the current news stream.
+              Search, timeframe, category, sentiment and source filters, plus
+              sorting and CSV export, support rapid inspection of the news
+              stream.
             </p>
           </div>
         </div>
@@ -460,8 +463,8 @@
           <span>03</span>
           <h3>Headline Dependence</h3>
           <p>
-            Sentiment is derived primarily from titles. Full article context is
-            not analysed.
+            Sentiment is derived primarily from titles and short summaries. Full
+            article context is not analysed.
           </p>
         </article>
         <article class="limitation-card reveal">
@@ -533,8 +536,8 @@
             <span>ALERTS</span>
             <h3>Configurable signals.</h3>
             <p>
-              Add threshold-based alerts, scheduled summaries and exportable
-              sentiment reports.
+              Add threshold-based alerts, scheduled summaries and richer
+              exportable sentiment reports.
             </p>
           </div>
         </div>
@@ -562,7 +565,7 @@
           <strong>LIVE DATA</strong>
           <p>
             External feeds change the engineering problem from static analysis
-            to continuous freshness.
+            to continuous freshness and reliability.
           </p>
         </div>
         <div class="takeaway-card reveal">
@@ -577,15 +580,16 @@
           <span>03</span>
           <strong>PRODUCT VIEW</strong>
           <p>
-            Search, filters and mood aggregation turn scores into something
-            people can actually use.
+            Search, filters, mood aggregation and CSV export turn scores into
+            something people can actually use.
           </p>
         </div>
         <div class="takeaway-card reveal">
           <span>04</span>
           <strong>CONSTRAINTS</strong>
           <p>
-            No API keys and no database forced a clean, self-contained design.
+            No API keys and no database forced a clean, self-contained and
+            unit-tested design.
           </p>
         </div>
       </div>
@@ -636,8 +640,8 @@
         <span class="section-label">NEXT OPPORTUNITY</span>
         <p>
           This project turns a stream of information into an interface for
-          exploration. Arshi Bansal is open to entry-level opportunities
-          across analytics, NLP, and data-focused software.
+          exploration. Arshi Bansal is open to entry-level opportunities across
+          analytics, NLP, and data-focused software.
         </p>
         <div class="project-footer-actions">
           <a href="../index.html#about">PROFILE</a>
