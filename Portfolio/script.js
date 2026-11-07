@@ -231,7 +231,18 @@ const revealStyles = [
   "reveal--right",
 ];
 
+let projectCardIndex = 0;
+
 revealElements.forEach((el, index) => {
+  if (el.matches(".project-card")) {
+    el.dataset.projectStack = String(projectCardIndex + 1);
+    el.dataset.projectMotion =
+      projectCardIndex % 2 === 0 ? "from-left" : "from-right";
+    el.style.setProperty("--project-delay", `${projectCardIndex * 0.12}s`);
+    projectCardIndex += 1;
+    return;
+  }
+
   el.classList.add(revealStyles[index % revealStyles.length]);
   el.style.transitionDelay = `${Math.min(index * 0.05, 0.3)}s`;
 });
