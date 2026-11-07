@@ -1,6 +1,6 @@
 # Arshi Bansal
 
-I’m a final-year Computer Science & Engineering student at Lovely Professional University, building a foundation in machine learning, data, and software through hands-on projects.
+I’m a Computer Science & Engineering student building a foundation in machine learning, data, and software through hands-on projects.
 
 My projects have taken me from imbalanced fraud detection and phishing analysis to equity forecasting, financial-news sentiment, and cyber-incident data. I care about how a result is reached, whether it can be trusted, and how clearly another person can understand it.
 

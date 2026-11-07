@@ -19,6 +19,164 @@ if (reducedMotionQuery.addEventListener) {
   reducedMotionQuery.addEventListener("change", applyMotionPreference);
 }
 
+/* TRAILING CURSOR */
+function initTrailingCursor() {
+  if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+  const ring = document.createElement("span");
+  ring.className = "custom-cursor-ring";
+  ring.setAttribute("aria-hidden", "true");
+
+  const dot = document.createElement("span");
+  dot.className = "custom-cursor-dot";
+  dot.setAttribute("aria-hidden", "true");
+
+  document.body.append(ring, dot);
+  document.body.classList.add("custom-cursor-enabled");
+
+  let targetX = 0;
+  let targetY = 0;
+  let ringX = 0;
+  let ringY = 0;
+  let animationFrame = null;
+  let hasPointerPosition = false;
+
+  function moveRing() {
+    ringX += (targetX - ringX) * 0.16;
+    ringY += (targetY - ringY) * 0.16;
+    ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
+
+    if (Math.abs(targetX - ringX) > 0.2 || Math.abs(targetY - ringY) > 0.2) {
+      animationFrame = window.requestAnimationFrame(moveRing);
+    } else {
+      animationFrame = null;
+    }
+  }
+
+  window.addEventListener(
+    "pointermove",
+    (event) => {
+      if (event.pointerType === "touch") return;
+
+      targetX = event.clientX;
+      targetY = event.clientY;
+      dot.style.transform = `translate3d(${targetX}px, ${targetY}px, 0) translate(-50%, -50%)`;
+      document.body.classList.add("custom-cursor-visible");
+
+      if (!hasPointerPosition) {
+        ringX = targetX;
+        ringY = targetY;
+        hasPointerPosition = true;
+      }
+
+      if (reducedMotionQuery.matches) {
+        ringX = targetX;
+        ringY = targetY;
+        ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
+        if (animationFrame !== null) {
+          window.cancelAnimationFrame(animationFrame);
+          animationFrame = null;
+        }
+      } else if (animationFrame === null) {
+        animationFrame = window.requestAnimationFrame(moveRing);
+      }
+    },
+    { passive: true },
+  );
+
+  window.addEventListener("pointerleave", () => {
+    document.body.classList.remove("custom-cursor-visible");
+  });
+}
+
+initTrailingCursor();
+
+/* TWO-ROW CERTIFICATE PAGINATION */
+function initCertificatePagination() {
+  const grid = $(".certificates-grid");
+  if (!grid) return;
+
+  const cards = Array.from(grid.querySelectorAll(":scope > .certificate-card"));
+  if (!cards.length) return;
+
+  const previousButton = $('[data-page-direction="-1"]');
+  const nextButton = $('[data-page-direction="1"]');
+  const status = $(".certificate-page-status");
+  if (!previousButton || !nextButton || !status) return;
+
+  const pageSizeQuery = window.matchMedia(
+    "(max-width: 768px), (min-width: 769px) and (max-width: 1024px)",
+  );
+  const mobileQuery = window.matchMedia("(max-width: 768px)");
+  const mediumQuery = window.matchMedia(
+    "(min-width: 769px) and (max-width: 1024px)",
+  );
+
+  function getPageSize() {
+    if (mobileQuery.matches) return 2;
+    if (mediumQuery.matches) return 4;
+    return 6;
+  }
+
+  let pageSize = getPageSize();
+  let currentPage = 0;
+
+  cards.forEach((card) => {
+    card.classList.remove(
+      "reveal",
+      "reveal--rise",
+      "reveal--left",
+      "reveal--right",
+      "reveal--scale",
+      "visible",
+    );
+    card.style.removeProperty("transition-delay");
+  });
+
+  function renderPage() {
+    const pageCount = Math.ceil(cards.length / pageSize);
+    const start = currentPage * pageSize;
+
+    cards.forEach((card, index) => {
+      card.hidden = index < start || index >= start + pageSize;
+    });
+
+    previousButton.disabled = currentPage === 0;
+    nextButton.disabled = currentPage >= pageCount - 1;
+    status.textContent = `${String(currentPage + 1).padStart(2, "0")} / ${String(pageCount).padStart(2, "0")}`;
+  }
+
+  previousButton.addEventListener("click", () => {
+    if (currentPage === 0) return;
+    currentPage -= 1;
+    renderPage();
+  });
+
+  nextButton.addEventListener("click", () => {
+    if (currentPage >= Math.ceil(cards.length / pageSize) - 1) return;
+    currentPage += 1;
+    renderPage();
+  });
+
+  function updatePageSize() {
+    const nextPageSize = getPageSize();
+    if (nextPageSize === pageSize) return;
+    pageSize = nextPageSize;
+    currentPage = Math.min(currentPage, Math.ceil(cards.length / pageSize) - 1);
+    renderPage();
+  }
+
+  if (pageSizeQuery.addEventListener) {
+    pageSizeQuery.addEventListener("change", updatePageSize);
+  } else {
+    pageSizeQuery.addListener(updatePageSize);
+  }
+
+  renderPage();
+}
+
+initCertificatePagination();
+
 /* Discourage casual copying of portfolio content. */
 ["copy", "cut", "paste", "contextmenu", "dragstart"].forEach((eventName) => {
   document.addEventListener(eventName, (event) => event.preventDefault());
@@ -303,12 +461,6 @@ window.addEventListener("load", () => {
   revealOnScroll();
   updateScrollProgress();
   updateActiveNav();
-
-  const footer = $(".footer-interesting");
-
-  if (footer) {
-    footer.classList.add("visible");
-  }
 });
 
 /* HERO TYPING ROLES */
