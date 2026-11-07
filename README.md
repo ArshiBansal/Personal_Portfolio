@@ -1,14 +1,12 @@
 # Arshi Bansal
 
-I’m a Computer Science & Engineering student building a foundation in machine learning, data, and software through hands-on projects.
+Computer Science & Engineering student focused on artificial intelligence, machine learning, data science, and software development. Applied work includes imbalanced fraud detection, phishing analysis, equity forecasting, financial-news sentiment, and cybersecurity analytics.
 
-My projects have taken me from imbalanced fraud detection and phishing analysis to equity forecasting, financial-news sentiment, and cyber-incident data. I care about how a result is reached, whether it can be trusted, and how clearly another person can understand it.
-
-I’m open for entry-level opportunities in AI/ML, data science, data analytics, or software roles with a data focus. I’m keen to contribute, learn from a team, and grow into the work.
+Technical strengths include Python, Java, SQL, model evaluation, and explainable machine learning. Arshi Bansal is open to entry-level opportunities in AI/ML, data science, analytics, and data-focused software.
 
 ## Portfolio
 
-Explore my projects, education, technical toolkit, coding practice, and selected credentials: [arshibansal.github.io/Personal_Portfolio](https://arshibansal.github.io/Personal_Portfolio/)
+Portfolio: [arshibansal.github.io/Personal_Portfolio](https://arshibansal.github.io/Personal_Portfolio/) — project case studies, education, technical skills, coding achievements, and selected credentials.
 
 ## Connect
 
