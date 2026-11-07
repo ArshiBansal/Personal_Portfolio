@@ -104,18 +104,12 @@ function initCertificatePagination() {
   const status = $(".certificate-page-status");
   if (!previousButton || !nextButton || !status) return;
 
-  const pageSizeQuery = window.matchMedia(
-    "(max-width: 768px), (min-width: 769px) and (max-width: 1024px)",
-  );
+  const pageSizeQuery = window.matchMedia("(max-width: 768px)");
   const mobileQuery = window.matchMedia("(max-width: 768px)");
-  const mediumQuery = window.matchMedia(
-    "(min-width: 769px) and (max-width: 1024px)",
-  );
 
   function getPageSize() {
     if (mobileQuery.matches) return 2;
-    if (mediumQuery.matches) return 4;
-    return 6;
+    return 4;
   }
 
   let pageSize = getPageSize();
