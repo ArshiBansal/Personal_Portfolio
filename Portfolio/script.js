@@ -470,10 +470,11 @@ window.addEventListener("load", () => {
 
 /* HERO TYPING ROLES */
 const roles = [
-  "Models that earn trust",
-  "Patterns hiding in data",
-  "Questions behind the numbers",
-  "Ideas made useful",
+  "AI Engineer",
+  "Machine Learning Engineer",
+  "Database Engineer",
+  "Data Scientist",
+  "Software Development Engineer",
 ];
 
 const typingEl = $(".typing-text");
