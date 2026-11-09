@@ -1357,12 +1357,14 @@ a:focus-visible {
 
 /* FOOTER */
 .footer-interesting {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 38px clamp(20px, 7vw, 80px) 24px;
-  border-top: 1px solid var(--line);
+  max-width: 1160px;
+  margin: 38px auto 26px;
+  padding: 26px clamp(20px, 4vw, 44px) 20px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
   color: var(--ink);
-  background: transparent;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.045);
   opacity: 0;
   transform: translateY(12px);
   transition:
@@ -1391,6 +1393,11 @@ a:focus-visible {
   color: var(--ink);
   font-family: var(--font-heading);
   font-size: 21px;
+  transition: color 0.2s ease;
+}
+
+.footer-simple-copy .footer-name:hover {
+  color: #555;
 }
 
 .footer-simple-copy p {
@@ -1708,6 +1715,11 @@ a:focus-visible {
     flex-direction: column;
     gap: 16px;
   }
+
+  .footer-interesting {
+    margin: 26px 14px 18px;
+  }
+
   .project-footer-actions {
     justify-content: flex-start;
   }
