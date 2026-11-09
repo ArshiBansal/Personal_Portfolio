@@ -431,6 +431,218 @@ a {
   letter-spacing: 2px;
 }
 
+.insight-visual {
+  margin: 38px 0 56px;
+  padding: clamp(14px, 3vw, 28px);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background:
+    radial-gradient(ellipse at 85% 0%, rgba(17, 17, 17, 0.045), transparent 40%),
+    rgba(255, 255, 255, 0.72);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.045);
+}
+
+.insight-visual svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.insight-visual figcaption {
+  margin: 12px 4px 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.visual-panel {
+  fill: rgba(255, 255, 255, 0.66);
+  stroke: rgba(17, 17, 17, 0.1);
+}
+
+.visual-kicker,
+.visual-label,
+.visual-legend,
+.visual-chip-text,
+.visual-step-text {
+  fill: #777;
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+}
+
+.visual-heading {
+  fill: var(--ink);
+  font-family: var(--font-heading);
+  font-size: 23px;
+}
+
+.visual-caption {
+  fill: #777;
+  font-family: var(--font-body);
+  font-size: 11px;
+}
+
+.visual-rule,
+.visual-axis {
+  stroke: rgba(17, 17, 17, 0.14);
+  stroke-width: 1;
+}
+
+.visual-grid line {
+  stroke: rgba(17, 17, 17, 0.08);
+  stroke-width: 1;
+}
+
+.visual-track {
+  fill: rgba(17, 17, 17, 0.07);
+}
+
+.visual-bar {
+  fill: #222;
+  transform-box: fill-box;
+  transform-origin: left center;
+  transform: scaleX(0.02);
+  transition: transform 900ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.insight-visual.visible .visual-bar {
+  transform: scaleX(1);
+}
+
+.insight-visual.visible .visual-bar-two {
+  transition-delay: 120ms;
+}
+
+.insight-visual.visible .visual-bar-three {
+  transition-delay: 240ms;
+}
+
+.visual-bar-three {
+  transition-delay: 0s;
+}
+
+.visual-chip,
+.visual-step {
+  fill: rgba(17, 17, 17, 0.055);
+  stroke: rgba(17, 17, 17, 0.11);
+}
+
+.visual-chip-text {
+  fill: #555;
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+
+.visual-line {
+  fill: none;
+  stroke: #171717;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.visual-line-alt {
+  stroke: #8a8a8a;
+  stroke-width: 2;
+}
+
+.visual-line-base {
+  stroke: #b7b7b7;
+  stroke-width: 1.5;
+  stroke-dasharray: 5 5;
+}
+
+.visual-draw {
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  transition: stroke-dashoffset 1.8s ease 150ms;
+}
+
+.insight-visual.visible .visual-draw {
+  stroke-dashoffset: 0;
+}
+
+.visual-point {
+  fill: #171717;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0.4);
+  transition:
+    opacity 500ms ease,
+    transform 500ms ease;
+}
+
+.insight-visual.visible .visual-point {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.visual-point-alt {
+  fill: #8a8a8a;
+}
+
+.visual-pulse {
+  fill: #171717;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: visualPulse 2s ease-in-out infinite;
+}
+
+.visual-url-box {
+  fill: rgba(17, 17, 17, 0.045);
+  stroke: rgba(17, 17, 17, 0.12);
+}
+
+.visual-url {
+  fill: #444;
+  font-family: var(--font-body);
+  font-size: 12px;
+}
+
+.visual-step-dark {
+  fill: #171717;
+}
+
+.visual-step-text {
+  font-size: 8px;
+  letter-spacing: 0.8px;
+}
+
+.visual-step-text-light {
+  fill: #fff;
+}
+
+.visual-flow {
+  fill: none;
+  stroke: #777;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.visual-year {
+  fill: #555;
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 700;
+}
+
+@keyframes visualPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(1.45);
+  }
+}
+
 .scroll-cue {
   display: flex;
   align-items: center;
@@ -1470,6 +1682,23 @@ a:focus-visible {
   transition: none;
 }
 
+.reduce-motion .insight-visual .visual-bar {
+  transform: scaleX(1);
+}
+
+.reduce-motion .insight-visual .visual-point {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.reduce-motion .insight-visual .visual-draw {
+  stroke-dashoffset: 0;
+}
+
+.reduce-motion .visual-pulse {
+  animation: none;
+}
+
 /* REDUCED MOTION */
 .reduce-motion *,
 .reduce-motion *::before,
@@ -1721,5 +1950,22 @@ a:focus-visible {
   .project-section {
     opacity: 1;
     transform: none;
+  }
+
+  .insight-visual .visual-bar {
+    transform: scaleX(1);
+  }
+
+  .insight-visual .visual-point {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .insight-visual .visual-draw {
+    stroke-dashoffset: 0;
+  }
+
+  .visual-pulse {
+    animation: none;
   }
 }
