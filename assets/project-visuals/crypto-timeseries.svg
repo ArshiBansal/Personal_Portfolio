@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640">
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#22d3ee" />
+      <stop offset="100%" stop-color="#818cf8" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="640" fill="url(#grad)" rx="24" />
+  <path d="M60 520 L180 460 L300 500 L420 410 L540 450 L660 380 L780 430 L900 360 L1020 400 L1140 330" fill="none" stroke="url(#lineGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="60" cy="520" r="5" fill="#22d3ee" />
+  <circle cx="180" cy="460" r="5" fill="#22d3ee" />
+  <circle cx="300" cy="500" r="5" fill="#22d3ee" />
+  <circle cx="420" cy="410" r="5" fill="#22d3ee" />
+  <circle cx="540" cy="450" r="5" fill="#22d3ee" />
+  <circle cx="660" cy="380" r="5" fill="#22d3ee" />
+  <circle cx="780" cy="430" r="5" fill="#22d3ee" />
+  <circle cx="900" cy="360" r="5" fill="#22d3ee" />
+  <circle cx="1020" cy="400" r="5" fill="#22d3ee" />
+  <circle cx="1140" cy="330" r="5" fill="#22d3ee" />
+  <text x="60" y="600" fill="#94a3b8" font-family="Manrope, sans-serif" font-size="13" text-anchor="middle">BTC price · rolling volatility · regime view</text>
+  <text x="1140" y="600" fill="#94a3b8" font-family="Manrope, sans-serif" font-size="13" text-anchor="middle">Conceptual illustration</text>
+  <text x="60" y="60" fill="#e2e8f0" font-family="Manrope, sans-serif" font-size="16" font-weight="600">Crypto Time Series Analysis</text>
+  <text x="60" y="90" fill="#94a3b8" font-family="Manrope, sans-serif" font-size="13">Forecasting · Regimes · Anomalies · Change points</text>
+</svg>
