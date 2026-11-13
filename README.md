@@ -1,6 +1,6 @@
 # Arshi Bansal
 
-Computer Science & Engineering student focused on artificial intelligence, machine learning, data science, and software development. Applied work includes imbalanced fraud detection, phishing analysis, equity forecasting, financial-news sentiment, and cybersecurity analytics.
+Computer Science & Engineering student focused on artificial intelligence, machine learning, data science, and software development. Applied work includes imbalanced fraud detection, phishing analysis, equity forecasting, crypto market analytics, time-series forecasting, financial-news sentiment, and cybersecurity analytics.
 
 Technical strengths include Python, Java, SQL, model evaluation, and explainable machine learning. Arshi Bansal is open to entry-level opportunities in AI/ML, data science, analytics, and data-focused software.
 
