@@ -1043,11 +1043,6 @@ select {
   z-index: 4;
 }
 
-.project-card[data-project-stack="5"] {
-  --project-sticky-top: 152px;
-  z-index: 5;
-}
-
 .js .project-card.reveal {
   opacity: 0;
   transition:
