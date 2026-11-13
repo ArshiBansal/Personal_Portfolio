@@ -709,7 +709,6 @@
             </h3>
 
             <p class="project-duration">November 2025 – March 2026</p>
-
             <div class="core-tech">
               <span class="core-label">CORE TECH</span>
 
@@ -719,6 +718,7 @@
                 <span>TensorFlow</span>
                 <span>XGBoost</span>
                 <span>LightGBM</span>
+                <span>Prophet</span>
                 <span>Scikit-learn</span>
                 <span>LSTM / GRU</span>
                 <span>Plotly</span>
@@ -752,13 +752,13 @@
           <div class="project-right">
             <div class="metrics-row">
               <div class="metric">
-                <div class="metric-value">8+</div>
+                <div class="metric-value">10+</div>
                 <div class="metric-label">Forecast Models</div>
               </div>
 
               <div class="metric">
-                <div class="metric-value">65</div>
-                <div class="metric-label">Global Companies</div>
+                <div class="metric-value">7 Tabs</div>
+                <div class="metric-label">Streamlit Dashboard</div>
               </div>
 
               <div class="metric">
@@ -772,9 +772,9 @@
                 <span class="point-num">01</span>
 
                 <p>
-                  More than eight models are compared across 65 companies using
-                  features available at prediction time, preventing future
-                  information from leaking into forecasts.
+                  Baselines, tree models, and LSTM / GRU networks are compared
+                  across companies using chronological holdout and optional
+                  walk-forward validation, preventing look-ahead leakage.
                 </p>
               </div>
 
@@ -782,16 +782,19 @@
                 <span class="point-num">02</span>
 
                 <p>
-                  Chronological and walk-forward validation support fair
-                  comparisons across experiments and forecast horizons.
+                  MAE, RMSE, and directional accuracy are reported consistently,
+                  with persistence via joblib so fitted models are reused across
+                  sessions.
                 </p>
               </div>
 
               <div class="point">
                 <span class="point-num">03</span>
+
                 <p>
-                  A six-tab dashboard brings data, model experiments, and
-                  forecasts together for exploration and comparison.
+                  A seven-tab dashboard brings quotes, raw data, feature
+                  experiments, neural networks, performance metrics, forecasts,
+                  and a multi-ticker portfolio view together.
                 </p>
               </div>
             </div>
